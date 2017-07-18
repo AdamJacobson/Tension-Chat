@@ -43,29 +43,29 @@ class SessionForm extends React.Component {
     }
 
     return(
-      <div className="auth-form">
-        <h1>{headerText}</h1>
+      <div className="auth-page">
+        <h2>{headerText}</h2>
 
-        <form>
-          <ul className="errors">
+        <form className="auth-form">
+          <ul className="auth-errors">
             {this.props.errors.map((error, i) => <li key={i} className="error" >{error}</li>)}
           </ul>
 
           <label htmlFor="username">Username</label>
-          <input
+          <input className="auth-input"
             id="username"
             type="text"
             value={this.state.username}
             onChange={this.handleChange}></input>
 
           <label htmlFor="password">Password</label>
-          <input
+          <input className="auth-input"
             id="password"
             type="password"
             value={this.state.password}
             onChange={this.handleChange}></input>
 
-          <button id="submit" onClick={this.handleSubmit}>{headerText}</button>
+          <button className="button" id="submit" onClick={this.handleSubmit}>{headerText}</button>
         </form>
 
         <div>{footerText}</div>

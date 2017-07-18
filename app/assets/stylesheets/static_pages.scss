@@ -54,6 +54,7 @@
 $mediumgray: #5a5a5a;
 $darkgray: #2f2f2f;
 $mintgreen: #42c299;
+$mintgreenshadow: #309272;
 $magenta: #e32072;
 
 html {
@@ -130,13 +131,19 @@ html {
   text-shadow: none;
 }
 
-a.button {
+.button {
   background: $mintgreen;
-  text-decoration: none;
-  padding: 16px 40px;
+  border-radius: 3px;
+  border: none;
   color: white;
+  cursor: pointer;
+  display: inline-block;
   font-size: 16px;
   margin: 10px 0;
-  display: inline-block;
-  border-radius: 3px;
+  padding: 16px 40px;
+  text-decoration: none;
+
+  &:hover {
+    border-bottom: 3px solid $mintgreenshadow;
+  }
 }
