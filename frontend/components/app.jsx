@@ -1,11 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux';
-import { Route, HashRouter, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+
+import GreetingContainer from './greeting_container';
+import SessionFormContainer from './session_form_container';
+import { AuthRoute } from '../util/route_util';
 
 const App = () => {
   return (
-    <div>React is working and the App is loading. Wheeeee.</div>
+    <div>
+      <header>
+        <h1>Tension Chat</h1>
+        <GreetingContainer/>
+      </header>
+
+      <AuthRoute path="/login" component={SessionFormContainer}/>
+      <AuthRoute path="/signup" component={SessionFormContainer}/>
+    </div>
   );
 };
 

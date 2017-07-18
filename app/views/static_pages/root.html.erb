@@ -1,3 +1,9 @@
-<main id="root">
-  React didn't work. Check console.
-</main>
+<% partial = "api/users/user.json.jbuilder" %>
+
+<script type="text/javascript">
+  <% if logged_in? %>
+  window.currentUser = <%= render(partial, user: current_user).html_safe %>
+  <% end %>
+</script>
+
+<main id="root">React failed to load. Check console.</main>
