@@ -1,5 +1,6 @@
 <% partial = "api/users/user.json.jbuilder" %>
 
+<!-- Bootstrap current user -->
 <script type="text/javascript">
   <% if logged_in? %>
   window.currentUser = <%= render(partial, user: current_user).html_safe %>
