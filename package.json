@@ -1,5 +1,44 @@
 {
   "name": "Tension",
-  "private": true,
-  "dependencies": {}
+  "version": "0.0.1",
+  "description": "Slack clone with React, Redux and Web Sockets",
+  "main": "webpack.config.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.2",
+    "react-router-dom": "^4.1.2",
+    "redux": "^3.7.2",
+    "webpack": "^3.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamJacobson/Tension-Chat.git"
+  },
+  "keywords": [
+    "slack",
+    "clone",
+    "react",
+    "redux",
+    "sockets"
+  ],
+  "author": "AdamJacobson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamJacobson/Tension-Chat/issues"
+  },
+  "homepage": "https://github.com/AdamJacobson/Tension-Chat#readme"
 }
