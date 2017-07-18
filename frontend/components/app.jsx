@@ -1,21 +1,21 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
 
 import GreetingContainer from './greeting_container';
 import SessionFormContainer from './session_form_container';
-import { AuthRoute } from '../util/route_util';
+import Splash from './splash';
+import ChatContainer from './chat_container';
+
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => {
   return (
-    <div>
-      <header>
-        <h1>Tension Chat</h1>
-        <GreetingContainer/>
-      </header>
-
+    <Switch>
+      <AuthRoute exact path="/" component={Splash} />
       <AuthRoute path="/login" component={SessionFormContainer}/>
       <AuthRoute path="/signup" component={SessionFormContainer}/>
-    </div>
+      <ProtectedRoute path="/messages" component={ChatContainer} />
+    </Switch>
   );
 };
 

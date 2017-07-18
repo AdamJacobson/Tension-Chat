@@ -25,7 +25,7 @@ class SessionForm extends React.Component {
 
   render() {
     if (this.props.loggedIn) {
-      return <Redirect to="/"/>;
+      return <Redirect to="/messages"/>;
     }
 
     let headerText;
