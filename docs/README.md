@@ -48,15 +48,15 @@ The following features are stretch goals should the basic features be completed 
 
 There are 11 total days of work available for the project
 
-### Phase 1: Backend setup and Front End User Authentication (2 days)
+### Phase 1: Backend setup and Front End User Authentication (1 days)
 
-**Objective:** Functioning rails project with front-end Authentication
+**Objective:** Able to login/signup
 
 ### Phase 2: Message sending (without sockets) (1 day)
 
-**Objective:** Should be able to post messages and see posted messages
+**Objective:** Should be able to posted messages and see posted messages with refresh
 
-### Phase 3: Sockets (1 day)
+### Phase 3: Sockets (2 day)
 
 **Objective:** Notes should appear automatically once posted. Page refresh not required.
 
