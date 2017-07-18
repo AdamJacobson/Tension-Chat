@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 
 // Auth only meant to be shown to users not logged in
+// If logged in, send user to /messages
 const Auth = ({ component: Component, path, loggedIn }) => (
   <Route path={path} render={(props) => (
     !loggedIn ? (
       <Component {...props} />
     ) : (
-      <Redirect to="/" />
+      <Redirect to="/messages" />
     )
   )}/>
 );

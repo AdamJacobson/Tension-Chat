@@ -25,6 +25,7 @@ class SessionForm extends React.Component {
 
   render() {
     if (this.props.loggedIn) {
+      console.log("Now logged in");
       return <Redirect to="/messages"/>;
     }
 
