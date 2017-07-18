@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'rails', '~> 5.1.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -14,6 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

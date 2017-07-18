@@ -51,6 +51,6 @@
       body: 'some other text',
       channel_id: 1
     },
-  }
+  },
 }
 ```
