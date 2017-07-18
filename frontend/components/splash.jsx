@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SplashHeader from './splash_header';
 
 const Splash = () => {
   return (
     <div className="splash-page">
+
+      <SplashHeader />
 
       <div className="splash-content">
         <div className="splash-text">

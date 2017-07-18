@@ -1,3 +1,135 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin long-shadow($type, $color, $length, $fadeout: true, $skew: false, $direction: right){
+  $shadow: '';
+  @if $skew == false or $type == text{
+    @if $direction == right {
+      @for $i from 0 to $length - 1 {
+        $shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $color + ',';
+      }
+    }
+    @if $direction == left {
+      @for $i from 0 to $length - 1 {
+        $shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' + $color + ',';
+       }
+      }
+     }
+
+   @if $fadeout == true{
+    @for $i from 1 to $length - 1 {
+      @if $type == text or $skew == false{
+        @if $direction == right{
+          $shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + rgba($color, 1 - $i / $length) + ',';
+        }
+        @if $direction == left{
+          $shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' + rgba($color, 1 - $i / $length) + ',';
+        }
+      }
+      @if ($type == box) and $skew == true{
+        @if $direction == right {
+          $shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $i * .2 + 'px ' + rgba($color, 1 - $i / $length) + ',';
+        }
+        @if $direction == left {
+          $shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' + $i * .2 + 'px ' + rgba($color, 1 - $i / $length) + ',';
+        }
+      }
+  }
+  $shadow: $shadow + $length + 'px ' + $length + 'px 0 ' + rgba($color, 0);
+ }
+ @if $fadeout == false{
+   @if $skew == true and ( $type == box ){
+     @for $i from 0 to $length - 1 {
+            $shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $i * .1 + 'px ' + $color + ',';
+      }
+   }
+    $shadow: $shadow + $length + 'px ' + $length + 'px 0 ' + rgba(0,0,0,0);
+ }
+ $shadow: unquote($shadow);
+  @if $type == 'box' {box-shadow: $shadow;}
+  @if $type == 'text' {text-shadow: $shadow;}
+}
+
+$mediumgray: #5a5a5a;
+$darkgray: #2f2f2f;
+$mintgreen: #42c299;
+$magenta: #e32072;
+
+html {
+  background: #e3e4e5;
+  font-family: 'Lato';
+  // background-image: url("https://image.ibb.co/cRqoUk/slack_splash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.splash-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+
+.header-options {
+  
+}
+
+.header-option {
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  color: $mediumgray;
+  padding: 5px;
+  border-radius: 3px;
+
+  &:hover {
+    color: $darkgray;
+    background: lightgray;
+  }
+}
+
+.splash-page {
+
+}
+
+.splash-content {
+  width: 470px;
+  margin-left: 16%;
+  margin-top: 75px;
+}
+
+.splash-text {
+  font-size: 77px;
+  line-height: 80px;
+  font-weight: 700;
+  @include long-shadow($type: text, $color: #cfd1d3, $length: 500, $fadeout: false, $skew: true, $direction: left);
+}
+
+.splash-tagline {
+  font-size: 16px;
+  margin-top: 17px;
+}
+
+.asterisk {
+  color: $magenta;
+  text-shadow: none;
+}
+
+a.button {
+  background: $mintgreen;
+  text-decoration: none;
+  padding: 10px 40px;
+  color: white;
+  font-size: 14px;
+  margin: 10px 0;
+  display: inline-block;
+  border-radius: 3px;
+}
