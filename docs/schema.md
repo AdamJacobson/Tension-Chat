@@ -17,17 +17,31 @@ body        | text      | not null
 author_id   | integer   | not null, foreign key (references users), indexed
 channel_id  | integer   | not null, foreign key (references channels), indexed
 
-## channel
+## channels
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
+team_id     | integer   | not null, foreign key (references teams), indexed
 author_id   | integer   | not null, foreign key (references users), indexed
 name        | string    | not null
 description | string    |
 
-## memberships
+## teams
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-channel_id  | integer   | not null, foreign key (references channels), indexed, unique [tag_id]
+name        | string    | not null
+
+## channel_memberships
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+channel_id  | integer   | not null, foreign key (references channels), indexed, unique [user_id]
+user_id     | integer   | not null, foreign key (references users), indexed
+
+## team_memberships
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+team_id     | integer   | not null, foreign key (references teams), indexed, unique [user_id]
 user_id     | integer   | not null, foreign key (references users), indexed

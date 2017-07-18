@@ -62,12 +62,12 @@ There are 11 total days of work available for the project
 
 ### Phase 4: Channels (2 days)
 
-**Objective:** Messages are posted to specific channels. Channels
+**Objective:** Messages are posted to specific channels.
 
 ### Phase 5: Direct Messages (1 day)
 
 **Objective:** Same as a channel but only between 2 people
 
-### Phase 6: Teams/Group Chat (2 days)
+### Phase 6: Teams (2 days)
 
-**Objective:** Teams are invite only groups which contain people and channels
+**Objective:** Teams are invite only groups which contain users and channels
