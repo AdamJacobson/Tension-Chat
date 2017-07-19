@@ -1,10 +1,10 @@
 # Tension Chat
 
-~~[Heroku link][heroku]~~ **Note:** Not yet available
+[Heroku link][heroku]
 
 [Trello link][trello]
 
-[heroku]: http://www.herokuapp.com/
+[heroku]: https://tension.herokuapp.com
 [trello]: https://trello.com/b/r6JhyWE7/tension-chat
 
 ## Minimum Viable Product
