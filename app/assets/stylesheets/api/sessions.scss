@@ -1,10 +1,4 @@
-$lightgray: #f9f9f9;
-$midlightgray: #c3c4c5;
-$mediumgray: #5a5a5a;
-$darkgray: #2f2f2f;
-$mintgreen: #42c299;
-$mintgreenshadow: #309272;
-$magenta: #e32072;
+@import "../utilities/variables";
 
 .auth-page {
   background: $lightgray;
@@ -46,6 +40,26 @@ h2 {
   font-size: 40px;
   padding: 25px;
   margin: 10px;
+}
+
+.auth-errors {
+  width: 650px;
+  font-size: 16px;
+  height: 100px;
+  margin-top: -100px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+li.error {
+  border: 1px solid lightgray;
+  border-left: 3px solid red;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
+  background: white;
 }
 
 .auth-input {

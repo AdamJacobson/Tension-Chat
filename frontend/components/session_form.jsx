@@ -49,12 +49,12 @@ class SessionForm extends React.Component {
 
         <div className="auth-content">
 
+          <ul className="auth-errors">
+            {this.props.errors.map((error, i) => <li key={i} className="error" >{error}</li>)}
+          </ul>
+
           <form className="auth-form">
             <h2>{headerText}</h2>
-
-            <ul className="auth-errors">
-              {this.props.errors.map((error, i) => <li key={i} className="error" >{error}</li>)}
-            </ul>
 
             <div>Enter your <strong>username</strong> and <strong>password</strong></div>
 
