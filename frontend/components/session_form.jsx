@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Redirect, withRouter } from 'react-router-dom';
+import SplashHeader from './splash_header';
 
 class SessionForm extends React.Component {
   constructor(props) {
-    // { loggedIn, errors, formType, processForm }
     super(props);
 
     this.state = {username: "", password: ""};
@@ -29,47 +29,58 @@ class SessionForm extends React.Component {
       return <Redirect to="/messages"/>;
     }
 
-    let headerText;
-    let footerLink;
-    let footerText;
+    let headerText, footerLink, footerText, buttonText;
     if (this.props.formType === 'login') {
-      headerText = "Log In";
+      headerText = "Log In to Tension";
+      buttonText = "Log In";
       footerText = "Not a member yet?";
       footerLink = (<Link to="/signup">Sign Up</Link>);
     } else {
-      headerText = "Sign Up";
+      headerText = "Sign Up for Tension";
+      buttonText = "Sign Up";
       footerText = "Already signed up?";
       footerLink = (<Link to="/login">Log In</Link>);
     }
 
     return(
       <div className="auth-page">
-        <h2>{headerText}</h2>
 
-        <form className="auth-form">
-          <ul className="auth-errors">
-            {this.props.errors.map((error, i) => <li key={i} className="error" >{error}</li>)}
-          </ul>
+        <SplashHeader />
 
-          <label htmlFor="username">Username</label>
-          <input className="auth-input"
-            id="username"
-            type="text"
-            value={this.state.username}
-            onChange={this.handleChange}></input>
+        <div className="auth-content">
 
-          <label htmlFor="password">Password</label>
-          <input className="auth-input"
-            id="password"
-            type="password"
-            value={this.state.password}
-            onChange={this.handleChange}></input>
+          <form className="auth-form">
+            <h2>{headerText}</h2>
 
-          <button className="button" id="submit" onClick={this.handleSubmit}>{headerText}</button>
-        </form>
+            <ul className="auth-errors">
+              {this.props.errors.map((error, i) => <li key={i} className="error" >{error}</li>)}
+            </ul>
 
-        <div>{footerText}</div>
-        {footerLink}
+            <div>Enter your <strong>username</strong> and <strong>password</strong></div>
+
+            <input className="auth-input"
+              id="username"
+              type="text"
+              placeholder="tension_tamer"
+              value={this.state.username}
+              onChange={this.handleChange}></input>
+
+            <input className="auth-input"
+              id="password"
+              type="password"
+              placeholder="password"
+              value={this.state.password}
+              onChange={this.handleChange}></input>
+
+            <div className="auth-buttons">
+              <button className="button" id="submit" onClick={this.handleSubmit}>{buttonText}</button>
+              <button className="button" id="submit" onClick={this.handleSubmit}>Demo Login</button>
+            </div>
+          </form>
+
+          <div>{footerText}</div>
+          {footerLink}
+        </div>
       </div>
     );
   }

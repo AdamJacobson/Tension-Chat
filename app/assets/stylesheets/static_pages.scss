@@ -51,6 +51,7 @@
   @if $type == 'text' {text-shadow: $shadow;}
 }
 
+$lightgray: #f9f9f9;
 $mediumgray: #5a5a5a;
 $darkgray: #2f2f2f;
 $mintgreen: #42c299;
@@ -58,11 +59,17 @@ $mintgreenshadow: #309272;
 $magenta: #e32072;
 
 html {
-  background: #e3e4e5;
+  // background: #e3e4e5;
   font-family: 'Lato';
   // background-image: url("https://image.ibb.co/cRqoUk/slack_splash.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-image: url("https://raw.githubusercontent.com/AdamJacobson/Tension-Chat/master/docs/wireframes/login.png");
+  // background-repeat: no-repeat;
+  // background-size: cover;
+}
+
+.splash-page {
+  background: #e3e4e5;
+  height: 100vh;
 }
 
 .splash-header {
@@ -135,12 +142,15 @@ html {
   background: $mintgreen;
   border-radius: 3px;
   border: none;
+  border-bottom: 3px solid transparent;
   color: white;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
   margin: 10px 0;
+  min-width: 175px;
   padding: 16px 40px;
+  text-align: center;
   text-decoration: none;
 
   &:hover {

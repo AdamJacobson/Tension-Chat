@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const StaticHeader = () => {
+const SplashHeader = () => {
   return (
     <nav className="splash-header">
       <Link className="header-logo" to="/">Tension</Link>
@@ -14,4 +14,4 @@ const StaticHeader = () => {
   );
 };
 
-export default StaticHeader;
+export default SplashHeader;
