@@ -67,12 +67,13 @@ class SessionForm extends React.Component {
       return <Redirect to="/messages"/>;
     }
 
-    let headerText, footerLink, footerText, buttonText;
+    let headerText, footerLink, footerText, buttonText, demoButton;
     if (this.props.formType === 'login') {
       headerText = "Log In to Tension";
       buttonText = "Log In";
       footerText = "Not a member yet?";
       footerLink = (<Link to="/signup">Sign Up</Link>);
+      demoButton = (<button className="button" id="demo" onClick={this.demoLogin}>Demo Login</button>);
     } else {
       headerText = "Sign Up for Tension";
       buttonText = "Sign Up";
@@ -112,7 +113,7 @@ class SessionForm extends React.Component {
 
             <div className="auth-buttons">
               <button className="button" id="submit" onClick={this.handleSubmit}>{buttonText}</button>
-              <button className="button" id="demo" onClick={this.demoLogin}>Demo Login</button>
+              {demoButton}
             </div>
           </form>
           <div className="auth-footer-text">
