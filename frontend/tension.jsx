@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 
-import * as MessageAPI from './util/message_api_util';
+import * as MessageActions from './actions/message_actions';
 
 import Root from './components/root';
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
 
-  window.MessageAPI = MessageAPI;
+  window.MessageActions = MessageActions;
 
   window.dispatch = store.dispatch;
   window.getState = store.getState;
