@@ -11,7 +11,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def index
-    @messages = Message.where(channel_id: params[:channel_id]).limit(5)
+    @messages = Message.where(channel_id: params[:channel_id]).last(5)
     render :index
   end
 

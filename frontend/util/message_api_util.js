@@ -1,13 +1,13 @@
 
-const fetchMessages = channelId => {
-  $.ajax({
+export const fetchMessages = channelId => {
+  return $.ajax({
     url: `api/messages/${channelId}`,
     type: 'GET'
   });
 };
 
-const sendMessage = message => {
-  $.ajax({
+export const sendMessage = message => {
+  return $.ajax({
     url: 'api/messages/',
     type: 'POST',
     data: message
