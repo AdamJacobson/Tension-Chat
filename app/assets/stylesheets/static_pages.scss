@@ -52,6 +52,7 @@
 }
 
 $lightgray: #f9f9f9;
+$midlightgray: #c3c4c5;
 $mediumgray: #5a5a5a;
 $darkgray: #2f2f2f;
 $mintgreen: #42c299;
@@ -82,6 +83,11 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header-light {
+  background: white;
+  border-bottom: 1px solid $midlightgray;
 }
 
 .header-logo {

@@ -1,11 +1,10 @@
 $lightgray: #f9f9f9;
+$midlightgray: #c3c4c5;
 $mediumgray: #5a5a5a;
 $darkgray: #2f2f2f;
 $mintgreen: #42c299;
 $mintgreenshadow: #309272;
 $magenta: #e32072;
-
-$placeholdertext: #c3c4c5;
 
 .auth-page {
   background: $lightgray;
@@ -58,19 +57,19 @@ h2 {
   width: 50%;
 
   &::-webkit-input-placeholder {
-    color: $placeholdertext;
+    color: $midlightgray;
   }
 
   &::-moz-placeholder {
-    color: $placeholdertext;
+    color: $midlightgray;
   }
 
   &:-ms-input-placeholder {
-    color: $placeholdertext;
+    color: $midlightgray;
   }
 
   &:-moz-placeholder {
-    color: $placeholdertext;
+    color: $midlightgray;
   }
 
   &:hover {

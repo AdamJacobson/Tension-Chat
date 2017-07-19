@@ -45,7 +45,7 @@ class SessionForm extends React.Component {
     return(
       <div className="auth-page">
 
-        <SplashHeader />
+        <SplashHeader light={true}/>
 
         <div className="auth-content">
 
