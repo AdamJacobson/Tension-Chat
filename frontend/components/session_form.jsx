@@ -7,6 +7,8 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
 
+    this.clearErrors = this.props.clearErrors.bind(this);
+
     this.state = {username: "", password: ""};
     this.demoUsername = "tension_tamer";
     this.demoPassword = "password";
@@ -14,6 +16,14 @@ class SessionForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  componentWillMount() {
+    this.clearErrors();
+  }
+
+  componentWillUnmount() {
+    this.clearErrors();
   }
 
   handleChange(e) {
@@ -80,7 +90,7 @@ class SessionForm extends React.Component {
       footerText = "Already signed up?";
       footerLink = (<Link to="/login">Log In</Link>);
     }
-
+    
     return(
       <div className="auth-page">
 
