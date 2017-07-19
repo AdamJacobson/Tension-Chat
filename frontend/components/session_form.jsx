@@ -18,11 +18,13 @@ class SessionForm extends React.Component {
     this.demoLogin = this.demoLogin.bind(this);
   }
 
-  componentWillMount() {
-    this.clearErrors();
+  componentWillReceiveProps(newProps) {
+    if (this.props.match.url !== newProps.match.url) {
+      this.clearErrors();
+    }
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
     this.clearErrors();
   }
 
@@ -90,7 +92,7 @@ class SessionForm extends React.Component {
       footerText = "Already signed up?";
       footerLink = (<Link to="/login">Log In</Link>);
     }
-    
+
     return(
       <div className="auth-page">
 
