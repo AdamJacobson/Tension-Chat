@@ -14,14 +14,21 @@ export const receiveMessages = messages => {
 export const receiveSingleMessage = message => {
   console.log("Action: receiveSingleMessage");
   return {
-    type: RECEIVE_MESSAGES,
+    type: RECEIVE_SINGLE_MESSAGE,
     message
   };
 };
 
 export const requestMessages = channelId => dispatch => {
   const success = response => dispatch(receiveMessages(response));
-  const failure = response => {debugger};
+  const failure = response => {debugger;};
 
   MessageAPI.fetchMessages(channelId).then(success, failure);
+};
+
+export const sendMessage = message => dispatch => {
+  const success = response => dispatch(receiveSingleMessage(response));
+  const failure = response => {debugger;};
+
+  MessageAPI.sendMessage(message).then(success, failure);
 };

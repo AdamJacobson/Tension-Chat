@@ -3,6 +3,7 @@ import * as APIUtil from '../util/session_api_util';
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const CLEAR_STATE = "CLEAR_STATE";
 
 export const signup = user => dispatch => {
   console.log("Action: signup");
@@ -22,7 +23,7 @@ export const login = user => dispatch => {
 
 export const logout = () => dispatch => {
   console.log("Action: logout");
-  const success = response => dispatch(receiveCurrentUser(null));
+  const success = response => dispatch(clearState());
   const failure = response => dispatch(receiveErrors(response.responseJSON));
 
   return APIUtil.logout().then(success, failure);
@@ -38,6 +39,12 @@ export const receiveErrors = errors => (
 export const clearErrors = () => (
   {
     type: CLEAR_ERRORS
+  }
+);
+
+export const clearState = () => (
+  {
+    type: CLEAR_STATE
   }
 );
 

@@ -2,9 +2,19 @@ import { combineReducers } from 'redux';
 import sessionReducer from './session_reducer';
 import messageReducer from './message_reducer';
 
-const rootReducer = combineReducers({
+import { CLEAR_STATE } from '../actions/session_actions';
+
+const appReducer = combineReducers({
   session: sessionReducer,
-  message: messageReducer
+  messages: messageReducer
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === CLEAR_STATE) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};
 
 export default rootReducer;

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import MessagesContainer from './messages_container';
+
 class Chat extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,8 @@ class Chat extends React.Component {
         <div>
           <h1>Welcome, {this.currentUser.username}</h1>
           <button onClick={this.logout}>Logout</button>
+
+          <MessagesContainer />
         </div>
       );
     }
