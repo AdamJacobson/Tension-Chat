@@ -5,6 +5,8 @@ $mintgreen: #42c299;
 $mintgreenshadow: #309272;
 $magenta: #e32072;
 
+$placeholdertext: #c3c4c5;
+
 .auth-page {
   background: $lightgray;
   height: 100vh;
@@ -14,6 +16,7 @@ $magenta: #e32072;
   align-items: center;
   display: flex;
   flex-direction: column;
+  font-size: 18px;
   color: $darkgray;
   margin: 120px auto;
 }
@@ -21,8 +24,9 @@ $magenta: #e32072;
 .auth-form {
   align-items: center;
   background: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
   display: flex;
-  border: 2px solid lightgray;
   flex-direction: column;
   justify-content: space-around;
   width: 650px;
@@ -48,7 +52,37 @@ h2 {
 .auth-input {
   border-radius: 6px;
   border: 1px solid black;
-  padding: 18px 18px;
+  font-size: 20px;
+  padding: 14px 18px;
   margin: 11px 16px;
   width: 50%;
+
+  &::-webkit-input-placeholder {
+    color: $placeholdertext;
+  }
+
+  &::-moz-placeholder {
+    color: $placeholdertext;
+  }
+
+  &:-ms-input-placeholder {
+    color: $placeholdertext;
+  }
+
+  &:-moz-placeholder {
+    color: $placeholdertext;
+  }
+
+  &:hover {
+    border: 1px solid dodgerblue;
+  }
+
+  &:focus {
+    border: 1px solid dodgerblue;
+    outline: none;
+  }
+}
+
+.auth-footer-text {
+  margin: 15px;
 }

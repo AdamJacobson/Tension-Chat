@@ -66,10 +66,15 @@ html {
   // background-repeat: no-repeat;
   // background-size: cover;
 }
+a {
+  color: #1379ff;
+  text-decoration: none;
+}
 
 .splash-page {
   background: #e3e4e5;
   height: 100vh;
+  color: $darkgray;
 }
 
 .splash-header {
@@ -146,10 +151,10 @@ html {
   color: white;
   cursor: pointer;
   display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
   margin: 10px 0;
-  min-width: 175px;
-  padding: 16px 40px;
+  width: 165px;
+  padding: 14px 30px;
   text-align: center;
   text-decoration: none;
 

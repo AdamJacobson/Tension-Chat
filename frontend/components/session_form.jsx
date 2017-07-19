@@ -61,7 +61,7 @@ class SessionForm extends React.Component {
             <input className="auth-input"
               id="username"
               type="text"
-              placeholder="tension_tamer"
+              placeholder="username"
               value={this.state.username}
               onChange={this.handleChange}></input>
 
@@ -77,9 +77,10 @@ class SessionForm extends React.Component {
               <button className="button" id="submit" onClick={this.handleSubmit}>Demo Login</button>
             </div>
           </form>
+          <div className="auth-footer-text">
+            {footerText} {footerLink}
+          </div>
 
-          <div>{footerText}</div>
-          {footerLink}
         </div>
       </div>
     );
