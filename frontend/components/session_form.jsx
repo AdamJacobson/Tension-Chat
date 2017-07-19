@@ -8,17 +8,55 @@ class SessionForm extends React.Component {
     super(props);
 
     this.state = {username: "", password: ""};
+    this.demoUsername = "tension_tamer";
+    this.demoPassword = "password";
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   handleChange(e) {
     this.setState({ [e.target.id]: e.target.value });
   }
 
-  handleSubmit(e) {
+  disableButtons() {
+    $("#auth-form :button").prop("disabled", true);
+  }
+
+  demoLogin(e) {
     e.preventDefault();
+
+    this.disableButtons();
+
+    // clear any inputs
+    this.setState({'username': ''});
+    this.setState({'password': ''});
+
+    // enter demo info. Username first then password
+    let idx = 0;
+    let intervalUsername = setInterval(() => {
+      this.setState({'username': this.state['username'] + this.demoUsername[idx]});
+      idx++;
+      if (this.state['username'].length >= this.demoUsername.length ) {
+        clearInterval(intervalUsername);
+        idx = 0;
+
+        let intervalPassword = setInterval(() => {
+          this.setState({'password': this.state['password'] + this.demoPassword[idx]});
+          idx++;
+          if (this.state['password'].length >= this.demoPassword.length ) {
+            clearInterval(intervalPassword);
+
+            this.handleSubmit();
+          }
+        }, 50);
+      }
+    } , 50);
+  }
+
+  handleSubmit(e) {
+    if (e) e.preventDefault();
     const user = { user: this.state };
     this.props.processForm(user);
   }
@@ -53,7 +91,7 @@ class SessionForm extends React.Component {
             {this.props.errors.map((error, i) => <li key={i} className="error" >{error}</li>)}
           </ul>
 
-          <form className="auth-form">
+          <form id="auth-form" className="auth-form">
             <h2>{headerText}</h2>
 
             <div>Enter your <strong>username</strong> and <strong>password</strong></div>
@@ -74,7 +112,7 @@ class SessionForm extends React.Component {
 
             <div className="auth-buttons">
               <button className="button" id="submit" onClick={this.handleSubmit}>{buttonText}</button>
-              <button className="button" id="submit" onClick={this.handleSubmit}>Demo Login</button>
+              <button className="button" id="demo" onClick={this.demoLogin}>Demo Login</button>
             </div>
           </form>
           <div className="auth-footer-text">

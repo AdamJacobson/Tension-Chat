@@ -13,6 +13,8 @@
 class Message < ApplicationRecord
   validates :body, :channel, :author, presence: true
 
+  # validates :channel, in: { self.channels }
+
   belongs_to :channel
   belongs_to :author, class_name: :User
 end
