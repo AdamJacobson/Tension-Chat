@@ -13,7 +13,7 @@ const teamReducer = (state = defaultState, action) => {
       return Object.assign({}, defaultState, { teams: action.teams });
 
     case Actions.RECEIVE_SINGLE_TEAM:
-      return Object.assing({}, defaultState, action.team);
+      return Object.assign({}, defaultState, action.team);
 
     default:
       return state;

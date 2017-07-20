@@ -12,6 +12,7 @@ class TeamSelection extends React.Component {
     this.state = { value: "" };
 
     this.logout = this.props.logout.bind(this);
+    this.requestSingleTeam = this.props.requestSingleTeam.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -21,22 +22,27 @@ class TeamSelection extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.teams) {
+    if (newProps.teams.length > 0) {
       this.setState({ value: newProps.teams[0].id });
     }
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
-    console.log("state changed to " + event.target.value);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.value);
+    this.requestSingleTeam(this.state.value);
+    this.redirectToMessages = true;
   }
 
   render() {
+    // Redirect to Messages if Team Already loaded
+    if (this.redirectToMessages) {
+      return (<Redirect to="/messages"/>);
+    }
+
     return(
       <div className="auth-page">
 
