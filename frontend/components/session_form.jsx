@@ -36,6 +36,10 @@ class SessionForm extends React.Component {
     $("#auth-form :button").prop("disabled", true);
   }
 
+  redirectThenDemoLogin(e) {
+    
+  }
+
   demoLogin(e) {
     e.preventDefault();
 
@@ -79,16 +83,18 @@ class SessionForm extends React.Component {
       return <Redirect to="/teams"/>;
     }
 
-    let headerText, footerLink, footerText, buttonText, demoButton;
+    let headerText, footerLink, footerText, buttonText, demoButton, your_a;
     if (this.props.formType === 'login') {
       headerText = "Log In to Tension";
       buttonText = "Log In";
+      your_a = "your";
       footerText = "Not a member yet?";
       footerLink = (<Link to="/signup">Sign Up</Link>);
       demoButton = (<button className="button" id="demo" onClick={this.demoLogin}>Demo Login</button>);
     } else {
       headerText = "Sign Up for Tension";
       buttonText = "Sign Up";
+      your_a = "a";
       footerText = "Already signed up?";
       footerLink = (<Link to="/login">Log In</Link>);
     }
@@ -107,7 +113,7 @@ class SessionForm extends React.Component {
           <form id="auth-form" className="auth-form">
             <h2>{headerText}</h2>
 
-            <div>Enter your <strong>username</strong> and <strong>password</strong></div>
+            <div className="auth-footer-text">Enter {your_a} <strong>username</strong> and <strong>password</strong></div>
 
             <input className="auth-input"
               id="username"

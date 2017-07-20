@@ -11,9 +11,9 @@ const SplashHeader = ({ light }) => {
     <nav className={`splash-header ${navClass}`}>
       <Link className="header-logo" to="/">Tension</Link>
       <div className="header-options">
-        <Link className="header-option" to="/">Product</Link>
-        <Link className="header-option" to="/">Pricing</Link>
-        <Link className="header-option" to="/">Support</Link>
+        <Link className="header-option" to="/login">Log In</Link>
+        <Link className="header-option" to="/signup">Sign Up</Link>
+        <a className="header-option" target="_blank" href="https://github.com/AdamJacobson/Tension-Chat">About</a>
       </div>
     </nav>
   );

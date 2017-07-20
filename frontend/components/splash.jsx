@@ -10,13 +10,13 @@ const Splash = () => {
 
       <div className="splash-content">
         <div className="splash-text">
-          <div>Where work<span className="asterisk">*</span></div>
-          <div>happens</div>
+          <div>Where things<span className="asterisk">*</span></div>
+          <div>get done</div>
         </div>
         <br />
         <div className="splash-tagline">
-          <span className="asterisk">*</span>Whatever work means for you, Tension brings all the pieces and people
-          you need together so you can actually get things done.
+          <span className="asterisk">*</span>Whatever those things might be, Tension brings all the pieces and people
+          you need together so you can focus on the actual work.
         </div>
         <br />
         <Link className="button" to="/login">Get Started</Link>
