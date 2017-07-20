@@ -52,22 +52,22 @@ There are 11 total days of work available for the project
 
 **Objective:** Able to login/signup
 
-### Phase 2: Message sending (without sockets) (1 day)
+### Phase 2: Teams (1 day)
 
-**Objective:** Should be able to posted messages and see posted messages with refresh
+**Objective:** Teams are groups which contain users and channels
 
-### Phase 3: Sockets (2 day)
-
-**Objective:** Notes should appear automatically once posted. Page refresh not required.
-
-### Phase 4: Channels (2 days)
+### Phase 3: Channels (2 days)
 
 **Objective:** Messages are posted to specific channels.
 
-### Phase 5: Direct Messages (1 day)
+### Phase 4: Basic Message sending (without sockets) (1 day)
+
+**Objective:** Should be able to posted messages and see posted messages with refresh
+
+### Phase 5: Sockets (2 days)
+
+**Objective:** Notes should appear automatically once posted. Page refresh not required.
+
+### Phase 6: Direct Messages (1 day)
 
 **Objective:** Same as a channel but only between 2 people
-
-### Phase 6: Teams (2 days)
-
-**Objective:** Teams are invite only groups which contain users and channels
