@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import MessagesContainer from './messages_container';
 
@@ -28,7 +29,7 @@ class Chat extends React.Component {
               </div>
 
               <div className="side-by-side">
-                <MessagesContainer />
+                <Route path="/messages/:channelId?" component={MessagesContainer} />
 
                 <div className="info-container">
                   Info Here

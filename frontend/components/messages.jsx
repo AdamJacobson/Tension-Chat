@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 import Message from './message';
 
@@ -35,7 +36,12 @@ class Messages extends React.Component {
   }
 
   componentWillMount() {
+    console.log("CWM: " + this.props.match.params.channelId);
     this.requestMessages(2);
+  }
+
+  componentWillReceiveProps(newProps) {
+
   }
 
   render() {
@@ -61,4 +67,4 @@ class Messages extends React.Component {
   }
 }
 
-export default Messages;
+export default withRouter(Messages);
