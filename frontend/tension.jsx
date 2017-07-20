@@ -8,8 +8,31 @@ import * as TeamActions from './actions/team_actions';
 
 import Root from './components/root';
 
+const getPreloadedState = () => {
+  let team, session;
+  if (window.currentTeam) {
+    team = window.currentTeam;
+  }
+  if (window.currentUser) {
+    session = { currentUser: window.currentUser };
+  }
+  // debugger;
+  if (session && team) {
+    return { session, team };
+  }
+
+  return null;
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
+  // const preloadedState = getPreloadedState();
+  // if (preloadedState) {
+  //   store = configureStore(preloadedState);
+  // } else {
+  //   store = configureStore();
+  // }
+
   if (window.currentUser) {
     const preloadedState = { session: { currentUser: window.currentUser } };
     store = configureStore(preloadedState);

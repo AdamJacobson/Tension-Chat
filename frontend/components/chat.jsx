@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import MessagesContainer from './messages_container';
+import TeamContainer from './team_container';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -18,9 +19,7 @@ class Chat extends React.Component {
         <div className="chat-container">
 
           <div className="side-by-side">
-            <div className="team-container">
-              Team Name Here
-            </div>
+            <TeamContainer />
 
             <div className="chat-right-container">
               <div className="header-container">
