@@ -4,3 +4,16 @@
   background-size: cover;
   height: 100vh;
 }
+
+.side-by-side {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+}
+
+.chat-right-container {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+}

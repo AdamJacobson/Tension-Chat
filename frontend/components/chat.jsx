@@ -16,20 +16,30 @@ class Chat extends React.Component {
       return(
         <div className="chat-container">
 
-          <div className="team-container">
-            Team Name Here
+          <div className="side-by-side">
+            <div className="team-container">
+              Team Name Here
+            </div>
+
+            <div className="chat-right-container">
+              <div className="header-container">
+                <h1>Welcome, {this.currentUser.username}</h1>
+                <button onClick={this.logout}>Logout</button>
+              </div>
+
+              <div className="side-by-side">
+                <MessagesContainer />
+
+                <div className="info-container">
+                  Info Here
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="header-container">
-            <h1>Welcome, {this.currentUser.username}</h1>
-            <button onClick={this.logout}>Logout</button>
-          </div>
 
-          <MessagesContainer />
 
-          <div className="info-container">
-            Info Here
-          </div>
+
 
         </div>
       );
