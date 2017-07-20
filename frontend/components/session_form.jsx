@@ -36,11 +36,11 @@ class SessionForm extends React.Component {
     $("#auth-form :button").prop("disabled", true);
   }
 
-  redirectThenDemoLogin(e) {
-    
-  }
-
   demoLogin(e) {
+    if (this.props.match.url === '/signup') {
+      this.props.history.push('/login');
+    }
+
     e.preventDefault();
 
     this.disableButtons();
@@ -83,14 +83,13 @@ class SessionForm extends React.Component {
       return <Redirect to="/teams"/>;
     }
 
-    let headerText, footerLink, footerText, buttonText, demoButton, your_a;
+    let headerText, footerLink, footerText, buttonText, demoButton, your_a, demoAction;
     if (this.props.formType === 'login') {
       headerText = "Log In to Tension";
       buttonText = "Log In";
       your_a = "your";
       footerText = "Not a member yet?";
       footerLink = (<Link to="/signup">Sign Up</Link>);
-      demoButton = (<button className="button" id="demo" onClick={this.demoLogin}>Demo Login</button>);
     } else {
       headerText = "Sign Up for Tension";
       buttonText = "Sign Up";
@@ -107,7 +106,7 @@ class SessionForm extends React.Component {
         <div className="auth-content">
 
           <ul className="auth-errors">
-            {this.props.errors.map((error, i) => <li key={i} className="error" >{error}</li>)}
+            {this.props.errors.map((error, i) => <li key={i} className="error">{error}</li>)}
           </ul>
 
           <form id="auth-form" className="auth-form">
@@ -131,7 +130,7 @@ class SessionForm extends React.Component {
 
             <div className="auth-buttons">
               <button className="button" id="submit" onClick={this.handleSubmit}>{buttonText}</button>
-              {demoButton}
+              <button className="button" id="demo" onClick={this.demoLogin}>Demo Login</button>
             </div>
           </form>
           <div className="auth-footer-text">
