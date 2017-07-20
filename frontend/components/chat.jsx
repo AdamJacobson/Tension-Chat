@@ -36,11 +36,6 @@ class Chat extends React.Component {
               </div>
             </div>
           </div>
-
-
-
-
-
         </div>
       );
     }
