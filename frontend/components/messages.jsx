@@ -41,7 +41,6 @@ class Messages extends React.Component {
   render() {
     return(
       <div id="messages-container" className="messages">
-        {this.currentUser.username}
         <ul>
           {this.props.messages.map((m, i) => <Message key={i} message={m}/>)}
         </ul>
