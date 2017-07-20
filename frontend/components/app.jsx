@@ -5,6 +5,7 @@ import GreetingContainer from './greeting_container';
 import SessionFormContainer from './session_form_container';
 import Splash from './splash';
 import ChatContainer from './chat_container';
+import TeamSelectionContainer from './team_selection_container';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
@@ -14,6 +15,7 @@ const App = () => {
       <AuthRoute exact path="/" component={Splash} />
       <AuthRoute path="/login" component={SessionFormContainer}/>
       <AuthRoute path="/signup" component={SessionFormContainer}/>
+      <ProtectedRoute path="/teams" component={TeamSelectionContainer}/>
       <ProtectedRoute path="/messages" component={ChatContainer}/>
     </Switch>
   );

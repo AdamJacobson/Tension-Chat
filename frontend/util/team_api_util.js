@@ -4,3 +4,10 @@ export const fetchAllTeams = () => {
     url: '/api/teams'
   });
 };
+
+export const fetchSingleTeam = (teamId) => {
+  return $.ajax({
+    type: 'GET',
+    url: `/api/teams/${teamId}`
+  });
+};

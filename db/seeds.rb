@@ -5,7 +5,9 @@ Channel.destroy_all
 Message.destroy_all
 
 user = User.create!(username: "tension_tamer", password: "password")
-team = Team.create!(name: "Demo Team")
+team = Team.create!(name: "Demo Team 1")
+Team.create!(name: "Demo Team 2")
+Team.create!(name: "Demo Team 3")
 
 channel1 = Channel.create!(team: team, author: user, name: "Demo Channel 1")
 channel2 = Channel.create!(team: team, author: user, name: "Demo Channel 2")

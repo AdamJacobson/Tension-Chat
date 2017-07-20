@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 
 import * as MessageActions from './actions/message_actions';
-import * as TeamUtil from './util/team_api_util';
-import * as ChannelUtil from './util/channel_api_util';
+import * as TeamActions from './actions/team_actions';
+// import * as ChannelUtil from './util/channel_api_util';
 
 import Root from './components/root';
 
@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
 
-  window.TeamUtil = TeamUtil;
-  window.ChannelUtil = ChannelUtil;
+  window.TeamActions = TeamActions;
+  // window.ChannelUtil = ChannelUtil;
 
   window.MessageActions = MessageActions;
 
