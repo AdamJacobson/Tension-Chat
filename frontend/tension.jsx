@@ -4,35 +4,12 @@ import configureStore from './store/store';
 
 import * as MessageActions from './actions/message_actions';
 import * as TeamActions from './actions/team_actions';
-// import * as ChannelUtil from './util/channel_api_util';
+import * as ChannelActions from './actions/channel_actions';
 
 import Root from './components/root';
 
-const getPreloadedState = () => {
-  let team, session;
-  if (window.currentTeam) {
-    team = window.currentTeam;
-  }
-  if (window.currentUser) {
-    session = { currentUser: window.currentUser };
-  }
-  // debugger;
-  if (session && team) {
-    return { session, team };
-  }
-
-  return null;
-};
-
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-  // const preloadedState = getPreloadedState();
-  // if (preloadedState) {
-  //   store = configureStore(preloadedState);
-  // } else {
-  //   store = configureStore();
-  // }
-
   if (window.currentUser) {
     const preloadedState = { session: { currentUser: window.currentUser } };
     store = configureStore(preloadedState);
@@ -42,8 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.TeamActions = TeamActions;
-  // window.ChannelUtil = ChannelUtil;
-
+  window.ChannelActions = ChannelActions;
   window.MessageActions = MessageActions;
 
   window.dispatch = store.dispatch;

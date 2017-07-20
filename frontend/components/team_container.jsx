@@ -6,6 +6,7 @@ import { requestSingleTeam } from '../actions/team_actions';
 import Team from './team';
 
 const mapStateToProps = state => ({
+  currentUser: state.session.currentUser,
   team: state.team
 });
 

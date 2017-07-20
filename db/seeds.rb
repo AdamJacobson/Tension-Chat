@@ -4,32 +4,25 @@ Team.destroy_all
 Channel.destroy_all
 Message.destroy_all
 
-user = User.create!(username: "tension_tamer", password: "password")
-team = Team.create!(name: "Demo Team 1")
+User.create!(username: "tension_tamer", password: "password")
+User.create!(username: "adam", password: "password")
+User.create!(username: "anne", password: "password")
+
+Team.create!(name: "Demo Team 0")
+Team.create!(name: "Demo Team 1")
 Team.create!(name: "Demo Team 2")
-Team.create!(name: "Demo Team 3")
 
-channel1 = Channel.create!(team: team, author: user, name: "Demo Channel 1")
-channel2 = Channel.create!(team: team, author: user, name: "Demo Channel 2")
+users = User.all
 
-Message.create!(author: user, channel: channel1, body: "Post 1 - 1")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 2")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 3")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 4")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 5")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 6")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 7")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 8")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 9")
-Message.create!(author: user, channel: channel1, body: "Post 1 - 10")
+Team.all.each_with_index do |team, team_i|
+  channels = []
+  [1, 2, 3].each do |num|
+    channels.push(Channel.create!(team: team, author: users.sample, name: "Team #{team_i} Channel #{num}"))
+  end
 
-Message.create!(author: user, channel: channel2, body: "Post 1 - 1")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 2")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 3")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 4")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 5")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 6")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 7")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 8")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 9")
-Message.create!(author: user, channel: channel2, body: "Post 1 - 10")
+  channels.each_with_index do |channel, ch_i|
+    10.times do |i|
+      Message.create!(author: users.sample, channel: channel, body: "Message ##{i} for channel #{ch_i}")
+    end
+  end
+end

@@ -1,6 +1,37 @@
+@import '../utilities/variables';
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+.channel-group {
+  margin: 30px 0;
+}
+
 .team-container {
   border: 1px solid;
   min-width: 225px;
+}
+
+.team-content {
+  padding: 12px;
+}
+
+.available {
+  color: #00eb18;
+}
+
+.channel-type-header {
+  color: $midlightgray;
+}
+
+.username {
+  color: $mediumgray;
+  padding: 0 5px;
 }
 
 select.team-select {
