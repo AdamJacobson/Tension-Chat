@@ -1,4 +1,6 @@
+@import "../utilities/variables";
+
 .header-container {
-  border: 1px solid;
+  border-bottom: 1px solid $midlightgray;
   height: 60px;
 }
