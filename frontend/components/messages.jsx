@@ -61,7 +61,7 @@ class Messages extends React.Component {
     // No channel selected
     if (!this.channelId) {
       return (
-        <div id="messages-container" className="messages">
+        <div id="messages-container" className="messages-container">
           <div>Please select or create a channel on the left.</div>
         </div>
       );
@@ -70,30 +70,35 @@ class Messages extends React.Component {
     // Messages not loaded yet
     if (!this.props.messages[this.channelId]) {
       return(
-        <div id="messages-container" className="messages">
+        <div id="messages-container" className="messages-container">
           <div>Messages Loading...</div>
         </div>
       );
     }
 
     return(
-      <div id="messages-container" className="messages">
-        <ul>
-          {this.props.messages[this.channelId].map((m, i) => (
-            <Message key={i} users={this.props.users} message={m}/>
-          ))}
-        </ul>
+      <div id="messages-container" className="messages-container">
+        <div className="messages-content">
+          <div className="messages-list">
+            <ul>
+              {this.props.messages[this.channelId].map((m, i) => (
+                <Message key={i} users={this.props.users} message={m}/>
+              ))}
+            </ul>
+          </div>
 
-        <form className="message-form">
-          <input className="message-input"
-            id="message"
-            type="text"
-            placeholder="message"
-            value={this.state.body}
-            onChange={this.handleChange}></input>
+          <form className="message-form">
+            <input className="message-input"
+              id="message"
+              type="text"
+              placeholder="message"
+              value={this.state.body}
+              onChange={this.handleChange}></input>
 
-          <button onClick={this.handleSubmit}></button>
-        </form>
+            <button className="message-submit" onClick={this.handleSubmit}></button>
+          </form>
+        </div>
+
 
       </div>
     );

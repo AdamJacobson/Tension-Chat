@@ -51,7 +51,7 @@ Team.all.each_with_index do |team, team_i|
   end
 
   team.channels.each_with_index do |channel, ch_i|
-    10.times do |m_i|
+    30.times do |m_i|
       body = "Team #{team_i}, Channel #{ch_i}, Message #{m_i}"
       Message.create!(author: team.users.sample, channel: channel, body: body )
     end

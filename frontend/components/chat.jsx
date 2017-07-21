@@ -39,9 +39,13 @@ class Chat extends React.Component {
               <div className="side-by-side">
                 <Route path="/teams/:teamId/messages/:channelId?" component={MessagesContainer}/>
 
-                <div className="info-container">
-                  Info Here
-                </div>
+                <Route path="/teams/:teamId/messages/:channelId?/details" render={() => (
+                  <div className="info-container">
+                    Info Here
+                  </div>
+                  )}
+                />
+
               </div>
             </div>
           </div>
