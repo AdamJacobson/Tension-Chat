@@ -22,6 +22,10 @@ class User < ApplicationRecord
   has_many :team_memberships
   has_many :teams, through: :team_memberships
 
+  def join_team(team)
+    TeamMembership.create!(user: self, team: team)
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
