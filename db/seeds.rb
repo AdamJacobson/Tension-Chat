@@ -16,13 +16,15 @@ users = User.all
 
 Team.all.each_with_index do |team, team_i|
   channels = []
-  [1, 2, 3].each do |num|
-    channels.push(Channel.create!(team: team, author: users.sample, name: "Team #{team_i} Channel #{num}"))
+  [0, 1, 2].each do |num|
+    name = "Team #{team_i}, Channel #{num}"
+    channels.push(Channel.create!(team: team, author: users.sample, name: name))
   end
 
   channels.each_with_index do |channel, ch_i|
-    10.times do |i|
-      Message.create!(author: users.sample, channel: channel, body: "Message ##{i} for channel #{ch_i}")
+    10.times do |m_i|
+      body = "Team #{team_i}, Channel #{ch_i}, Message #{m_i}"
+      Message.create!(author: users.sample, channel: channel, body: body)
     end
   end
 end

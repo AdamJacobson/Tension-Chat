@@ -13,13 +13,11 @@ class Team extends React.Component {
   componentWillMount() {
     if (!this.props.team.id) {
       const team_id = window.sessionStorage.getItem("team_id");
-      console.log("team_id: " + team_id);
       this.props.requestSingleTeam(team_id);
     }
   }
 
   render() {
-    console.log("Team render: " + this.props.team.id);
 
     return(
       <div className="team-container">

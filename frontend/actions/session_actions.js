@@ -6,7 +6,6 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CLEAR_STATE = "CLEAR_STATE";
 
 export const signup = user => dispatch => {
-  console.log("Action: signup");
   const success = response => dispatch(receiveCurrentUser(response));
   const failure = response => dispatch(receiveErrors(response.responseJSON));
 
@@ -14,7 +13,6 @@ export const signup = user => dispatch => {
 };
 
 export const login = user => dispatch => {
-  console.log("Action: login");
   const success = response => dispatch(receiveCurrentUser(response));
   const failure = response => dispatch(receiveErrors(response.responseJSON));
 
@@ -22,7 +20,6 @@ export const login = user => dispatch => {
 };
 
 export const logout = () => dispatch => {
-  console.log("Action: logout");
   const success = response => dispatch(clearState());
   const failure = response => dispatch(receiveErrors(response.responseJSON));
 

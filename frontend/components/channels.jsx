@@ -9,7 +9,6 @@ class Channels extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("Channels WRP");
     if (newProps.channels.length === 0) {
       newProps.requestChannels(newProps.team.id);
     }
@@ -19,8 +18,12 @@ class Channels extends React.Component {
     return(
       <div className="channel-group">
         <h4 className="channel-type-header">CHANNELS</h4>
-        <ul>
-          {this.props.channels.map((ch, i) => <li key={i}># {ch.name}</li>)}
+        <ul className="channel-list">
+          {this.props.channels.map((ch, i) => (
+            <NavLink key={i} activeClassName="channel-active" to={`/messages/${ch.id}`}>
+              <li># {ch.name}</li>
+            </NavLink>
+          ))}
         </ul>
       </div>
     );

@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestChannels: (id) => dispatch(requestChannels(id))
+  requestChannels: (id) => dispatch(requestChannels(id)),
 });
 
 const ChannelsContainer = connect(

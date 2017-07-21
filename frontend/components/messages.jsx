@@ -15,15 +15,15 @@ class Messages extends React.Component {
     this.sendMessage = this.props.sendMessage.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getMessages = this.getMessages.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    // TODO Replace hardcode with variable channel id
     const message = {
       message: {
         body: this.state.body,
-        channel_id: 2,
+        channel_id: this.channelId,
         author_id: this.currentUser.id
         }
       };
@@ -35,20 +35,36 @@ class Messages extends React.Component {
     this.setState({ body: e.target.value });
   }
 
+  getMessages() {
+    // If messages don't already exist in state
+    if (!this.props.messages[this.channelId]) {
+      this.requestMessages(this.channelId);
+    }
+  }
+
   componentWillMount() {
-    console.log("CWM: " + this.props.match.params.channelId);
-    this.requestMessages(2);
+    this.channelId = this.props.match.params.channelId;
+    this.getMessages();
   }
 
   componentWillReceiveProps(newProps) {
-
+    if (newProps.match.params.channelId !== this.props.match.params.channelId) {
+      // this.requestMessages(newProps.match.params.channelId);
+      this.channelId = newProps.match.params.channelId;
+      this.getMessages();
+    }
   }
 
   render() {
+    let messages = (<div>Loading...</div>);
+    if (this.props.messages[this.channelId]) {
+      messages = (this.props.messages[this.channelId].map((m, i) => <Message key={i} message={m}/>));
+    }
+
     return(
       <div id="messages-container" className="messages">
         <ul>
-          {this.props.messages.map((m, i) => <Message key={i} message={m}/>)}
+          {messages}
         </ul>
 
         <form className="message-form">
