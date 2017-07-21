@@ -48,12 +48,14 @@ class TeamSelection extends React.Component {
           <form id="auth-form" className="auth-form">
             <h2>Select Team</h2>
 
+            <div className="auth-footer-text">You are a member of the following teams.</div>
+
             <select className="team-select" value={this.state.value} onChange={this.handleChange}>
               {this.props.teams.map((team, i) => <TeamOption key={i} idx={i} team={team} />)}
             </select>
 
             <div className="auth-buttons">
-              <button className="button" id="submit" onClick={this.handleSubmit}>Join Team</button>
+              <button className="button" id="submit" onClick={this.handleSubmit}>Continue</button>
               <button className="button" id="logout" onClick={this.logout}>Log Out</button>
             </div>
           </form>

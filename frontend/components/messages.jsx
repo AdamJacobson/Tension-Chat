@@ -71,7 +71,10 @@ class Messages extends React.Component {
     if (!this.props.messages[this.channelId]) {
       return(
         <div id="messages-container" className="messages-container">
-          <div>Messages Loading...</div>
+          <div className="loader">
+            <div className="loader-text">Loading...</div>
+            <div className="spinner"></div>
+          </div>
         </div>
       );
     }

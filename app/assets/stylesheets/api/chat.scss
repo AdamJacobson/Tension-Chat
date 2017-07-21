@@ -1,5 +1,5 @@
 .chat-container {
-  // background: url("https://raw.githubusercontent.com/AdamJacobson/Tension-Chat/master/docs/wireframes/chat-details.png");
+  // background: url("http://res.cloudinary.com/dwczmcdof/image/upload/v1500672571/slack-details_pndeyo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -12,8 +12,9 @@
 }
 
 .chat-right-container {
-  width: 100%;
-  height: inherit;
-  display: flex;
   flex-direction: column;
+  background: white;
+  display: flex;
+  height: inherit;
+  width: 100%;
 }

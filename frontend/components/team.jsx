@@ -23,7 +23,7 @@ class Team extends React.Component {
       <div className="team-container">
         <div className="team-content">
 
-          <h3>{this.props.team.name} ({this.props.team.id})</h3>
+          <h3 className="team-name">{this.props.team.name}</h3>
 
           <div className="user-status">
             <i className="fa fa-circle available" aria-hidden="true"></i>
