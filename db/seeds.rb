@@ -8,10 +8,10 @@ a_team = Team.create!(name: "The 'A' Team")
 b_team = Team.create!(name: "The 'B' Team")
 c_team = Team.create!(name: "The 'C' Team")
 
-User.create!(username: "tension_tamer", password: "password")
+demo_user = User.create!(username: "tension_tamer", password: "password")
 
 
-a_users = []
+a_users = [demo_user]
 
 a_users.push(User.create!(username: "Adam", password: "password"))
 a_users.push(User.create!(username: "Alaric", password: "password"))
@@ -22,7 +22,7 @@ a_users.each do |user|
 end
 
 
-b_users = []
+b_users = [demo_user]
 
 b_users.push(User.create!(username: "Bayonetta", password: "password"))
 b_users.push(User.create!(username: "Boris_Badenov", password: "password"))
@@ -33,7 +33,7 @@ b_users.each do |user|
 end
 
 
-c_users = []
+c_users = [demo_user]
 
 c_users.push(User.create!(username: "Childermass", password: "password"))
 c_users.push(User.create!(username: "Corax", password: "password"))
