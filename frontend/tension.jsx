@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 
+import * as ChannelActions from './actions/channel_actions';
 import * as MessageActions from './actions/message_actions';
 import * as TeamActions from './actions/team_actions';
-import * as ChannelActions from './actions/channel_actions';
+import * as UserActions from './actions/user_actions';
 
 import Root from './components/root';
 
@@ -18,9 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
 
-  window.TeamActions = TeamActions;
   window.ChannelActions = ChannelActions;
   window.MessageActions = MessageActions;
+  window.TeamActions = TeamActions;
+  window.UserActions = UserActions;
 
   window.dispatch = store.dispatch;
   window.getState = store.getState;

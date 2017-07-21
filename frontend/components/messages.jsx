@@ -10,9 +10,11 @@ class Messages extends React.Component {
 
     this.state = { body: '' };
     this.currentUser = this.props.currentUser;
-
+    // bind prop functions
     this.requestMessages = this.props.requestMessages.bind(this);
     this.sendMessage = this.props.sendMessage.bind(this);
+    // this.requestUsers = this.props.requestUsers.bind(this);
+    // bind local functions
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getMessages = this.getMessages.bind(this);
@@ -45,6 +47,7 @@ class Messages extends React.Component {
   componentWillMount() {
     this.channelId = this.props.match.params.channelId;
     this.getMessages();
+    // this.requestUsers(this.channelId);
   }
 
   componentWillReceiveProps(newProps) {
@@ -77,7 +80,9 @@ class Messages extends React.Component {
     return(
       <div id="messages-container" className="messages">
         <ul>
-          {this.props.messages[this.channelId].map((m, i) => <Message key={i} message={m}/>)}
+          {this.props.messages[this.channelId].map((m, i) => (
+            <Message key={i} users={this.props.users} message={m}/>
+          ))}
         </ul>
 
         <form className="message-form">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Message = ({ message }) => {
+const Message = ({ message, users }) => {
   return (
     <li className="message">
       <div className="side-by-side">
@@ -12,7 +12,7 @@ const Message = ({ message }) => {
         <div className="message-content">
 
           <div className="message-meta">
-            <strong>user #{message.author_id}</strong> <time>{message.created_at}</time>
+            <strong>{users[message.author_id].username}</strong> <time>{message.created_at}</time>
           </div>
 
           <div className="message-body">

@@ -9,8 +9,13 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    render :show
+  end
+
   def index
-    @users = User.where(team_id: params[:team_id])
+    @users = Team.find(params[:team_id]).users
     render :index
   end
 

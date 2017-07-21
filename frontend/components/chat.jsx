@@ -9,7 +9,7 @@ class Chat extends React.Component {
     super(props);
 
     this.currentUser = props.currentUser;
-
+    this.props.requestUsers(window.sessionStorage.getItem("team_id"));
     this.logout = props.logout.bind(this);
   }
 
