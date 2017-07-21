@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 import MessagesContainer from './messages_container';
 import TeamContainer from './team_container';
@@ -9,17 +9,26 @@ class Chat extends React.Component {
     super(props);
 
     this.currentUser = props.currentUser;
-    this.props.requestUsers(window.sessionStorage.getItem("team_id"));
+    this.props.requestUsers(this.props.match.params.teamId);
+    console.log("Chat Component requests users with teamid: " + this.props.match.params.teamId);
     this.logout = props.logout.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.match.params.teamId !== newProps.match.params.teamId) {
+      this.props.requestUsers(newProps.match.params.teamId);
+    }
+  }
+
   render() {
+    const teamId = this.props.match.params.teamId;
+
     if (this.currentUser) {
       return(
         <div className="chat-container">
 
           <div className="side-by-side">
-            <TeamContainer />
+            <TeamContainer teamId={teamId} />
 
             <div className="chat-right-container">
               <div className="header-container">
@@ -28,7 +37,7 @@ class Chat extends React.Component {
               </div>
 
               <div className="side-by-side">
-                <Route path="/messages/:channelId?" component={MessagesContainer} />
+                <Route path="/teams/:teamId/messages/:channelId?" component={MessagesContainer}/>
 
                 <div className="info-container">
                   Info Here
@@ -42,4 +51,4 @@ class Chat extends React.Component {
   }
 }
 
-export default Chat;
+export default withRouter(Chat);

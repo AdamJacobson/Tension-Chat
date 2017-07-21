@@ -34,15 +34,10 @@ class TeamSelection extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.requestSingleTeam(this.state.value);
-    this.redirectToMessages = true;
+    this.props.history.push(`/teams/${this.state.value}/messages`);
   }
 
   render() {
-    // Redirect to Messages if Team Already loaded
-    if (this.redirectToMessages) {
-      return (<Redirect to="/messages"/>);
-    }
-
     return(
       <div className="auth-page">
 
@@ -79,4 +74,4 @@ const TeamOption = ({ team, idx }) => {
   );
 };
 
-export default TeamSelection;
+export default withRouter(TeamSelection);

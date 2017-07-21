@@ -11,9 +11,9 @@ class Team extends React.Component {
   }
 
   componentWillMount() {
+    // If no state data for team
     if (!this.props.team.id) {
-      const team_id = window.sessionStorage.getItem("team_id");
-      this.props.requestSingleTeam(team_id);
+      this.props.requestSingleTeam(this.props.teamId);
     }
   }
 

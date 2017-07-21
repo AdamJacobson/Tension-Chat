@@ -20,7 +20,7 @@ class Channels extends React.Component {
         <h4 className="channel-type-header">CHANNELS</h4>
         <ul className="channel-list">
           {this.props.channels.map((ch, i) => (
-            <NavLink key={i} to={`/messages/${ch.id}`}>
+            <NavLink key={i} to={`/teams/${this.props.team.id}/messages/${ch.id}`}>
               <li># {ch.name}</li>
             </NavLink>
           ))}

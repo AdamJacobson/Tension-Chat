@@ -10,10 +10,11 @@ class Messages extends React.Component {
 
     this.state = { body: '' };
     this.currentUser = this.props.currentUser;
+
     // bind prop functions
     this.requestMessages = this.props.requestMessages.bind(this);
     this.sendMessage = this.props.sendMessage.bind(this);
-    // this.requestUsers = this.props.requestUsers.bind(this);
+
     // bind local functions
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,12 +48,10 @@ class Messages extends React.Component {
   componentWillMount() {
     this.channelId = this.props.match.params.channelId;
     this.getMessages();
-    // this.requestUsers(this.channelId);
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.match.params.channelId !== this.props.match.params.channelId) {
-      // this.requestMessages(newProps.match.params.channelId);
       this.channelId = newProps.match.params.channelId;
       this.getMessages();
     }

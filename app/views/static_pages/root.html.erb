@@ -5,7 +5,6 @@
 <script type="text/javascript">
   <% if logged_in? %>
   window.currentUser = <%= render(userPartial, user: current_user).html_safe %>
-  window.sessionStorage.setItem('team_id', <%= current_team.id %>);
   <% end %>
 </script>
 

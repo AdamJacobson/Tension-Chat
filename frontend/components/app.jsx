@@ -15,8 +15,13 @@ const App = () => {
       <AuthRoute exact path="/" component={Splash} />
       <AuthRoute path="/login" component={SessionFormContainer}/>
       <AuthRoute path="/signup" component={SessionFormContainer}/>
-      <ProtectedRoute path="/teams" component={TeamSelectionContainer}/>
-      <ProtectedRoute path="/messages" component={ChatContainer}/>
+      <ProtectedRoute exact path="/teams" component={TeamSelectionContainer}/>
+
+      // Need to handle /teams/:teamId without /messages. Redirect?
+
+      <ProtectedRoute path="/teams/:teamId/messages" component={ChatContainer}/>
+
+      <Route path="/" render={() => <div>404!</div>} />
     </Switch>
   );
 };
