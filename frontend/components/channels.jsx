@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux';
-import { Route, HashRouter, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class Channels extends React.Component {
   componentWillMount() {
@@ -9,9 +8,13 @@ class Channels extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.channels.length === 0) {
+    if (newProps.channels.entities.length === 0) {
       newProps.requestChannels(newProps.team.id);
     }
+  }
+
+  updateCurrentChannel(id) {
+    this.props.updateCurrentChannel(id);
   }
 
   render() {
@@ -19,13 +22,21 @@ class Channels extends React.Component {
       <div className="channel-group">
         <h4 className="channel-type-header">CHANNELS</h4>
         <ul className="channel-list">
-          {this.props.channels.map((ch, i) => (
-            <li className="channel-item">
-              <NavLink className="channel-link" key={i} to={`/teams/${this.props.team.id}/messages/${ch.id}`}>
-                # {ch.name}
-              </NavLink>
-            </li>
-          ))}
+          {this.props.channels.entities.map((ch, i) => {
+            let classes = "channel-link";
+            if (this.props.channels.currentChannel === ch.id) {
+              classes += " active";
+            }
+            return(
+              <li className="channel-item" key={i}>
+                <Link onClick={() => this.updateCurrentChannel(ch.id)}
+                      className={classes}
+                      to={`/teams/${this.props.team.id}/messages/${ch.id}`}>
+                  # {ch.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );

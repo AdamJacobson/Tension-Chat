@@ -2,6 +2,7 @@ import * as ChannelAPI from '../util/channel_api_util';
 
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_SINGLE_CHANNEL = "RECEIVE_SINGLE_CHANNEL";
+export const UPDATE_CHANNEL_ID = "UPDATE_CHANNEL_ID";
 
 export const receiveChannels = channels => {
   return {
@@ -14,6 +15,13 @@ export const receiveSingleChannel = channel => {
   return {
     type: RECEIVE_SINGLE_CHANNEL,
     channel
+  };
+};
+
+export const updateCurrentChannel = channelId => {
+  return {
+    type: UPDATE_CHANNEL_ID,
+    channelId
   };
 };
 

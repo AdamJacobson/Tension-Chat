@@ -9,6 +9,12 @@ h4 {
   font-size: 15px;
 }
 
+.active {
+  background: $mediumgray;
+  color: $textBlur !important;
+  border-radius: 3px;
+}
+
 .channel-group {
   margin: 40px 0;
 }
