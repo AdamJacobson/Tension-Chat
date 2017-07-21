@@ -56,15 +56,28 @@ class Messages extends React.Component {
   }
 
   render() {
-    let messages = (<div>Loading...</div>);
-    if (this.props.messages[this.channelId]) {
-      messages = (this.props.messages[this.channelId].map((m, i) => <Message key={i} message={m}/>));
+    // No channel selected
+    if (!this.channelId) {
+      return (
+        <div id="messages-container" className="messages">
+          <div>Please select or create a channel on the left.</div>
+        </div>
+      );
+    }
+
+    // Messages not loaded yet
+    if (!this.props.messages[this.channelId]) {
+      return(
+        <div id="messages-container" className="messages">
+          <div>Messages Loading...</div>
+        </div>
+      );
     }
 
     return(
       <div id="messages-container" className="messages">
         <ul>
-          {messages}
+          {this.props.messages[this.channelId].map((m, i) => <Message key={i} message={m}/>)}
         </ul>
 
         <form className="message-form">
