@@ -18,7 +18,6 @@ class Team extends React.Component {
   }
 
   render() {
-
     return(
       <div className="team-container">
         <div className="team-content">
