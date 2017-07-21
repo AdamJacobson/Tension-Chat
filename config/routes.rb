@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resources :teams, only: [:index, :show] do
       resources :channels, only: [:index]
+      resources :users, only: [:index]
     end
 
     resources :channels, only: [:show] do

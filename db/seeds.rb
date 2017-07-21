@@ -28,3 +28,7 @@ Team.all.each_with_index do |team, team_i|
     end
   end
 end
+
+users.each do |user|
+  TeamMembership.create!(user: user, team: Team.first)
+end
