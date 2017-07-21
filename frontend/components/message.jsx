@@ -21,9 +21,7 @@ const Message = ({ message, users }) => {
     <li className="message">
       <div className="side-by-side">
 
-        <div className="avatar">
-          <i className="fa fa-picture-o" aria-hidden="true"></i>
-        </div>
+        <img className="avatar" src="http://res.cloudinary.com/dwczmcdof/image/upload/v1500674716/avatar-generic-m.png"/>
 
         <div className="message-content">
 
