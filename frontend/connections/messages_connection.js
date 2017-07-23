@@ -18,7 +18,9 @@ export const subscribeToMessages = (action, channelId) => {
         channel_id: channelId
       },
       {
-        connected: function() {},
+        connected: function() {
+          console.log(`Connected to message channel ${channelId}`);
+        },
         disconnected: function() {},
         received: function(data) {
           action(JSON.parse(data));
