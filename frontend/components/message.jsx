@@ -5,10 +5,14 @@ const formatTime = (date) => {
   let hours = d.getHours();
   let minutes = d.getMinutes();
 
-  let period = hours < 12 ? 'AM' : 'PM';
-  if (hours < 10) {
-    hours = `0${hours}`;
+  let period;
+  if (hours < 12) {
+    period = 'AM';
+  } else {
+    hours -= 12;
+    period = 'PM';
   }
+
   if (minutes < 10) {
     minutes = `0${hours}`;
   }
