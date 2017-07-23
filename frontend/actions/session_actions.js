@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/session_api_util';
+import { unsubscribeFromMessages } from '../connections/messages_connection';
 
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
@@ -23,6 +24,7 @@ export const logout = () => dispatch => {
   const success = response => dispatch(clearState());
   const failure = response => dispatch(receiveErrors(response.responseJSON));
 
+  unsubscribeFromMessages();
   return APIUtil.logout().then(success, failure);
 };
 

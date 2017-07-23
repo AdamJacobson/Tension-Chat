@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
 
+import { subscribeToMessages } from '../connections/messages_connection';
+
 class Channels extends React.Component {
   componentWillMount() {
     this.props.requestChannels(this.props.team.id);
@@ -10,6 +12,10 @@ class Channels extends React.Component {
   componentWillReceiveProps(newProps) {
     if (newProps.channels.entities.length === 0) {
       newProps.requestChannels(newProps.team.id);
+    } else {
+      newProps.channels.entities.forEach((channel) => {
+        subscribeToMessages(this.props.receiveSingleMessage, channel.id);
+      });
     }
   }
 

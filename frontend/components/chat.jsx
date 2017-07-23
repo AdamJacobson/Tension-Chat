@@ -10,7 +10,6 @@ class Chat extends React.Component {
 
     this.currentUser = props.currentUser;
     this.props.requestUsers(this.props.match.params.teamId);
-    console.log("Chat Component requests users with teamid: " + this.props.match.params.teamId);
     this.logout = props.logout.bind(this);
   }
 
