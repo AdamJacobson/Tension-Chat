@@ -3,9 +3,7 @@ class Api::MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     # Dont forget to build in protections for channel permission
-    if @message.save
-      render :show
-    else
+    unless @message.save
       render json: @message.errors.full_messages, status: 422
     end
   end

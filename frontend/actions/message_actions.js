@@ -26,8 +26,8 @@ export const requestMessages = channelId => dispatch => {
 };
 
 export const sendMessage = message => dispatch => {
-  const success = response => dispatch(receiveSingleMessage(response));
+  // const success = response => dispatch(receiveSingleMessage(response));
   const failure = response => {debugger;};
 
-  MessageAPI.sendMessage(message).then(success, failure);
+  MessageAPI.sendMessage(message).then(null, failure);
 };

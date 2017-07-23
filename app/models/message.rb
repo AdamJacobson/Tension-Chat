@@ -12,8 +12,9 @@
 
 class Message < ApplicationRecord
   validates :body, :channel, :author, presence: true
-
   # validates :channel, in: { self.channels }
+
+  after_create_commit { MessageBroadcastJob.perform_later self }
 
   belongs_to :channel
   belongs_to :author, class_name: :User

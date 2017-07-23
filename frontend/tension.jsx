@@ -19,6 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
 
+  window.App.messages = window.App.cable.subscriptions.create("MessagesChannel", {
+    connected: function() {
+      console.log("Connecting to messages from front end");
+    },
+    disconnected: function() {},
+    received: function(data) {
+      const parsed = JSON.parse(data);
+      console.log("== incoming ==");
+      console.log(parsed);
+      store.dispatch(MessageActions.receiveSingleMessage(parsed));
+    }
+  });
+
   window.ChannelActions = ChannelActions;
   window.MessageActions = MessageActions;
   window.TeamActions = TeamActions;
