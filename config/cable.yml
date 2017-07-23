@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://tension.herokuapp.com:6379/1
+  url: <%= ENV["REDIS_URL"] %>
   channel_prefix: Tension_production
