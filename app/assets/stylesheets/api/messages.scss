@@ -4,11 +4,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow-y: auto;
 }
 
 .messages-content {
-  margin: 0 10px 10px 10px;
   display: flex;
   flex-direction: column;
 }
@@ -36,6 +34,7 @@
 }
 
 .message-form {
+  margin: 0 10px 10px 10px;
 
   button {
     display: none;
@@ -48,7 +47,11 @@
 }
 
 .message {
-  margin: 10px 4px;
+  padding: 5px 12px;
+
+  &:hover {
+    background: $lightgray
+  }
 }
 
 time {

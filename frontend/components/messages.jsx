@@ -38,6 +38,17 @@ class Messages extends React.Component {
     this.setState({ body: e.target.value });
   }
 
+  componentDidUpdate(prevProps, nextProps) {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    const messages = document.getElementById('messages-list');
+    if (messages) {
+      messages.scrollTop = messages.scrollHeight;
+    }
+  }
+
   getMessages() {
     // If messages don't already exist in state
     if (!this.props.messages[this.channelId]) {
@@ -61,7 +72,7 @@ class Messages extends React.Component {
     // No channel selected
     if (!this.channelId) {
       return (
-        <div id="messages-container" className="messages-container">
+        <div className="messages-container">
           <div>Please select or create a channel on the left.</div>
         </div>
       );
@@ -70,7 +81,7 @@ class Messages extends React.Component {
     // Messages not loaded yet
     if (!this.props.messages[this.channelId]) {
       return(
-        <div id="messages-container" className="messages-container">
+        <div className="messages-container">
           <div className="loader">
             <div className="loader-text">Loading...</div>
             <div className="spinner"></div>
@@ -80,9 +91,9 @@ class Messages extends React.Component {
     }
 
     return(
-      <div id="messages-container" className="messages-container">
+      <div className="messages-container">
         <div className="messages-content">
-          <div className="messages-list">
+          <div  id="messages-list" className="messages-list">
             <ul>
               {this.props.messages[this.channelId].map((m, i) => (
                 <Message key={i} users={this.props.users} message={m}/>
@@ -101,8 +112,6 @@ class Messages extends React.Component {
             <button className="message-submit" onClick={this.handleSubmit}></button>
           </form>
         </div>
-
-
       </div>
     );
   }
