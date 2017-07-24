@@ -2,17 +2,25 @@
 
 .messages-container {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   width: 100%;
 }
 
 .messages-content {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .messages-list {
   overflow-y: auto;
+}
+
+.messages-empty {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: auto;
 }
 
 .message-input {
@@ -21,8 +29,13 @@
   border-radius: 5px;
   border: 2px solid $borderLight;
   font-size: 16px;
-  height: 32px;
+  min-height: 40px;
   padding-left: 10px;
+
+  &:focus {
+    border: 2px solid $mediumgray;
+    outline: none;
+  }
 }
 
 .message-content {
@@ -34,10 +47,25 @@
 }
 
 .message-form {
-  margin: 0 10px 10px 10px;
+  margin: 0 20px 20px 20px;
 
   button {
     display: none;
+  }
+}
+
+.new-message {
+  animation-duration: 1s;
+  animation-name: highlight;
+}
+
+@keyframes highlight {
+  from {
+    background: $midlightgray;
+  }
+
+  to {
+    background: none;
   }
 }
 
@@ -47,7 +75,7 @@
 }
 
 .message {
-  padding: 5px 12px;
+  padding: 5px 20px;
 
   &:hover {
     background: $lightgray
