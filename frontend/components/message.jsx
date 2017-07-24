@@ -21,8 +21,10 @@ const formatTime = (date) => {
 };
 
 const Message = ({ message, users }) => {
+  const newClass = (message.read ? "" : " message-new");
+
   return (
-    <li className="message">
+    <li className={"message" + newClass}>
       <div className="side-by-side">
 
         <img className="avatar" src="http://res.cloudinary.com/dwczmcdof/image/upload/v1500674716/avatar-generic-m.png"/>

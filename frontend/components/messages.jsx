@@ -11,6 +11,7 @@ class Messages extends React.Component {
 
     // bind prop functions
     this.requestMessages = this.props.requestMessages.bind(this);
+    this.markMessagesAsRead = this.props.markMessagesAsRead.bind(this);
 
     // bind local functions
     this.getMessages = this.getMessages.bind(this);
@@ -40,8 +41,13 @@ class Messages extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.match.params.channelId !== this.props.match.params.channelId) {
-      this.channelId = newProps.match.params.channelId;
+    const oldChannelId = this.props.match.params.channelId;
+    const newChannelId = newProps.match.params.channelId;
+
+    if (oldChannelId !== newChannelId) {
+      console.log("Switched to different channel. Is " + newChannelId + ", was " + oldChannelId);
+      this.markMessagesAsRead(oldChannelId);
+      this.channelId = newChannelId;
       this.getMessages();
     }
   }

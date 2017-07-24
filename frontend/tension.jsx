@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 
 // import * as ChannelActions from './actions/channel_actions';
-// import * as MessageActions from './actions/message_actions';
+import * as MessageActions from './actions/message_actions';
 // import * as TeamActions from './actions/team_actions';
 // import * as UserActions from './actions/user_actions';
 
@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // window.ChannelActions = ChannelActions;
-  // window.MessageActions = MessageActions;
+  window.MessageActions = MessageActions;
   // window.TeamActions = TeamActions;
   // window.UserActions = UserActions;
-  //
-  // window.dispatch = store.dispatch;
+  
+  window.dispatch = store.dispatch;
   window.getState = store.getState;
 
   const root = document.getElementById('root');
