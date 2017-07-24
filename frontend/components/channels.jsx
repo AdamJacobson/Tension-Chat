@@ -6,6 +6,8 @@ import Modal from 'react-modal';
 import { subscribeToMessages } from '../connections/messages_connection';
 import { subscribeToChannels } from '../connections/channels_connection';
 
+import JoinChannelModalContainer from './join_channel_modal_container';
+
 class Channels extends React.Component {
   constructor(props) {
     super(props);
@@ -62,12 +64,7 @@ class Channels extends React.Component {
 
         <CreateModal channelsComponent={this} isOpen={this.state.createModalOpen} contentLabel="Modal"/>
 
-        <JoinModal channelsComponent={this} isOpen={this.state.joinModalOpen} contentLabel="Modal"/>
-
-        <Modal id="joinModal" isOpen={this.state.joinModalOpen} contentLabel="Modal">
-          <h3>Join a Channel</h3>
-          <button onClick={this.closeJoinModal}>Close</button>
-        </Modal>
+        <JoinChannelModalContainer closeAction={this.closeJoinModal} channelsComponent={this} isOpen={this.state.joinModalOpen} contentLabel="Modal"/>
 
         <h4 className="channel-type-header">
           <span className="clickable" onClick={this.openJoinModal}>CHANNELS</span>
@@ -109,11 +106,11 @@ const CreateModal = ({ channelsComponent }) => {
 const JoinModal = ({ channelsComponent }) => {
   return(
     <Modal id="joinModal" isOpen={channelsComponent.state.joinModalOpen} contentLabel="Modal">
-      <h3>Join a Channel</h3>
+      <h3>Join a Channel___</h3>
 
       <form>
         <select>
-          
+
         </select>
       </form>
 

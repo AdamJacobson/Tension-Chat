@@ -1,26 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
-import { requestChannels } from '../actions/channel_actions';
-import JoinChannelModal from './channels';
+import { createChannel, requestChannels } from '../actions/channel_actions';
+import JoinChannelModal from './join_channel_modal';
 
 const mapStateToProps = state => ({
-  team: state.team,
-  allChannels: state.channels
+  channels: state.channels
 });
 
 const mapDispatchToProps = dispatch => ({
-  createChannel: (data) => dispatch(),
-  requestChannels: (id) => dispatch(requestChannels(id)),
-  receiveSingleMessage: (message) => dispatch(receiveSingleMessage(message)),
-  updateCurrentChannel: (id) => dispatch(updateCurrentChannel(id)),
-  receiveSingleChannel: (channel) => dispatch(receiveSingleChannel(channel))
+  createChannel: (data) => dispatch(createChannel(data)),
+  requestChannels: (id) => dispatch(requestChannels(id))
 });
 
-const ChannelsContainer = connect(
+const JoinChannelModalContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(JoinChannelModal);
 
-export default ChannelsContainer;
+export default JoinChannelModalContainer;

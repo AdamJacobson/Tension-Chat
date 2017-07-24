@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
     resources :teams, only: [:index, :show] do
       resources :channels, only: [:index]
+      get '/channels/joined', to: "channels#joined"
+      get '/channels/unjoined', to: "channels#unjoined"
+      
       resources :users, only: [:index]
     end
 

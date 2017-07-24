@@ -1,6 +1,16 @@
 class Api::ChannelsController < ApplicationController
-  def index(user_id = nil)
+  def index
     @channels = Channel.where(team_id: params[:team_id])
+    render :index
+  end
+
+  def joined
+    @channels = current_user.channels
+    render :index
+  end
+
+  def unjoined
+    @channels = Channel.where(team_id: params[:team_id]) - current_user.channels
     render :index
   end
 

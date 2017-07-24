@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 
-// import * as ChannelActions from './actions/channel_actions';
+import * as ChannelActions from './actions/channel_actions';
 import * as ChannelUtil from './util/channel_api_util';
 import * as MessageActions from './actions/message_actions';
 // import * as TeamActions from './actions/team_actions';
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
 
-  // window.ChannelActions = ChannelActions;
+  window.ChannelActions = ChannelActions;
   window.ChannelUtil = ChannelUtil;
   window.MessageActions = MessageActions;
   // window.TeamActions = TeamActions;
