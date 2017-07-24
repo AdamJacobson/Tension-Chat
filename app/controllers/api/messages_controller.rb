@@ -3,6 +3,8 @@ class Api::MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     # Dont forget to build in protections for channel permission
+    # Can add model level validations for message posting in regards to channel
+    # Should we render anything here at all?
     unless @message.save
       render json: @message.errors.full_messages, status: 422
     end

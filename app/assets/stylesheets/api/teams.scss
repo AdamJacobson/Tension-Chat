@@ -46,6 +46,8 @@ h4 {
 
 .channel-type-header {
   color: $midlightgray;
+  display: flex;
+  justify-content: space-between;
 }
 
 .username {

@@ -76,16 +76,29 @@ class Messages extends React.Component {
       );
     }
 
+    let messages;
+    if (this.props.messages[this.channelId].length > 0) {
+      messages = (
+        <div id="messages-list" className="messages-list">
+          <ul>
+            {this.props.messages[this.channelId].map((m, i) => (
+              <Message key={i} users={this.props.users} message={m}/>
+            ))}
+          </ul>
+        </div>
+      );
+    } else {
+      messages = (
+        <div className="messages-empty">
+          <h3>No messages have been posted yet.</h3>
+        </div>
+      );
+    }
+
     return(
       <div className="messages-container">
         <div className="messages-content">
-          <div  id="messages-list" className="messages-list">
-            <ul>
-              {this.props.messages[this.channelId].map((m, i) => (
-                <Message key={i} users={this.props.users} message={m}/>
-              ))}
-            </ul>
-          </div>
+          {messages}
 
           <MessageFormContainer />
         </div>

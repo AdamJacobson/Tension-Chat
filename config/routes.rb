@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index]
     end
 
-    resources :channels, only: [:show] do
+    resources :channels, only: [:show, :create] do
       resources :messages, only: [:index]
     end
   end

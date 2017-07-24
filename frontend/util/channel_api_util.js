@@ -11,3 +11,11 @@ export const fetchChannel = channelId => {
     type: 'GET'
   });
 };
+
+export const createChannel = data => {
+  return $.ajax({
+    url: '/api/channels',
+    type: 'POST',
+    data
+  });
+};

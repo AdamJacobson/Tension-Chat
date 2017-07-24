@@ -26,7 +26,10 @@ class Channels extends React.Component {
   render() {
     return(
       <div className="channel-group">
-        <h4 className="channel-type-header">CHANNELS</h4>
+        <h4 className="channel-type-header">
+          CHANNELS
+          <i className="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+        </h4>
         <ul className="channel-list">
           {this.props.channels.entities.map((ch, i) => {
             let classes = "channel-link";
