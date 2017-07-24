@@ -22,7 +22,7 @@ class MessageForm extends React.Component {
     const message = {
       message: {
         body: this.state.body,
-        channel_id: this.channelId,
+        channel_id: this.props.match.params.channelId,
         author_id: this.currentUser.id
         }
       };
@@ -32,16 +32,6 @@ class MessageForm extends React.Component {
 
   handleChange(e) {
     this.setState({ body: e.target.value });
-  }
-
-  componentWillMount() {
-    this.channelId = this.props.match.params.channelId;
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.match.params.channelId !== this.props.match.params.channelId) {
-      this.channelId = newProps.match.params.channelId;
-    }
   }
 
   render() {

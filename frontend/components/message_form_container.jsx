@@ -7,6 +7,7 @@ import MessageForm from './message_form';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
+  currentChannelId: state.channels.currentChannel
 });
 
 const mapDispatchToProps = dispatch => ({
