@@ -51,7 +51,9 @@ class Messages extends React.Component {
     if (!this.channelId) {
       return (
         <div className="messages-container">
-          <div>Please select or create a channel on the left.</div>
+          <div className="messages-empty">
+            <h3>Please select or create a channel on the left.</h3>
+          </div>
         </div>
       );
     }
