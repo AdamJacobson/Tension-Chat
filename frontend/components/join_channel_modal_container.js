@@ -2,18 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-// import { logout } from '../actions/session_actions';
-import { requestChannels, updateCurrentChannel, receiveSingleChannel }
-  from '../actions/channel_actions';
-import { receiveSingleMessage } from '../actions/message_actions';
-import Channels from './channels';
+import { requestChannels } from '../actions/channel_actions';
+import JoinChannelModal from './channels';
 
 const mapStateToProps = state => ({
   team: state.team,
-  channels: state.channels
+  allChannels: state.channels
 });
 
 const mapDispatchToProps = dispatch => ({
+  createChannel: (data) => dispatch(),
   requestChannels: (id) => dispatch(requestChannels(id)),
   receiveSingleMessage: (message) => dispatch(receiveSingleMessage(message)),
   updateCurrentChannel: (id) => dispatch(updateCurrentChannel(id)),
@@ -23,6 +21,6 @@ const mapDispatchToProps = dispatch => ({
 const ChannelsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Channels);
+)(JoinChannelModal);
 
 export default ChannelsContainer;

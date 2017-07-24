@@ -32,6 +32,13 @@ export const requestChannels = (teamId) => dispatch => {
   ChannelAPI.fetchAllChannelsForTeam(teamId).then(success, failure);
 };
 
+export const createChannel = (data) => dispatch => {
+  const success = response => dispatch(receiveChannels(response));
+  const failure = response => {debugger;};
+
+  ChannelAPI.createChannel(data).then(success, failure);
+};
+
 // export const requestSingleTeam = (teamId) => dispatch => {
 //   const success = response => dispatch(receiveSingleTeam(response));
 //   const failure = response => {debugger;};

@@ -14,6 +14,10 @@ const channelReducer = (state = defaultState, action) => {
     case Actions.UPDATE_CHANNEL_ID:
       return Object.assign({}, state, { currentChannel: action.channelId } );
 
+    case Actions.RECEIVE_SINGLE_CHANNEL:
+      console.log("== Receiving a single channel ==");
+      console.log(action.channel);
+
     default:
       return state;
   }

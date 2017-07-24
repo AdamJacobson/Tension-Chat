@@ -1,12 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
+import Modal from 'react-modal';
 
 import { subscribeToMessages } from '../connections/messages_connection';
+import { subscribeToChannels } from '../connections/channels_connection';
 
 class Channels extends React.Component {
-  componentWillMount() {
-    this.props.requestChannels(this.props.team.id);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      createModalOpen: false,
+      joinModalOpen: false
+    };
+
+    this.closeCreateModal = this.closeCreateModal.bind(this);
+    this.openCreateModal = this.openCreateModal.bind(this);
+
+    this.closeJoinModal = this.closeJoinModal.bind(this);
+    this.openJoinModal = this.openJoinModal.bind(this);
+  }
+
+  closeCreateModal() {
+    this.setState({ createModalOpen: false });
+  }
+
+  openCreateModal() {
+    this.setState({ createModalOpen: true });
+  }
+
+  closeJoinModal() {
+    this.setState({ joinModalOpen: false });
+  }
+
+  openJoinModal() {
+    this.setState({ joinModalOpen: true });
   }
 
   componentWillReceiveProps(newProps) {
@@ -17,6 +46,10 @@ class Channels extends React.Component {
         subscribeToMessages(this.props.receiveSingleMessage, channel.id);
       });
     }
+
+    if (newProps.team.id !== this.props.team.id) {
+      // subscribeToChannels(this.props.receiveSingleChannel, this.props.match.params.teamId);
+    }
   }
 
   updateCurrentChannel(id) {
@@ -26,10 +59,21 @@ class Channels extends React.Component {
   render() {
     return(
       <div className="channel-group">
+
+        <CreateModal channelsComponent={this} isOpen={this.state.createModalOpen} contentLabel="Modal"/>
+
+        <JoinModal channelsComponent={this} isOpen={this.state.joinModalOpen} contentLabel="Modal"/>
+
+        <Modal id="joinModal" isOpen={this.state.joinModalOpen} contentLabel="Modal">
+          <h3>Join a Channel</h3>
+          <button onClick={this.closeJoinModal}>Close</button>
+        </Modal>
+
         <h4 className="channel-type-header">
-          CHANNELS
-          <i className="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+          <span className="clickable" onClick={this.openJoinModal}>CHANNELS</span>
+          <i onClick={this.openCreateModal} className="fa fa-plus-circle fa-lg clickable" aria-hidden="true"></i>
         </h4>
+
         <ul className="channel-list">
           {this.props.channels.entities.map((ch, i) => {
             let classes = "channel-link";
@@ -52,4 +96,30 @@ class Channels extends React.Component {
   }
 }
 
-export default Channels;
+const CreateModal = ({ channelsComponent }) => {
+  return(
+    <Modal id="createModal" isOpen={channelsComponent.state.createModalOpen} contentLabel="Modal">
+      <h3>Create a new Channel</h3>
+
+      <button onClick={channelsComponent.closeCreateModal}>Close</button>
+    </Modal>
+  );
+};
+
+const JoinModal = ({ channelsComponent }) => {
+  return(
+    <Modal id="joinModal" isOpen={channelsComponent.state.joinModalOpen} contentLabel="Modal">
+      <h3>Join a Channel</h3>
+
+      <form>
+        <select>
+          
+        </select>
+      </form>
+
+      <button onClick={channelsComponent.closeJoinModal}>Close</button>
+    </Modal>
+  );
+};
+
+export default withRouter(Channels);

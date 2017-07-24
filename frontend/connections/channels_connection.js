@@ -1,8 +1,6 @@
-import * as MessageActions from '../actions/message_actions';
+const channelName = "ChannelsChannel";
 
-const channelName = "MessagesChannel";
-
-export const unsubscribeFromMessages = () => {
+export const unsubscribeFromChannels = () => {
   window.App.cable.subscriptions.subscriptions.forEach((sub) => {
     if (JSON.parse(sub.identifier).channel === channelName) {
       window.App.cable.subscriptions.forget(sub);
@@ -10,20 +8,21 @@ export const unsubscribeFromMessages = () => {
   });
 };
 
-export const subscribeToMessages = (action, channelId) => {
+// Subscribe to all channel updates for the team
+export const subscribeToChannels = (action, teamId) => {
   const alreadySubscribed = window.App.cable.subscriptions.subscriptions.some((sub) => {
-    return JSON.parse(sub.identifier).channel_id === channelId;
+    return JSON.parse(sub.identifier).team_id === teamId;
   });
 
   if (!alreadySubscribed) {
     window.App.cable.subscriptions.create(
       {
         channel: channelName,
-        channel_id: channelId
+        team_id: teamId
       },
       {
         connected: function() {
-          console.log(`Connected to message channel ${channelId}`);
+          console.log(`Connected to teams channel ${teamId}`);
         },
         disconnected: function() {},
         received: function(data) {

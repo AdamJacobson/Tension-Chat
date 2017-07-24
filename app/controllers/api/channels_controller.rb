@@ -1,5 +1,5 @@
 class Api::ChannelsController < ApplicationController
-  def index
+  def index(user_id = nil)
     @channels = Channel.where(team_id: params[:team_id])
     render :index
   end

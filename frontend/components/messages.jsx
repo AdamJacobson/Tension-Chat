@@ -45,7 +45,6 @@ class Messages extends React.Component {
     const newChannelId = newProps.match.params.channelId;
 
     if (oldChannelId !== newChannelId) {
-      console.log("Switched to different channel. Is " + newChannelId + ", was " + oldChannelId);
       this.markMessagesAsRead(oldChannelId);
       this.channelId = newChannelId;
       this.getMessages();

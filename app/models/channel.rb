@@ -21,6 +21,8 @@ class Channel < ApplicationRecord
     end
   end
 
+  after_create_commit { ChannelBroadcastJob.perform_later self }
+
   belongs_to :team
   belongs_to :author, class_name: :User
 end
