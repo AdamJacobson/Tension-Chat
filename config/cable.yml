@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://h:pcd34b543dfe7ff24672f7c37d9443a65ca1f2345bc5643ff0daa90e36985b0df@ec2-34-224-49-43.compute-1.amazonaws.com:53469
   channel_prefix: Tension_production
