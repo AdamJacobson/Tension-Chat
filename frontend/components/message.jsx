@@ -14,7 +14,7 @@ const formatTime = (date) => {
   }
 
   if (minutes < 10) {
-    minutes = `0${hours}`;
+    minutes = `0${minutes}`;
   }
 
   return `${hours}:${minutes} ${period}`;
