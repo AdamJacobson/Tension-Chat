@@ -13,28 +13,6 @@ h4 {
   cursor: pointer;
 }
 
-.active {
-  background: $mediumgray;
-  color: $textBlur !important;
-  border-radius: 3px;
-}
-
-.channel-group {
-  margin: 40px 0;
-}
-
-.channel-list {
-  padding: 0 6px;
-}
-
-.channel-item {
-  margin: 8px 0;
-}
-
-.channel-link {
-  color: $textFocus;
-}
-
 .team-container {
   border-right: 1px solid $midlightgray;
   min-width: 225px;
@@ -46,12 +24,6 @@ h4 {
 
 .available {
   color: #00eb18;
-}
-
-.channel-type-header {
-  color: $midlightgray;
-  display: flex;
-  justify-content: space-between;
 }
 
 .username {

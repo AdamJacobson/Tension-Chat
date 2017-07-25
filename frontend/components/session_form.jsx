@@ -88,13 +88,13 @@ class SessionForm extends React.Component {
       buttonText = "Log In";
       your_a = "your";
       footerText = "Not a member yet?";
-      footerLink = (<Link to="/signup">Sign Up</Link>);
+      footerLink = (<Link className="default" to="/signup">Sign Up</Link>);
     } else {
       headerText = "Sign Up for Tension";
       buttonText = "Sign Up";
       your_a = "a";
       footerText = "Already signed up?";
-      footerLink = (<Link to="/login">Log In</Link>);
+      footerLink = (<Link className="default" to="/login">Log In</Link>);
     }
 
     return(

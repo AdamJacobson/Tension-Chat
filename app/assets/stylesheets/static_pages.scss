@@ -11,8 +11,11 @@ html {
 }
 
 a {
-  color: #1379ff;
   text-decoration: none;
+}
+
+a.default {
+  color: #1379ff;
 }
 
 .splash-page {

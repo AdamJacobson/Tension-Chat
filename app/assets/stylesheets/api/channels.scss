@@ -2,6 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import '../utilities/variables';
+
 input {
   display: block;
+}
+
+.channel-group {
+  margin: 40px 0;
+}
+
+.channel-list {
+  padding: 0 6px;
+}
+
+.channel-item {
+  // padding: 4px 0;
+  // border-radius: 5px;
+
+  padding: 4px 4px 4px 22px;
+  border-radius: 5px;
+  margin-left: -22px;
+
+  &:hover {
+    background: white;
+  }
+}
+
+.channel-selected {
+  background: $midlightgray;
+  color: white;
+
+  &:hover {
+    background: $midlightgray;
+  }
+}
+
+.channel-link {
+  // color: $textFocus;
+}
+
+.channel-type-header {
+  color: $midlightgray;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
 }

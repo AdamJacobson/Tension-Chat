@@ -61,7 +61,7 @@ class TeamSelection extends React.Component {
           </form>
 
           <div className="auth-footer-text">
-            <div>Trying to create a team? <Link to="/teams">Create Team</Link></div>
+            <div>Trying to create a team? <Link className="default" to="/teams">Create Team</Link></div>
           </div>
 
         </div>

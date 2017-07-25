@@ -60,7 +60,17 @@ class Channels extends React.Component {
     this.props.updateCurrentChannel(id);
   }
 
+  getChannelId() {
+    const res = window.location.href.match(/messages\/(\d*)/);
+    if (!res) {
+      return 0;
+    }
+    return Number.parseInt(res[1]);
+  }
+
   render() {
+    const channelId = this.getChannelId();
+
     // Use inside of React component to prevent early state access.
     let joinModal;
     if (this.state.joinModalOpen) {
@@ -98,14 +108,14 @@ class Channels extends React.Component {
 
         <ul className="channel-list">
           {channels.map((ch, i) => {
-            let classes = "channel-link";
-            if (this.props.channels.currentChannel === ch.id) {
-              classes += " active";
+            let classes = "channel-item";
+            if (channelId === ch.id) {
+              classes += " channel-selected";
             }
             return(
-              <li className="channel-item" key={i}>
+              <li className={classes} key={i}>
                 <Link onClick={() => this.updateCurrentChannel(ch.id)}
-                      className={classes}
+                      className="channel-link"
                       to={`/teams/${this.props.team.id}/messages/${ch.id}`}>
                   # {ch.name}
                 </Link>

@@ -30,7 +30,6 @@ class Team extends React.Component {
           </div>
 
           <ChannelsContainer />
-
         </div>
       </div>
     );
