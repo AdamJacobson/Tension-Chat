@@ -16,6 +16,21 @@ input {
   padding: 0 6px;
 }
 
+.channel-input {
+  border-radius: 6px;
+  border: 1px solid black;
+  font-size: 20px;
+  padding: 14px 18px;
+  width: 100%;
+  outline: none;
+  box-sizing: border-box;
+
+  &:focus {
+    border: 1px solid dodgerblue;
+    outline: none;
+  }
+}
+
 .channel-item {
   padding: 4px 4px 4px 22px;
   border-radius: 5px;
@@ -44,4 +59,63 @@ input {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2px;
+}
+
+.modal-content {
+  width: 60%;
+  margin: 50px auto;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  position: absolute;
+  outline: none;
+  right: 10%;
+  top: 10%;
+}
+
+small {
+  font-size: 14px;
+  color: #5a5a5a;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  display: block;
+}
+
+.channel-form {
+  margin-top: 20px;
+}
+
+.channel-button {
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  margin: 3px 4px;
+  padding: 14px 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.channel-label {
+  padding-bottom: 2px;
+  display: block;
+}
+
+.channel-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-cancel {
+  color: $darkgray;
+  background: $lightgray;
+  border: 1px solid $midlightgray;
+}
+
+.button-confirm {
+  color: white;
+  background: $mintgreen;
 }

@@ -40,33 +40,46 @@ class CreateModal extends React.Component {
   render() {
     return(
       <Modal id="createModal" isOpen={this.channelsComponent.state.createModalOpen} contentLabel="Modal">
-        <h3>Create a Channel</h3>
+        <div className="modal-content">
 
-        <p>{"Channels are where your team communicates. They're best when organized around a topic."}</p>
+          <button className="close-button" onClick={this.channelsComponent.closeCreateModal}>
+            <i className="fa fa-times fa-3x" aria-hidden="true"></i>
+          </button>
 
-        <form>
-          <label>Name</label>
-          <input className="channel-input"
-            id="name"
-            type="text"
-            placeholder="# e.g. leads"
-            value={this.state.name}
-            onChange={this.handleChange}></input>
-          <small>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</small>
+          <h3>Create a Channel</h3>
 
-          <label>Purpose (optional)</label>
-          <input className="channel-input"
-            id="description"
-            type="text"
-            value={this.state.description}
-            onChange={this.handleChange}></input>
-          <small>What's this channel about?</small>
+          <small>{"Channels are where your team communicates. They're best when organized around a topic."}</small>
 
-          <button onClick={this.channelsComponent.closeCreateModal}>Cancel</button>
-          <button onClick={this.handleSubmit}>Create Channel</button>
-        </form>
+          <form className="channel-form">
+            <label className="channel-label">Name</label>
+            <input className="channel-input"
+              id="name"
+              type="text"
+              placeholder="# e.g. leads"
+              value={this.state.name}
+              onChange={this.handleChange}></input>
+            <small>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</small>
 
-        <button onClick={this.channelsComponent.closeCreateModal}>Close</button>
+            <br />
+
+            <label className="channel-label">Purpose (optional)</label>
+            <input className="channel-input"
+              id="description"
+              type="text"
+              value={this.state.description}
+              onChange={this.handleChange}></input>
+            <small>What's this channel about?</small>
+
+            <br />
+            <br />
+
+            <div className="channel-buttons">
+              <button className="channel-button button-cancel" onClick={this.channelsComponent.closeCreateModal}>Cancel</button>
+              <button type="submit" className="channel-button button-confirm" onClick={this.handleSubmit}>Create Channel</button>
+            </div>
+          </form>
+
+        </div>
       </Modal>
     );
   }
