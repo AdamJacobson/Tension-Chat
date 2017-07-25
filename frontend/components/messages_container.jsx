@@ -9,6 +9,7 @@ import Messages from './messages';
 const mapStateToProps = state => ({
   messages: state.messages,
   users: state.users,
+  currentChannel: state.channels.currentChannel
 });
 
 const mapDispatchToProps = dispatch => ({
