@@ -62,7 +62,7 @@ class Channels extends React.Component {
   render() {
     const channelId = this.props.currentChannel;
 
-    // Use inside of React component to prevent early state access.
+    // Do this to prevent early AJAX calls inside the modal
     let joinModal;
     if (this.state.joinModalOpen) {
       joinModal = (
@@ -90,11 +90,7 @@ class Channels extends React.Component {
           closeAction={this.closeCreateModal}
           contentLabel="Modal"/>
 
-        <JoinChannelModalContainer
-          closeAction={this.closeJoinModal}
-          channelsComponent={this}
-          isOpen={this.state.joinModalOpen}
-          contentLabel="Modal"/>
+        {joinModal}
 
         <h4 className="channel-type-header">
           <span className="clickable" onClick={this.openJoinModal}>CHANNELS</span>
