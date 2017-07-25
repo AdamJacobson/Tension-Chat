@@ -7,6 +7,7 @@ import { subscribeToMessages } from '../connections/messages_connection';
 import { subscribeToChannels } from '../connections/channels_connection';
 
 import JoinChannelModalContainer from './join_channel_modal_container';
+import CreateChannelModalContainer from './channel/create_channel_modal_container';
 
 class Channels extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Channels extends React.Component {
 
     this.state = {
       createModalOpen: false,
-      joinModalOpen: false
+      joinModalOpen: false,
     };
 
     this.closeCreateModal = this.closeCreateModal.bind(this);
@@ -60,10 +61,15 @@ class Channels extends React.Component {
   }
 
   render() {
+    // Use inside of React component to prevent early state access.
     let joinModal;
     if (this.state.joinModalOpen) {
       joinModal = (
-        <JoinChannelModalContainer closeAction={this.closeJoinModal} channelsComponent={this} isOpen={this.state.joinModalOpen} contentLabel="Modal"/>
+        <JoinChannelModalContainer
+          closeAction={this.closeJoinModal}
+          channelsComponent={this}
+          isOpen={this.state.joinModalOpen}
+          contentLabel="Modal"/>
       );
     }
 
@@ -77,7 +83,11 @@ class Channels extends React.Component {
     return(
       <div className="channel-group">
 
-        <CreateModal channelsComponent={this} isOpen={this.state.createModalOpen} contentLabel="Modal"/>
+        <CreateChannelModalContainer
+          channelsComponent={this}
+          isOpen={this.state.createModalOpen}
+          closeAction={this.closeCreateModal}
+          contentLabel="Modal"/>
 
         {joinModal}
 
@@ -107,31 +117,5 @@ class Channels extends React.Component {
     );
   }
 }
-
-const CreateModal = ({ channelsComponent }) => {
-  return(
-    <Modal id="createModal" isOpen={channelsComponent.state.createModalOpen} contentLabel="Modal">
-      <h3>Create a new Channel</h3>
-
-      <button onClick={channelsComponent.closeCreateModal}>Close</button>
-    </Modal>
-  );
-};
-
-const JoinModal = ({ channelsComponent }) => {
-  return(
-    <Modal id="joinModal" isOpen={channelsComponent.state.joinModalOpen} contentLabel="Modal">
-      <h3>Join a Channel___</h3>
-
-      <form>
-        <select>
-
-        </select>
-      </form>
-
-      <button onClick={channelsComponent.closeJoinModal}>Close</button>
-    </Modal>
-  );
-};
 
 export default withRouter(Channels);

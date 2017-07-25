@@ -30,12 +30,14 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
   end
 
-  # Check team ID membership
   def create
-    channel = Channel.new(channel_params)
-    channel.author = current_user
-    unless channel.save
-      render json: channel.errors.full_messages, status: 422
+    @channel = Channel.new(channel_params)
+    @channel.author = current_user
+    if @channel.save
+      current_user.join_channel(@channel)
+      render :show
+    else
+      render json: @channel.errors.full_messages, status: 422
     end
   end
 

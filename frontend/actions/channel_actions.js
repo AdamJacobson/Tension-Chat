@@ -41,16 +41,16 @@ export const joinChannel = channelId => dispatch => {
   ChannelAPI.joinChannel(channelId).then(success, failure);
 };
 
+export const createChannel = (data) => dispatch => {
+  const success = response => dispatch(receiveSingleChannel(response));
+  const failure = response => {debugger;};
+
+  ChannelAPI.createChannel(data).then(success, failure);
+};
+
 export const requestChannels = (teamId) => dispatch => {
   const success = response => dispatch(receiveChannels(response));
   const failure = response => {debugger;};
 
   ChannelAPI.fetchJoinedChannelsForTeam(teamId).then(success, failure);
-};
-
-export const createChannel = (data) => dispatch => {
-  const success = response => dispatch(receiveChannels(response));
-  const failure = response => {debugger;};
-
-  ChannelAPI.createChannel(data).then(success, failure);
 };
