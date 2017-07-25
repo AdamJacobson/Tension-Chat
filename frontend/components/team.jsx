@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
-import { Route, HashRouter, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
+import { Route, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
 
 import ChannelsContainer from './channels_container';
 
@@ -28,6 +28,8 @@ class Team extends React.Component {
             <i className="fa fa-circle available" aria-hidden="true"></i>
             <span className="username">{this.props.currentUser.username}</span>
           </div>
+
+          <button onClick={this.props.logout}>Logout</button>
 
           <ChannelsContainer />
         </div>

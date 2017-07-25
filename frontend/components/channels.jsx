@@ -42,9 +42,6 @@ class Channels extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("Channels WRP");
-    console.log(newProps.currentChannel);
-
     if (!newProps.channels.entities) {
       newProps.requestChannels(newProps.team.id);
     } else {
@@ -62,18 +59,7 @@ class Channels extends React.Component {
     this.props.updateCurrentChannel(id);
   }
 
-  getChannelId() {
-    // const res = window.location.href.match(/messages\/(\d*)/);
-    // if (!res) {
-    //   return 0;
-    // }
-    // return Number.parseInt(res[1]);
-
-    return this.props.currentChannel;
-  }
-
   render() {
-    // const channelId = this.getChannelId();
     const channelId = this.props.currentChannel;
 
     // Use inside of React component to prevent early state access.
@@ -104,7 +90,11 @@ class Channels extends React.Component {
           closeAction={this.closeCreateModal}
           contentLabel="Modal"/>
 
-        {joinModal}
+        <JoinChannelModalContainer
+          closeAction={this.closeJoinModal}
+          channelsComponent={this}
+          isOpen={this.state.joinModalOpen}
+          contentLabel="Modal"/>
 
         <h4 className="channel-type-header">
           <span className="clickable" onClick={this.openJoinModal}>CHANNELS</span>

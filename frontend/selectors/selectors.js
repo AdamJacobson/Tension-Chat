@@ -4,6 +4,15 @@ export const objectifyUsers = (users) => {
   return objs;
 };
 
+export const objectifyChannels = channels => {
+  const objs = {};
+  if (!channels) {
+    return {};
+  }
+  channels.forEach((channel) => {objs[channel.id] = channel;});
+  return objs;
+};
+
 export const markUnread = (messages) => {
   if (messages instanceof Array) {
     messages.forEach((message) => {
