@@ -3,6 +3,7 @@ import { Route, withRouter } from 'react-router-dom';
 
 import MessagesContainer from './messages_container';
 import TeamContainer from './team_container';
+import HeaderContainer from './header_container';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -34,10 +35,8 @@ class Chat extends React.Component {
             <TeamContainer teamId={teamId} />
 
             <div className="chat-right-container">
-              <div className="header-container">
-                <h1>Welcome, {this.currentUser.username}</h1>
-                <button onClick={this.logout}>Logout</button>
-              </div>
+
+              <HeaderContainer />
 
               <div className="side-by-side">
                 <Route path="/teams/:teamId/messages/:channelId?" component={MessagesContainer}/>

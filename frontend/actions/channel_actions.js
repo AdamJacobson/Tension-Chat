@@ -28,10 +28,17 @@ export const receiveSingleChannel = channel => {
 };
 
 export const updateCurrentChannel = channelId => {
-  return {
-    type: UPDATE_CHANNEL_ID,
-    channelId
-  };
+  if (channelId === undefined) {
+    return {
+      type: UPDATE_CHANNEL_ID,
+      channelId: ""
+    };
+  } else {
+    return {
+      type: UPDATE_CHANNEL_ID,
+      channelId: Number.parseInt(channelId)
+    };
+  }
 };
 
 export const joinChannel = channelId => dispatch => {

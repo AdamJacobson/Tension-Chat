@@ -44,6 +44,9 @@ class Messages extends React.Component {
     const oldChannelId = this.props.match.params.channelId;
     const newChannelId = newProps.match.params.channelId;
 
+    // Always ensure the current channel id matches
+    this.props.updateCurrentChannel(newChannelId);
+
     if (oldChannelId !== newChannelId) {
       this.markMessagesAsRead(oldChannelId);
       this.channelId = newChannelId;

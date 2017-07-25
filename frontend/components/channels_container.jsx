@@ -9,7 +9,8 @@ import Channels from './channels';
 
 const mapStateToProps = state => ({
   team: state.team,
-  channels: state.channels
+  channels: state.channels,
+  currentChannel: state.channels.currentChannel
 });
 
 const mapDispatchToProps = dispatch => ({

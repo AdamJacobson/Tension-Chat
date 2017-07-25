@@ -41,8 +41,10 @@ class Channels extends React.Component {
     this.setState({ joinModalOpen: true });
   }
 
-  // Modify to accept no channels existing
   componentWillReceiveProps(newProps) {
+    console.log("Channels WRP");
+    console.log(newProps.currentChannel);
+
     if (!newProps.channels.entities) {
       newProps.requestChannels(newProps.team.id);
     } else {
@@ -61,15 +63,18 @@ class Channels extends React.Component {
   }
 
   getChannelId() {
-    const res = window.location.href.match(/messages\/(\d*)/);
-    if (!res) {
-      return 0;
-    }
-    return Number.parseInt(res[1]);
+    // const res = window.location.href.match(/messages\/(\d*)/);
+    // if (!res) {
+    //   return 0;
+    // }
+    // return Number.parseInt(res[1]);
+
+    return this.props.currentChannel;
   }
 
   render() {
-    const channelId = this.getChannelId();
+    // const channelId = this.getChannelId();
+    const channelId = this.props.currentChannel;
 
     // Use inside of React component to prevent early state access.
     let joinModal;
