@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
-import { fetchUnjoinedChannelsForTeam, joinChannel } from '../util/channel_api_util';
+import { fetchUnjoinedChannelsForTeam } from '../util/channel_api_util';
 
 class JoinChannelModal extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class JoinChannelModal extends React.Component {
   }
 
   handleSubmit(channelId) {
-    joinChannel(channelId);
+    this.props.joinChannel(channelId);
     this.props.closeAction();
   }
 

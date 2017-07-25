@@ -15,14 +15,14 @@ class Api::ChannelsController < ApplicationController
   end
 
   def membership
-    channel = Channel.find(params[:channel_id])
+    @channel = Channel.find(params[:channel_id])
 
     if (params[:membership] == "true")
-      current_user.join_channel(channel)
-      render json: "Joined channel #{channel.id}"
+      current_user.join_channel(@channel)
+      render :show
     else
-      current_user.leave_channel(channel)
-      render json: "Left channel #{channel.id}"
+      current_user.leave_channel(@channel)
+      render :show
     end
   end
 

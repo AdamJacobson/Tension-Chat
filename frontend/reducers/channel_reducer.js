@@ -15,8 +15,8 @@ const channelReducer = (state = defaultState, action) => {
       return Object.assign({}, state, { currentChannel: action.channelId } );
 
     case Actions.RECEIVE_SINGLE_CHANNEL:
-      console.log("== Receiving a single channel ==");
-      console.log(action.channel);
+      const newEntities = state.entities.concat(action.channel);
+      return Object.assign({}, state, { currentChannel: action.channelId, entities: newEntities } );
 
     default:
       return state;

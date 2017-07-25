@@ -40,6 +40,7 @@ class Channels extends React.Component {
     this.setState({ joinModalOpen: true });
   }
 
+  // Modify to accept no channels existing
   componentWillReceiveProps(newProps) {
     if (newProps.channels.entities.length === 0) {
       newProps.requestChannels(newProps.team.id);
