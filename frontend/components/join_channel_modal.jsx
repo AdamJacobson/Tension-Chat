@@ -23,6 +23,7 @@ class JoinChannelModal extends React.Component {
   handleSubmit(channelId) {
     this.props.joinChannel(channelId);
     this.props.closeAction();
+    // this.props.history.push(`/messages/${channelId}`);
   }
 
   render() {

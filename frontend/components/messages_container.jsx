@@ -7,7 +7,7 @@ import Messages from './messages';
 
 const mapStateToProps = state => ({
   messages: state.messages,
-  users: state.users
+  users: state.users,
 });
 
 const mapDispatchToProps = dispatch => ({

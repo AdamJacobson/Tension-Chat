@@ -7,6 +7,7 @@ import Chat from './chat';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
+  currentChannel: state.channels.currentChannel,
   team: state.team,
   users: state.users
 });

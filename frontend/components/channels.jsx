@@ -42,7 +42,7 @@ class Channels extends React.Component {
 
   // Modify to accept no channels existing
   componentWillReceiveProps(newProps) {
-    if (newProps.channels.entities.length === 0) {
+    if (!newProps.channels.entities) {
       newProps.requestChannels(newProps.team.id);
     } else {
       newProps.channels.entities.forEach((channel) => {
@@ -67,6 +67,13 @@ class Channels extends React.Component {
       );
     }
 
+    let channels;
+    if (!this.props.channels.entities) {
+      channels = [];
+    } else {
+      channels = this.props.channels.entities;
+    }
+
     return(
       <div className="channel-group">
 
@@ -80,7 +87,7 @@ class Channels extends React.Component {
         </h4>
 
         <ul className="channel-list">
-          {this.props.channels.entities.map((ch, i) => {
+          {channels.map((ch, i) => {
             let classes = "channel-link";
             if (this.props.channels.currentChannel === ch.id) {
               classes += " active";

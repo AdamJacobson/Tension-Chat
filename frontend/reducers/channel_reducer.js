@@ -1,7 +1,7 @@
 import * as Actions from '../actions/channel_actions';
 
 const defaultState = {
-  entities: [],
+  entities: null,
   currentChannel: null
 };
 
@@ -15,8 +15,14 @@ const channelReducer = (state = defaultState, action) => {
       return Object.assign({}, state, { currentChannel: action.channelId } );
 
     case Actions.RECEIVE_SINGLE_CHANNEL:
-      const newEntities = state.entities.concat(action.channel);
-      return Object.assign({}, state, { currentChannel: action.channelId, entities: newEntities } );
+      let newEntities;
+      if (!state.entities) {
+        newEntities = [action.channel];
+      } else {
+        newEntities = state.entities.concat(action.channel);
+      }
+
+      return Object.assign({}, state, { currentChannel: action.channel.id, entities: newEntities } );
 
     default:
       return state;

@@ -17,6 +17,10 @@ class Chat extends React.Component {
     if (this.props.match.params.teamId !== newProps.match.params.teamId) {
       this.props.requestUsers(newProps.match.params.teamId);
     }
+
+    if (this.props.currentChannel !== newProps.currentChannel) {
+      newProps.history.push(`/teams/${newProps.match.params.teamId}/messages/${newProps.currentChannel}`);
+    }
   }
 
   render() {
