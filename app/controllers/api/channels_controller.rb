@@ -5,13 +5,25 @@ class Api::ChannelsController < ApplicationController
   end
 
   def joined
-    @channels = current_user.channels
+    @channels = current_user.channels.where(team_id: params[:team_id])
     render :index
   end
 
   def unjoined
-    @channels = Channel.where(team_id: params[:team_id]) - current_user.channels
+    @channels = Channel.where(team_id: params[:team_id]) - current_user.channels.where(team_id: params[:team_id])
     render :index
+  end
+
+  def membership
+    channel = Channel.find(params[:channel_id])
+
+    if (params[:membership] == "true")
+      current_user.join_channel(channel)
+      render json: "Joined channel #{channel.id}"
+    else
+      current_user.leave_channel(channel)
+      render json: "Left channel #{channel.id}"
+    end
   end
 
   def show

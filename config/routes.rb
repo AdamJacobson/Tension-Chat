@@ -11,11 +11,13 @@ Rails.application.routes.draw do
       resources :channels, only: [:index]
       get '/channels/joined', to: "channels#joined"
       get '/channels/unjoined', to: "channels#unjoined"
-      
+
       resources :users, only: [:index]
     end
 
     resources :channels, only: [:show, :create] do
+      post '/membership', to: "channels#membership"
+
       resources :messages, only: [:index]
     end
   end

@@ -17,10 +17,21 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  attr_reader :password
-
   has_many :team_memberships
   has_many :teams, through: :team_memberships
+
+  has_many :channel_memberships
+  has_many :channels, through: :channel_memberships
+
+  attr_reader :password
+
+  def join_channel(channel)
+    ChannelMembership.create!(user: self, channel: channel)
+  end
+
+  def leave_channel(channel)
+    ChannelMembership.where(user: self, channel: channel).destroy_all
+  end
 
   def join_team(team)
     TeamMembership.create!(user: self, team: team)

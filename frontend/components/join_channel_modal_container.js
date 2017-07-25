@@ -1,21 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { createChannel, requestChannels } from '../actions/channel_actions';
+import { createChannel } from '../actions/channel_actions';
 import JoinChannelModal from './join_channel_modal';
 
-const mapStateToProps = state => ({
-  channels: state.channels
-});
+// const mapStateToProps = state => ({
+//   unjoinedChannels: state.channels.unjoined
+// });
 
-const mapDispatchToProps = dispatch => ({
-  createChannel: (data) => dispatch(createChannel(data)),
-  requestChannels: (id) => dispatch(requestChannels(id))
-});
+// const mapDispatchToProps = dispatch => ({
+//   createChannel: (data) => dispatch(createChannel(data))
+// });
 
 const JoinChannelModalContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  null,
+  null
 )(JoinChannelModal);
 
 export default JoinChannelModalContainer;

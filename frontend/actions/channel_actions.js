@@ -1,12 +1,21 @@
 import * as ChannelAPI from '../util/channel_api_util';
 
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
+export const RECEIVE_UNJOINED_CHANNELS = "RECEIVE_UNJOINED_CHANNELS";
 export const RECEIVE_SINGLE_CHANNEL = "RECEIVE_SINGLE_CHANNEL";
 export const UPDATE_CHANNEL_ID = "UPDATE_CHANNEL_ID";
 
+// Needs to be changed to receive only joined
 export const receiveChannels = channels => {
   return {
     type: RECEIVE_CHANNELS,
+    channels
+  };
+};
+
+export const receiveUnjoinedChannels = channels => {
+  return {
+    type: RECEIVE_UNJOINED_CHANNELS,
     channels
   };
 };
@@ -38,10 +47,3 @@ export const createChannel = (data) => dispatch => {
 
   ChannelAPI.createChannel(data).then(success, failure);
 };
-
-// export const requestSingleTeam = (teamId) => dispatch => {
-//   const success = response => dispatch(receiveSingleTeam(response));
-//   const failure = response => {debugger;};
-//
-//   ChannelAPI.fetchSingleTeam(teamId).then(success, failure);
-// };

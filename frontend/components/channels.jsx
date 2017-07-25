@@ -59,12 +59,19 @@ class Channels extends React.Component {
   }
 
   render() {
+    let joinModal;
+    if (this.state.joinModalOpen) {
+      joinModal = (
+        <JoinChannelModalContainer closeAction={this.closeJoinModal} channelsComponent={this} isOpen={this.state.joinModalOpen} contentLabel="Modal"/>
+      );
+    }
+
     return(
       <div className="channel-group">
 
         <CreateModal channelsComponent={this} isOpen={this.state.createModalOpen} contentLabel="Modal"/>
 
-        <JoinChannelModalContainer closeAction={this.closeJoinModal} channelsComponent={this} isOpen={this.state.joinModalOpen} contentLabel="Modal"/>
+        {joinModal}
 
         <h4 className="channel-type-header">
           <span className="clickable" onClick={this.openJoinModal}>CHANNELS</span>
