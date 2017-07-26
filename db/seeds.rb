@@ -45,7 +45,7 @@ c_users.push(User.create!(username: "Chris_Redfield", password: "password"))
 
 
 Team.all.each_with_index do |team, team_i|
-  3.times do |num|
+  20.times do |num|
     name = "Team #{team_i}, Channel #{num}"
     Channel.create!(team: team, author: team.users.sample, name: name, description: "Description for channel #{num}")
   end

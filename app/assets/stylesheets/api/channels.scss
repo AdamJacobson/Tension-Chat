@@ -68,10 +68,27 @@ input {
 
 .channel-options {
   width: 100%;
+  margin-top: 10px;
 }
 
 .channel-option {
   width: 100%;
+  border-top: 1px solid $midlightgray;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  padding: 10px;
+  box-sizing: border-box;
+
+  &:hover {
+    background: #edf7fd;
+    border: 1px solid #d3ecfa;
+    border-radius: 6px;
+  }
+}
+
+.channel-option-row {
+  padding: 2px 0;
 }
 
 .close-button {

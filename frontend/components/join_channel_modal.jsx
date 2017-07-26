@@ -26,6 +26,24 @@ class JoinChannelModal extends React.Component {
     // this.props.history.push(`/messages/${channelId}`);
   }
 
+  formatDate(dateString) {
+    const allMonths = "January,February,March,April,May,June,July,August,September,October,November,December";
+    // March 14th 2017
+    const date = new Date(dateString);
+    const month = allMonths.split(',')[date.getMonth()];
+
+    const suffixes = "st,nd,rd".split(',');
+
+    let day = date.getDate();
+    if (date.getDate() < 3) {
+      day += suffixes[day];
+    } else {
+      day += 'th';
+    }
+
+    return `${month} ${day}, ${date.getFullYear()}`;
+  }
+
   render() {
     let content;
     if (!this.state.channels) {
@@ -36,17 +54,18 @@ class JoinChannelModal extends React.Component {
         </div>
       );
     } else if (this.state.channels.length === 0) {
-      content = (<h2>There are currently no channels to join.</h2>);
+      content = (<h3>There are currently no channels to join.</h3>);
     } else {
       content = (
         <div>
-          <h2>Browse all {this.state.channels.length} channels</h2>
+          <h3>Browse all {this.state.channels.length} channels</h3>
 
           <div className="channel-options">
             {this.state.channels.map((channel, i) => {
               return (
                 <div key={i} className="channel-option" onClick={() => this.handleSubmit(channel.id)}>
-                  <div>{channel.name}</div>
+                  <div className="channel-option-row"># {channel.name}</div>
+                  <div className="channel-option-row">Created on {this.formatDate(channel.created_at)}</div>
                 </div>
               );
             })}
@@ -58,9 +77,11 @@ class JoinChannelModal extends React.Component {
     return(
       <Modal id="joinModal" isOpen={this.props.isOpen} contentLabel="Modal">
         <div className="modal-content">
-          {content}
+          <button className="close-button" onClick={this.props.closeAction}>
+            <i className="fa fa-times fa-3x" aria-hidden="true"></i>
+          </button>
 
-          <button onClick={this.props.closeAction}>Close</button>
+          {content}
         </div>
       </Modal>
     );
