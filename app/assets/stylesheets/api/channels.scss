@@ -66,13 +66,21 @@ input {
   margin: 50px auto;
 }
 
+.channel-options {
+  width: 100%;
+}
+
+.channel-option {
+  width: 100%;
+}
+
 .close-button {
   background: none;
   border: none;
   position: absolute;
   outline: none;
-  right: 10%;
-  top: 10%;
+  right: 5%;
+  top: 5%;
 }
 
 small {

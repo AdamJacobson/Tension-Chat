@@ -95,22 +95,51 @@ a.default {
   text-shadow: none;
 }
 
-.button {
-  background: $mintgreen;
+button, a.button {
+  cursor: pointer;
   border-radius: 3px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 10px 4px;
+  padding: 14px 30px;
+}
+
+.button-fixed {
+  width: 165px;
+}
+
+.button-confirm {
+  background: $mintgreen;
   border: none;
   border-bottom: 3px solid transparent;
   color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 18px;
-  margin: 10px 0;
-  width: 165px;
-  padding: 14px 30px;
-  text-align: center;
-  text-decoration: none;
 
   &:hover {
     border-bottom: 3px solid $mintgreenshadow;
+  }
+}
+
+.button-demo {
+  background: #42b9c2;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: white;
+
+  &:hover {
+    border-bottom: 3px solid #318f96;
+  }
+}
+
+.button-cancel {
+  background: $mediumgray;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: white;
+  display: inline-block;
+
+  &:hover {
+    border-bottom: 3px solid $darkgray;
   }
 }

@@ -19,7 +19,7 @@ const Splash = () => {
           you need together so you can focus on the actual work.
         </div>
         <br />
-        <Link className="button" to="/login">Get Started</Link>
+        <Link className="button button-fixed button-confirm" to="/login">Get Started</Link>
       </div>
 
       <div className="splash-footer">

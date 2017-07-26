@@ -55,13 +55,13 @@ class TeamSelection extends React.Component {
             </select>
 
             <div className="auth-buttons">
-              <button className="button" id="submit" onClick={this.handleSubmit}>Continue</button>
-              <button className="button" id="logout" onClick={this.logout}>Log Out</button>
+              <button className="button-fixed button-cancel" id="logout" onClick={this.logout}>Cancel</button>
+              <button className="button-fixed button-confirm" id="submit" onClick={this.handleSubmit}>Continue</button>
             </div>
           </form>
 
           <div className="auth-footer-text">
-            <div>Trying to create a team? <Link className="default" to="/teams">Create Team</Link></div>
+
           </div>
 
         </div>
@@ -69,6 +69,8 @@ class TeamSelection extends React.Component {
     );
   }
 }
+
+// <div>Trying to create a team? <Link className="default" to="/teams">Create Team</Link></div>
 
 const TeamOption = ({ team, idx }) => {
   return(

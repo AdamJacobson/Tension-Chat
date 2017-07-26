@@ -36,11 +36,11 @@ class JoinChannelModal extends React.Component {
         </div>
       );
     } else if (this.state.channels.length === 0) {
-      content = (<h3>There are currently no channels to join.</h3>);
+      content = (<h2>There are currently no channels to join.</h2>);
     } else {
       content = (
         <div>
-          <h3>Browse all {this.state.channels.length} channels</h3>
+          <h2>Browse all {this.state.channels.length} channels</h2>
 
           <div className="channel-options">
             {this.state.channels.map((channel, i) => {

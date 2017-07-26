@@ -74,8 +74,8 @@ class CreateModal extends React.Component {
             <br />
 
             <div className="channel-buttons">
-              <button className="channel-button button-cancel" onClick={this.channelsComponent.closeCreateModal}>Cancel</button>
-              <button type="submit" className="channel-button button-confirm" onClick={this.handleSubmit}>Create Channel</button>
+              <button className="button-cancel" onClick={this.channelsComponent.closeCreateModal}>Cancel</button>
+              <button type="submit" className="button-confirm" onClick={this.handleSubmit}>Create Channel</button>
             </div>
           </form>
 

@@ -105,7 +105,7 @@ class SessionForm extends React.Component {
         <div className="auth-content">
 
           <ul className="auth-errors">
-            {this.props.errors.map((error, i) => <li key={i} className="error">{error}</li>)}
+            {this.props.errors.map((error, i) => <li key={i} className="error"><i className="fa fa-exclamation-triangle" aria-hidden="true">&nbsp;</i>{error}</li>)}
           </ul>
 
           <form id="auth-form" className="auth-form">
@@ -128,8 +128,8 @@ class SessionForm extends React.Component {
               onChange={this.handleChange}></input>
 
             <div className="auth-buttons">
-              <button className="button" id="submit" onClick={this.handleSubmit}>{buttonText}</button>
-              <button className="button" id="demo" onClick={this.demoLogin}>Demo Login</button>
+              <button className="button-fixed button-confirm" id="submit" onClick={this.handleSubmit}>{buttonText}</button>
+              <button className="button-fixed button-demo" id="demo" onClick={this.demoLogin}>Demo Login</button>
             </div>
           </form>
           <div className="auth-footer-text">
