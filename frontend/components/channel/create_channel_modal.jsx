@@ -21,6 +21,9 @@ class CreateModal extends React.Component {
 
   handleChange(e) {
     e.preventDefault();
+    if (e.which === 13) {
+      console.log("Return");
+    }
     this.setState({ [e.target.id]: e.target.value });
   }
 
@@ -34,6 +37,7 @@ class CreateModal extends React.Component {
       }
     };
     this.createChannel(channel);
+    this.setState({ name: "", description: "" });
     this.props.closeAction();
   }
 
@@ -74,8 +78,8 @@ class CreateModal extends React.Component {
             <br />
 
             <div className="channel-buttons">
-              <button className="button-cancel" onClick={this.channelsComponent.closeCreateModal}>Cancel</button>
-              <button type="submit" className="button-confirm" onClick={this.handleSubmit}>Create Channel</button>
+              <button className="button-confirm" id="submit" onClick={this.handleSubmit}>Create Channel</button>
+              <button className="button-cancel" id="cancel" onClick={this.channelsComponent.closeCreateModal}>Cancel</button>
             </div>
           </form>
 
