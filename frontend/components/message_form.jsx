@@ -18,17 +18,18 @@ class MessageForm extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log("Sending messages...");
-    e.preventDefault();
-    const message = {
-      message: {
-        body: this.state.body,
-        channel_id: this.props.match.params.channelId,
-        author_id: this.currentUser.id
+    if (this.state.body !== "") {
+      e.preventDefault();
+      const message = {
+        message: {
+          body: this.state.body,
+          channel_id: this.props.match.params.channelId,
+          author_id: this.currentUser.id
         }
       };
-    this.sendMessage(message);
-    this.setState({ body: '' });
+      this.sendMessage(message);
+      this.setState({ body: '' });
+    }
   }
 
   handleChange(e) {
