@@ -7,14 +7,12 @@ import TeamSelection from './team_selection';
 
 const mapStateToProps = state => ({
   team: state.team,
-  teams: state.team.teams,
   currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
   clearNonSessionData: () => dispatch(clearNonSessionData()),
-  requestTeams: () => dispatch(requestTeams()),
   requestSingleTeam: id => dispatch(requestSingleTeam(id))
 });
 

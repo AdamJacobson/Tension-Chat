@@ -53,7 +53,7 @@ class TeamSelection extends React.Component {
             </select>
 
             <div className="auth-buttons">
-              <button className="button-fixed button-cancel" id="logout" onClick={this.logout}>Cancel</button>
+              <button className="button-fixed button-cancel" id="logout" onClick={this.logout}>Log Out</button>
               <button className="button-fixed button-confirm" id="submit" onClick={this.handleSubmit}>Continue</button>
             </div>
           </form>
