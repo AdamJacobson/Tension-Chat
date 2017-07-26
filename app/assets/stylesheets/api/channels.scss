@@ -145,3 +145,16 @@ small {
   color: white;
   background: $mintgreen;
 }
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leave-button {
+  background: $lightgray;
+  padding: 4px;
+  border: 1px solid $mediumgray;
+  border-radius: 6px;
+}

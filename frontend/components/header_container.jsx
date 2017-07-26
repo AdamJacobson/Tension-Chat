@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { logout } from '../actions/session_actions';
-// import { requestUsers } from '../actions/user_actions';
-import Header from './header';
+import { leaveChannel } from '../actions/channel_actions';
 import { objectifyChannels } from '../selectors/selectors';
+
+import Header from './header';
 
 
 const mapStateToProps = state => ({
@@ -14,7 +15,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  leaveChannel: (id) => dispatch(leaveChannel(id))
 });
 
 const ChatContainer = connect(

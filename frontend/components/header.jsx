@@ -8,14 +8,17 @@ class Header extends React.Component {
 
       topRow = (
         <div className="header-row-1">
-          <h3># {this.props.channels[this.props.currentChannel].name}</h3>
+          <h3>#{this.props.channels[this.props.currentChannel].name}</h3>
         </div>
       );
       bottomRow = (
         <div className="header-row-2">
-          <i className="fa fa-star-o" aria-hidden="true"></i>
-          <i className="fa fa-user" aria-hidden="true"></i>
-          <span>{this.props.channels[this.props.currentChannel].description}</span>
+          <div className="space-between">
+            <span>{this.props.channels[this.props.currentChannel].description}</span>
+            <div className="leave-button" onClick={() => this.props.leaveChannel(this.props.currentChannel)}>
+              Leave #{this.props.channels[this.props.currentChannel].name}
+            </div>
+          </div>
         </div>
       );
     } else {
