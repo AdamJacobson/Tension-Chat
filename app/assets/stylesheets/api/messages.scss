@@ -52,7 +52,10 @@
   margin: 0 20px 20px 20px;
 
   button {
-    display: none;
+    visibility: hidden;
+    position: fixed;
+    width: 0;
+    height: 0;
   }
 }
 

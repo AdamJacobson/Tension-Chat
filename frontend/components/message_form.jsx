@@ -18,6 +18,7 @@ class MessageForm extends React.Component {
   }
 
   handleSubmit(e) {
+    console.log("Sending messages...");
     e.preventDefault();
     const message = {
       message: {
