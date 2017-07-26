@@ -1,11 +1,16 @@
 import * as Actions from '../actions/message_actions';
 import { markUnread, markRead } from '../selectors/selectors';
+import { CLEAR_NON_SESSION_DATA } from '../actions/session_actions';
+
 
 const defaultState = { };
 
 const messageReducer = (state = defaultState, action) => {
   Object.freeze(state);
   switch (action.type) {
+    case CLEAR_NON_SESSION_DATA:
+      return defaultState;
+
     case Actions.RECEIVE_MESSAGES:
       return Object.assign({}, state, {
          [action.channelId]: markUnread(action.messages)

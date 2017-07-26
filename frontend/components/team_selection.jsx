@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux';
-import { Route, HashRouter, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import SplashHeader from './splash_header';
+import { fetchTeamsForCurrentUser } from '../util/team_api_util';
 
 class TeamSelection extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: "" };
+    this.state = { value: "", teams: [] };
 
     this.logout = this.props.logout.bind(this);
     this.requestSingleTeam = this.props.requestSingleTeam.bind(this);
@@ -18,13 +18,11 @@ class TeamSelection extends React.Component {
   }
 
   componentWillMount() {
-    this.props.requestTeams();
-  }
+    fetchTeamsForCurrentUser().then((teams) => {
+      this.setState({ value: teams[0].id, teams: teams });
+    });
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.teams.length > 0) {
-      this.setState({ value: newProps.teams[0].id });
-    }
+    this.props.clearNonSessionData();
   }
 
   handleChange(event) {
@@ -51,7 +49,7 @@ class TeamSelection extends React.Component {
             <div className="auth-footer-text">You are a member of the following teams.</div>
 
             <select className="team-select" value={this.state.value} onChange={this.handleChange}>
-              {this.props.teams.map((team, i) => <TeamOption key={i} idx={i} team={team} />)}
+              {this.state.teams.map((team, i) => <TeamOption key={i} idx={i} team={team} />)}
             </select>
 
             <div className="auth-buttons">

@@ -1,4 +1,5 @@
 import * as Actions from '../actions/channel_actions';
+import { CLEAR_NON_SESSION_DATA } from '../actions/session_actions';
 
 const defaultState = {
   entities: null,
@@ -10,7 +11,10 @@ const channelReducer = (state = defaultState, action) => {
 
   let newEntities = [];
 
-  switch (action.type) {
+  switch (action.type) {    
+    case CLEAR_NON_SESSION_DATA:
+      return defaultState;
+
     case Actions.RECEIVE_CHANNELS:
       return Object.assign({}, state, { entities: action.channels });
 

@@ -70,7 +70,6 @@ class Team extends React.Component {
             <div className="dropdown-mask" onClick={this.hideDropdown}></div>
           </div>
 
-
           <ChannelsContainer />
         </div>
       </div>

@@ -6,6 +6,7 @@ export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CLEAR_STATE = "CLEAR_STATE";
+export const CLEAR_NON_SESSION_DATA = "CLEAR_NON_SESSION_DATA";
 
 export const signup = user => dispatch => {
   const success = response => dispatch(receiveCurrentUser(response));
@@ -28,6 +29,10 @@ export const logout = () => dispatch => {
   unsubscribeFromChannels();
   unsubscribeFromMessages();
   return APIUtil.logout().then(success, failure);
+};
+
+export const clearNonSessionData = () => {
+  return { type: CLEAR_NON_SESSION_DATA };
 };
 
 export const receiveErrors = errors => (

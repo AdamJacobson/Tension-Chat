@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { logout } from '../actions/session_actions';
+import { logout, clearNonSessionData } from '../actions/session_actions';
 import { requestTeams, requestSingleTeam } from '../actions/team_actions';
 import TeamSelection from './team_selection';
 
@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
+  clearNonSessionData: () => dispatch(clearNonSessionData()),
   requestTeams: () => dispatch(requestTeams()),
   requestSingleTeam: id => dispatch(requestSingleTeam(id))
 });

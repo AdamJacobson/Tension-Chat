@@ -51,6 +51,7 @@ class Channels extends React.Component {
     }
 
     if (newProps.team.id !== this.props.team.id) {
+      console.log("Team was " + this.props.team.id + ", is now " + newProps.team.id);
       // subscribeToChannels(this.props.receiveSingleChannel, this.props.match.params.teamId);
     }
   }

@@ -1,4 +1,4 @@
-export const fetchAllTeams = () => {
+export const fetchTeamsForCurrentUser = () => {
   return $.ajax({
     type: 'GET',
     url: '/api/teams'
