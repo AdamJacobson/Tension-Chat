@@ -24,6 +24,16 @@ class User < ApplicationRecord
   has_many :channel_memberships
   has_many :channels, through: :channel_memberships
 
+  has_many :received_direct_messages
+
+  has_many :received_direct_messages,
+    foreign_key: :recipient_id,
+    class_name: :DirectMessage
+
+  has_many :sent_direct_messages,
+    foreign_key: :sender_id,
+    class_name: :DirectMessage
+
   attr_reader :password
 
   def join_channel(channel)

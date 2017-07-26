@@ -6,11 +6,14 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
 
     resources :messages, only: [:create]
+    resources :direct_messages, only: [:create]
 
     resources :teams, only: [:index, :show] do
       resources :channels, only: [:index]
       get '/channels/joined', to: "channels#joined"
       get '/channels/unjoined', to: "channels#unjoined"
+
+      get '/direct_messages/:user_id', to: "direct_messages#conversation"
 
       resources :users, only: [:index]
     end
