@@ -9,9 +9,7 @@ class Api::DirectMessagesController < ApplicationController
     @dm = DirectMessage.new(dm_params)
     @dm.author = current_user
 
-    if @dm.save
-      render json: "Direct Message Sent", status: 200
-    else
+    unless @dm.save
       render json: @dm.errors.full_messages, status: 422
     end
   end
