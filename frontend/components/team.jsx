@@ -13,6 +13,7 @@ class Team extends React.Component {
   }
 
   componentWillMount() {
+    this.props.requestConversations(this.props.currentUser.id, this.props.teamId);
     subscribeToDirectMessages(this.props.receiveDirectMessage, this.props.teamId, this.props.currentUser.id);
     // If no state data for team
     if (!this.props.team.id) {

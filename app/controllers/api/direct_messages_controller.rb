@@ -24,12 +24,26 @@ class Api::DirectMessagesController < ApplicationController
     end
 
     @dms = DirectMessage.where(
-      "(author_id = ? AND recipient_id = ?)
+      "team_id = ? AND
+      ((author_id = ? AND recipient_id = ?)
       OR
-      (recipient_id = ? AND author_id = ?)",
-      current_user.id, user_id, current_user.id, user_id)
+      (recipient_id = ? AND author_id = ?))",
+      params[:team_id], current_user.id, user_id, current_user.id, user_id)
 
     render :conversation
+  end
+
+  def active_conversations
+    me = current_user
+    received = DirectMessage.where("recipient_id = ?",  me.id).pluck(:author_id).uniq;
+    sent = DirectMessage.where("author_id = ?",  me.id).pluck(:recipient_id).uniq
+    all = received.concat(sent).uniq
+
+    conversations = User.find(all).pluck(:username).map do |username|
+      '@' + username
+    end
+
+    render json: conversations
   end
 
   private

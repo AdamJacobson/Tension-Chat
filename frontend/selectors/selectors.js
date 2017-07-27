@@ -34,6 +34,16 @@ export const arrayify = objects => {
   return arr;
 };
 
+export const conversations = messages => {
+  let arr = [];
+  Object.keys(messages).forEach((key) => {
+    if (key.toString()[0] === '@') {
+      arr.push(key);
+    }
+  });
+  return arr;
+};
+
 export const markUnread = (messages) => {
   if (messages instanceof Array) {
     messages.forEach((message) => {

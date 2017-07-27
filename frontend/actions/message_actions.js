@@ -44,6 +44,7 @@ export const sendMessage = message => dispatch => {
 
 export const RECEIVE_DIRECT_MESSAGES = "RECEIVE_DIRECT_MESSAGES";
 export const RECEIVE_DIRECT_MESSAGE = "RECEIVE_DIRECT_MESSAGE";
+export const RECEIVE_CONVERSATIONS = "RECEIVE_CONVERSATIONS";
 
 export const receiveDirectMessages = (messages, recipientId) => {
   return {
@@ -60,6 +61,13 @@ export const receiveDirectMessage = (message) => {
   };
 };
 
+export const receiveConversations = conversations => {
+  return {
+    type: RECEIVE_CONVERSATIONS,
+    conversations
+  };
+};
+
 export const sendDirectMessage = message => dispatch => {
   const success = response => dispatch(receiveDirectMessage(response));
   const failure = response => {debugger;};
@@ -72,4 +80,11 @@ export const requestDirectMessages = (recipientId, teamId) => dispatch => {
   const failure = response => {debugger;};
 
   MessageAPI.fetchDirectMessages(recipientId, teamId).then(success, failure);
+};
+
+export const requestConversations = (recipientId, teamId) => dispatch => {
+  const success = response => dispatch(receiveConversations(response));
+  const failure = response => {debugger;};
+
+  MessageAPI.fetchConversations(recipientId, teamId).then(success, failure);
 };

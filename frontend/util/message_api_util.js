@@ -20,6 +20,13 @@ export const fetchDirectMessages = (recipient, teamId) => {
   });
 };
 
+export const fetchConversations = (recipient, teamId) => {
+  return $.ajax({
+    url: `/api/teams/${teamId}/direct_messages/${recipient}/conversations`,
+    type: 'GET'
+  });
+};
+
 export const sendDirectMessage = message => {
   return $.ajax({
     url: `/api/direct_messages`,

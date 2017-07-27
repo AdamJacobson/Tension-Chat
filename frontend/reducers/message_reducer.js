@@ -23,6 +23,13 @@ const messageReducer = (state = defaultState, action) => {
       };
       return Object.assign({}, state, newMessages);
 
+    case Actions.RECEIVE_CONVERSATIONS:
+      newMessages = {};
+      action.conversations.forEach((conv) => {
+        newMessages[conv] = null;
+      });
+      return Object.assign({}, state, newMessages);
+
     case Actions.RECEIVE_MESSAGES:
       return Object.assign({}, state, {
          [action.channelId]: markUnread(action.messages)
@@ -36,6 +43,7 @@ const messageReducer = (state = defaultState, action) => {
       return Object.assign({}, state, newMessages);
 
     case Actions.MARK_MESSAGES_AS_READ:
+      console.warn("MARK_MESSAGES_AS_READ Channel id: " + action.channelId);
       // Deep copy array
       const messagesForChannel = JSON.parse(JSON.stringify(state[action.channelId]));
       return Object.assign({}, state, { [action.channelId]: markRead(messagesForChannel) });

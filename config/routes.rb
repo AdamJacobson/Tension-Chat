@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get '/channels/unjoined', to: "channels#unjoined"
 
       get '/direct_messages/:user_id', to: "direct_messages#conversation"
+      get '/direct_messages/:user_id/conversations', to: "direct_messages#active_conversations"
 
       resources :users, only: [:index]
     end

@@ -16,7 +16,6 @@ class Messages extends React.Component {
 
     // bind local functions
     this.getMessages = this.getMessages.bind(this);
-    // this.messages = this.messages.bind(this);
   }
 
   componentDidUpdate(prevProps, nextProps) {
@@ -38,12 +37,10 @@ class Messages extends React.Component {
     if (!this.channelId) {
 
     } else if (this.isDirectMessages(this.channelId)) {
-      console.log("Direct Messages: " + this.channelId);
       if (!this.props.messages[this.channelId]) {
         this.requestDirectMessages(this.channelId, this.props.match.params.teamId);
       }
     } else {
-      console.log("Regular Messages: " + this.channelId);
       if (!this.props.messages[this.channelId]) {
         this.requestMessages(this.channelId);
       }
@@ -67,9 +64,12 @@ class Messages extends React.Component {
     // update if new current channel
     if (oldChannelId !== newChannelId) {
       this.props.updateCurrentChannel(newChannelId);
-      this.markMessagesAsRead(oldChannelId);
       this.channelId = newChannelId;
       this.getMessages();
+
+      if (oldChannelId) {
+        this.markMessagesAsRead(oldChannelId);
+      }
     }
   }
 
