@@ -4,6 +4,7 @@ import { Provider, connect } from 'react-redux';
 import { Route, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
 
 import ChannelsContainer from './channels_container';
+import DirectMessagesContainer from './direct_messages_container';
 
 class Team extends React.Component {
   constructor(props) {
@@ -71,6 +72,8 @@ class Team extends React.Component {
           </div>
 
           <ChannelsContainer />
+
+          <DirectMessagesContainer />
         </div>
       </div>
     );

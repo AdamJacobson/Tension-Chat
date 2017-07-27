@@ -4,8 +4,14 @@ import { Route, withRouter } from 'react-router-dom';
 class Header extends React.Component {
   render() {
     let header, description, topRow, bottomRow;
-    if (Object.keys(this.props.channels).length !== 0 && this.props.currentChannel) {
 
+    if (this.props.currentChannel && this.props.currentChannel[0] === '@') {
+      topRow = (
+        <div className="header-row-1">
+          <h3>{this.props.currentChannel}</h3>
+        </div>
+      );
+    } else if (Object.keys(this.props.channels).length !== 0 && this.props.currentChannel) {
       topRow = (
         <div className="header-row-1">
           <h3>#{this.props.channels[this.props.currentChannel].name}</h3>

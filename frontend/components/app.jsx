@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import GreetingContainer from './greeting_container';
 import SessionFormContainer from './session_form_container';
 import Splash from './splash';
 import ChatContainer from './chat_container';

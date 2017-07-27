@@ -101,7 +101,7 @@ class Channels extends React.Component {
         <ul className="channel-list">
           {channels.map((ch, i) => {
             let classes = "channel-item";
-            if (channelId === ch.id) {
+            if (channelId == ch.id) {
               classes += " channel-selected";
             }
             return(

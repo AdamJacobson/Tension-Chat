@@ -44,7 +44,7 @@ export const updateCurrentChannel = channelId => {
   } else {
     return {
       type: UPDATE_CHANNEL_ID,
-      channelId: Number.parseInt(channelId)
+      channelId
     };
   }
 };
