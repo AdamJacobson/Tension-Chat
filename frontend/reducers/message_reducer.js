@@ -7,6 +7,7 @@ const defaultState = { };
 
 const messageReducer = (state = defaultState, action) => {
   Object.freeze(state);
+
   switch (action.type) {
     case CLEAR_NON_SESSION_DATA:
       return defaultState;

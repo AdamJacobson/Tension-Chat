@@ -30,18 +30,20 @@ class Messages extends React.Component {
     }
   }
 
+  isDirectMessages(channelId) {
+    return (Number.isNaN(Number(this.channelId)));
+  }
+
   getMessages() {
     if (!this.channelId) {
 
-    } else if (Number.isNaN(Number(this.channelId))) {
+    } else if (this.isDirectMessages(this.channelId)) {
       console.log("Direct Messages: " + this.channelId);
-      // debugger;
       if (!this.props.messages[this.channelId]) {
-        this.requestDirectMessages(this.props.match.params.teamId, this.channelId);
+        this.requestDirectMessages(this.channelId, this.props.match.params.teamId);
       }
     } else {
       console.log("Regular Messages: " + this.channelId);
-      // If messages don't already exist in state get last few
       if (!this.props.messages[this.channelId]) {
         this.requestMessages(this.channelId);
       }
@@ -53,25 +55,9 @@ class Messages extends React.Component {
     this.getMessages();
   }
 
-  // messages() {
-    // if (this.isDirectMessage) {
-    //   return this.props.directMessages;
-    // } else {
-      // return this.props.messages;
-    // }
-  // }
-
   componentWillReceiveProps(newProps) {
     const oldChannelId = this.props.match.params.channelId;
     const newChannelId = newProps.match.params.channelId;
-
-    console.warn("Messages WRP");
-    console.warn(newChannelId);
-    console.warn("is direct messaging: " + Number.isNaN(Number(newChannelId)));
-
-    this.isDirectMessage = Number.isNaN(Number(newChannelId));
-
-    // debugger;
 
     // Update if no channel
     if (!this.props.currentChannel && newChannelId) {
@@ -81,7 +67,7 @@ class Messages extends React.Component {
     // update if new current channel
     if (oldChannelId !== newChannelId) {
       this.props.updateCurrentChannel(newChannelId);
-      // this.markMessagesAsRead(oldChannelId);
+      this.markMessagesAsRead(oldChannelId);
       this.channelId = newChannelId;
       this.getMessages();
     }
@@ -136,7 +122,7 @@ class Messages extends React.Component {
         <div className="messages-content">
           {messages}
 
-          <MessageFormContainer />
+          <MessageFormContainer isDirectMessages={this.isDirectMessages(this.channelId)} />
         </div>
       </div>
     );

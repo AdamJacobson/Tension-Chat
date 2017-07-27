@@ -1,15 +1,23 @@
 class Api::DirectMessagesController < ApplicationController
 
   def create
+    recipient = params[:direct_message][:recipient_id]
+    if recipient.is_a? String
+      params[:direct_message][:recipient_id] = User.find_by(username: recipient.delete('@')).id
+    end
+
     @dm = DirectMessage.new(dm_params)
     @dm.author = current_user
 
-    unless @dm.save
+    if @dm.save
+      render json: "Direct Message Sent", status: 200
+    else
       render json: @dm.errors.full_messages, status: 422
     end
   end
 
   def conversation
+    # Handle recipient being sent as @username
     user_id = params[:user_id]
     if user_id.to_i == 0
       user_id = User.find_by(username: user_id.delete('@')).id

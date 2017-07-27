@@ -1,6 +1,7 @@
 class Api::MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
+    @message.author = current_user
 
     # Dont forget to build in protections for channel permission
     # Can add model level validations for message posting in regards to channel

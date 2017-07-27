@@ -4,7 +4,7 @@ class DirectMessage < ApplicationRecord
 
   # Validates that both users are member of Team
   def both_users_are_in_team
-    unless (recipient.teams.include? self.team) && (author.teams.include? self.team)
+    unless (self.recipient.teams.include? self.team) && (self.author.teams.include? self.team)
       errors.add(:team, "must have both author and recipient as members")
     end
   end

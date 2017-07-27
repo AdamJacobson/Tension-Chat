@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import { sendMessage, requestMessages, markMessagesAsRead, requestDirectMessages }
   from '../actions/message_actions';
-// import { requestDirectMessages } from '../actions/direct_message_actions';
 import { updateCurrentChannel } from '../actions/channel_actions';
 import { requestUsers } from '../actions/user_actions';
 import Messages from './messages';
@@ -17,7 +16,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   requestMessages: channelId => dispatch(requestMessages(channelId)),
-  requestDirectMessages: (teamId, recipientId) => dispatch(requestDirectMessages(teamId, recipientId)),
+  requestDirectMessages: (recipientId, teamId) => dispatch(requestDirectMessages(recipientId, teamId)),
   requestUsers: teamId => dispatch(requestUsers(teamId)),
   updateCurrentChannel: (id) => dispatch(updateCurrentChannel(id)),
   markMessagesAsRead: channelId => dispatch(markMessagesAsRead(channelId))

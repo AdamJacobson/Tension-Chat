@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { sendMessage } from '../actions/message_actions';
-// import { requestUsers } from '../actions/user_actions';
+import { sendMessage, sendDirectMessage } from '../actions/message_actions';
 import MessageForm from './message_form';
 
 const mapStateToProps = state => ({
@@ -11,7 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  sendMessage: (message) => dispatch(sendMessage(message))
+  sendMessage: message => dispatch(sendMessage(message)),
+  sendDirectMessage: message => dispatch(sendDirectMessage(message))
 });
 
 const MessageFormContainer = connect(

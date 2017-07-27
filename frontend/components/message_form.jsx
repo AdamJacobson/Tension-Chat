@@ -11,6 +11,7 @@ class MessageForm extends React.Component {
 
     // bind prop functions
     this.sendMessage = this.props.sendMessage.bind(this);
+    this.sendDirectMessage = this.props.sendDirectMessage.bind(this);
 
     // bind local functions
     this.handleChange = this.handleChange.bind(this);
@@ -18,18 +19,30 @@ class MessageForm extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
+
     if (this.state.body !== "") {
-      e.preventDefault();
-      const message = {
-        message: {
-          body: this.state.body,
-          channel_id: this.props.match.params.channelId,
-          author_id: this.currentUser.id
-        }
-      };
-      this.sendMessage(message);
-      this.setState({ body: '' });
+      if (this.props.isDirectMessages) {
+        const message = {
+          direct_message: {
+            body: this.state.body,
+            recipient_id: this.props.match.params.channelId,
+            team_id: this.props.match.params.teamId
+          }
+        };
+        this.sendDirectMessage(message);
+      } else {
+        const message = {
+          message: {
+            body: this.state.body,
+            channel_id: this.props.match.params.channelId
+          }
+        };
+        this.sendMessage(message);
+      }
     }
+
+    this.setState({ body: '' });
   }
 
   handleChange(e) {
