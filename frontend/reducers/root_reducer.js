@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import directMessageReducer from './direct_messages_reducer';
 import channelReducer from './channel_reducer';
 import messageReducer from './message_reducer';
 import sessionReducer from './session_reducer';

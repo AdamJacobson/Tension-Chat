@@ -12,9 +12,11 @@ class Messages extends React.Component {
     // bind prop functions
     this.requestMessages = this.props.requestMessages.bind(this);
     this.markMessagesAsRead = this.props.markMessagesAsRead.bind(this);
+    this.requestDirectMessages = this.props.requestDirectMessages.bind(this);
 
     // bind local functions
     this.getMessages = this.getMessages.bind(this);
+    // this.messages = this.messages.bind(this);
   }
 
   componentDidUpdate(prevProps, nextProps) {
@@ -29,9 +31,20 @@ class Messages extends React.Component {
   }
 
   getMessages() {
-    // If messages don't already exist in state get last few
-    if (!this.props.messages[this.channelId]) {
-      this.requestMessages(this.channelId);
+    if (!this.channelId) {
+
+    } else if (Number.isNaN(Number(this.channelId))) {
+      console.log("Direct Messages: " + this.channelId);
+      // debugger;
+      if (!this.props.messages[this.channelId]) {
+        this.requestDirectMessages(this.props.match.params.teamId, this.channelId);
+      }
+    } else {
+      console.log("Regular Messages: " + this.channelId);
+      // If messages don't already exist in state get last few
+      if (!this.props.messages[this.channelId]) {
+        this.requestMessages(this.channelId);
+      }
     }
   }
 
@@ -40,9 +53,25 @@ class Messages extends React.Component {
     this.getMessages();
   }
 
+  // messages() {
+    // if (this.isDirectMessage) {
+    //   return this.props.directMessages;
+    // } else {
+      // return this.props.messages;
+    // }
+  // }
+
   componentWillReceiveProps(newProps) {
     const oldChannelId = this.props.match.params.channelId;
     const newChannelId = newProps.match.params.channelId;
+
+    console.warn("Messages WRP");
+    console.warn(newChannelId);
+    console.warn("is direct messaging: " + Number.isNaN(Number(newChannelId)));
+
+    this.isDirectMessage = Number.isNaN(Number(newChannelId));
+
+    // debugger;
 
     // Update if no channel
     if (!this.props.currentChannel && newChannelId) {
@@ -52,7 +81,7 @@ class Messages extends React.Component {
     // update if new current channel
     if (oldChannelId !== newChannelId) {
       this.props.updateCurrentChannel(newChannelId);
-      this.markMessagesAsRead(oldChannelId);
+      // this.markMessagesAsRead(oldChannelId);
       this.channelId = newChannelId;
       this.getMessages();
     }
@@ -72,6 +101,7 @@ class Messages extends React.Component {
 
     // Messages not loaded yet
     if (!this.props.messages[this.channelId]) {
+      // debugger;
       return(
         <div className="messages-container">
           <div className="loader">

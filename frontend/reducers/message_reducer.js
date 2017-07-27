@@ -11,6 +11,9 @@ const messageReducer = (state = defaultState, action) => {
     case CLEAR_NON_SESSION_DATA:
       return defaultState;
 
+    case Actions.RECEIVE_DIRECT_MESSAGES:
+      return Object.assign({}, state, { [action.recipientId]: markUnread(action.messages) });
+
     case Actions.RECEIVE_MESSAGES:
       return Object.assign({}, state, {
          [action.channelId]: markUnread(action.messages)

@@ -4,6 +4,10 @@ import { Provider, connect } from 'react-redux';
 import { Route, HashRouter, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
 
 class DirectMessages extends React.Component {
+  componentWillReceiveProps(newProps) {
+    
+  }
+
   render() {
     return(
       <div className="channel-group">
@@ -22,7 +26,7 @@ class DirectMessages extends React.Component {
               <li className={classes} key={i}>
                 <Link className="channel-link"
                       to={`/teams/${this.props.team.id}/messages/@${user.username}`}>
-                  # {user.username}
+                  @ {user.username}
                 </Link>
               </li>
             );

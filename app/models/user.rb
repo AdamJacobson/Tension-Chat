@@ -31,7 +31,7 @@ class User < ApplicationRecord
     class_name: :DirectMessage
 
   has_many :sent_direct_messages,
-    foreign_key: :sender_id,
+    foreign_key: :author_id,
     class_name: :DirectMessage
 
   attr_reader :password

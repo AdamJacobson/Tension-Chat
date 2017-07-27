@@ -39,11 +39,11 @@ ActiveRecord::Schema.define(version: 20170726222126) do
     t.text "body", null: false
     t.integer "team_id", null: false
     t.integer "recipient_id", null: false
-    t.integer "sender_id", null: false
+    t.integer "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_direct_messages_on_author_id"
     t.index ["recipient_id"], name: "index_direct_messages_on_recipient_id"
-    t.index ["sender_id"], name: "index_direct_messages_on_sender_id"
     t.index ["team_id"], name: "index_direct_messages_on_team_id"
   end
 

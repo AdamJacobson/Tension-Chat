@@ -15,6 +15,18 @@ export const objectifyChannels = channels => {
   return objs;
 };
 
+// Given an array of objects, turn into object of objects with ids as keys
+// If only one object, returns single object with id as key
+export const objectify = (objects) => {
+  if (objects instanceof Array) {
+    const objs = {};
+    objects.forEach((object) => {objs[object.id] = object;});
+    return objs;
+  }
+
+  return { [objects.id]: objects };
+};
+
 // Given an object of objects with ids as keys, return array of objects
 export const arrayify = objects => {
   let arr = [];

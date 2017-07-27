@@ -2,7 +2,7 @@ class Api::DirectMessagesController < ApplicationController
 
   def create
     @dm = DirectMessage.new(dm_params)
-    @dm.sender = current_user
+    @dm.author = current_user
 
     unless @dm.save
       render json: @dm.errors.full_messages, status: 422
@@ -10,11 +10,16 @@ class Api::DirectMessagesController < ApplicationController
   end
 
   def conversation
+    user_id = params[:user_id]
+    if user_id.to_i == 0
+      user_id = User.find_by(username: user_id.delete('@')).id
+    end
+
     @dms = DirectMessage.where(
-      "(sender_id = ? AND recipient_id = ?)
+      "(author_id = ? AND recipient_id = ?)
       OR
-      (recipient_id = ? AND sender_id = ?)",
-      current_user.id, params[:user_id], current_user.id, params[:user_id])
+      (recipient_id = ? AND author_id = ?)",
+      current_user.id, user_id, current_user.id, user_id)
 
     render :conversation
   end

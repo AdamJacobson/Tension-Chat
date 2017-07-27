@@ -1,4 +1,5 @@
 import * as MessageAPI from '../util/message_api_util';
+import * as DirectMessageApi from '../util/direct_message_api_util';
 
 export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 export const RECEIVE_SINGLE_MESSAGE = "RECEIVE_SINGLE_MESSAGE";
@@ -38,4 +39,23 @@ export const sendMessage = message => dispatch => {
   const failure = response => {debugger;};
 
   MessageAPI.sendMessage(message).then(null, failure);
+};
+
+/* DirectMessage */
+
+export const RECEIVE_DIRECT_MESSAGES = "RECEIVE_DIRECT_MESSAGES";
+
+export const receiveDirectMessages = (messages, recipientId) => {
+  return {
+    type: RECEIVE_DIRECT_MESSAGES,
+    recipientId,
+    messages
+  };
+};
+
+export const requestDirectMessages = (teamId, recipientId) => dispatch => {
+  const success = response => dispatch(receiveDirectMessages(response, recipientId));
+  const failure = response => {debugger;};
+
+  DirectMessageApi.fetchDirectMessages(teamId, recipientId).then(success, failure);
 };
