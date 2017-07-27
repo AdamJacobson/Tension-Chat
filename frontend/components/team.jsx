@@ -5,6 +5,7 @@ import { Route, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
 
 import ChannelsContainer from './channels_container';
 import DirectMessagesContainer from './direct_messages_container';
+import { subscribeToDirectMessages } from '../connections/direct_messages_connection';
 
 class Team extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Team extends React.Component {
   }
 
   componentWillMount() {
+    subscribeToDirectMessages(this.props.receiveDirectMessage, this.props.teamId, this.props.currentUser.id);
     // If no state data for team
     if (!this.props.team.id) {
       this.props.requestSingleTeam(this.props.teamId);

@@ -9,7 +9,7 @@ class DirectMessage < ApplicationRecord
     end
   end
 
-  # after_create_commit { DirectMessageBroadcastJob.perform_later self }
+  after_create_commit { DirectMessageBroadcastJob.perform_later self }
 
   belongs_to :recipient, class_name: :User
   belongs_to :author, class_name: :User

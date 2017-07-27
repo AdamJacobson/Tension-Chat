@@ -8,12 +8,20 @@ const defaultState = { };
 const messageReducer = (state = defaultState, action) => {
   Object.freeze(state);
 
+  let newMessages;
+
   switch (action.type) {
     case CLEAR_NON_SESSION_DATA:
       return defaultState;
 
     case Actions.RECEIVE_DIRECT_MESSAGES:
       return Object.assign({}, state, { [action.recipientId]: markUnread(action.messages) });
+
+    case Actions.RECEIVE_DIRECT_MESSAGE:
+      newMessages = {
+        [action.message.username]: state[action.message.username].concat(markUnread(action.message))
+      };
+      return Object.assign({}, state, newMessages);
 
     case Actions.RECEIVE_MESSAGES:
       return Object.assign({}, state, {
@@ -22,7 +30,7 @@ const messageReducer = (state = defaultState, action) => {
 
     case Actions.RECEIVE_SINGLE_MESSAGE:
       // Add message to end of existing ones
-      const newMessages = {
+      newMessages = {
         [action.message.channel_id]: state[action.message.channel_id].concat(markUnread(action.message))
       };
       return Object.assign({}, state, newMessages);
