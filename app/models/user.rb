@@ -16,7 +16,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token
-  after_create :join_default_teams
+  # after_create :join_default_teams
 
   has_many :team_memberships
   has_many :teams, through: :team_memberships
@@ -46,7 +46,10 @@ class User < ApplicationRecord
 
   def join_team(team)
     TeamMembership.create!(user: self, team: team)
-    UserBroadcastJob.perform_now self, team
+    begin
+      UserBroadcastJob.perform_now self, team
+    rescue NameError
+    end
   end
 
   def join_default_teams

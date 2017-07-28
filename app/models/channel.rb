@@ -13,6 +13,7 @@
 
 class Channel < ApplicationRecord
   validates :team, :author, :name, presence: true
+  validates :name, uniqueness: { scope: :team }
   validate :user_must_be_in_team
 
   def user_must_be_in_team
@@ -21,7 +22,13 @@ class Channel < ApplicationRecord
     end
   end
 
-  after_create_commit { ChannelBroadcastJob.perform_later self }
+  after_create_commit do
+    begin
+      ChannelBroadcastJob.perform_later self
+    rescue NameError
+      # broadcast not available when seeding
+    end
+  end
 
   belongs_to :team
   belongs_to :author, class_name: :User

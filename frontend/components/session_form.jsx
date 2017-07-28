@@ -10,8 +10,8 @@ class SessionForm extends React.Component {
     this.clearErrors = this.props.clearErrors.bind(this);
 
     this.state = {username: "", password: ""};
-    this.demoUsername = "tension_tamer";
-    this.demoPassword = "password";
+    this.demoUsername = "Tension_Demo";
+    this.demoPassword = "tensiondemo";
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

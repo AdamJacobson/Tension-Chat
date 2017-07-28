@@ -2,6 +2,7 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.join_default_teams
       login!(@user)
       render :show
     else

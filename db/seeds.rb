@@ -1,49 +1,54 @@
+require 'faker'
 
 User.destroy_all
 Team.destroy_all
 Channel.destroy_all
 Message.destroy_all
+DirectMessage.destroy_all
+TeamMembership.destroy_all
+ChannelMembership.destroy_all
 
-a_team = Team.create!(name: "The 'A' Team")
-b_team = Team.create!(name: "The 'B' Team")
-c_team = Team.create!(name: "The 'C' Team")
+def generate_content(faker, team, channel_namer)
+  users = []
 
-demo_user = User.create!(username: "tension_tamer", password: "password")
-
-
-a_users = [demo_user]
-
-a_users.push(User.create!(username: "Agent_47", password: "password"))
-a_users.push(User.create!(username: "Ayane", password: "password"))
-a_users.push(User.create!(username: "Alphonse", password: "password"))
-
-
-b_users = [demo_user]
-
-b_users.push(User.create!(username: "Bayonetta", password: "password"))
-b_users.push(User.create!(username: "Boris_Badenov", password: "password"))
-b_users.push(User.create!(username: "Brick", password: "password"))
-
-
-c_users = [demo_user]
-
-c_users.push(User.create!(username: "Cortana", password: "password"))
-c_users.push(User.create!(username: "Corax", password: "password"))
-c_users.push(User.create!(username: "Chris_Redfield", password: "password"))
-
-
-Team.all.each_with_index do |team, team_i|
-  20.times do |num|
-    name = "Team #{team_i}, Channel #{num}"
-    Channel.create!(team: team, author: team.users.sample, name: name, description: "Description for channel #{num}")
+  while users.length < 10
+    user = User.new(username: faker.character.gsub(/\W/, '_'), password: "password")
+    if user.valid?
+      user.save
+      users.push(user)
+    end
   end
 
-  team.channels.each_with_index do |channel, ch_i|
-    30.times do |m_i|
-      body = "Team #{team_i}, Channel #{ch_i}, Message #{m_i}"
-      Message.create!(author: team.users.sample, channel: channel, body: body )
+  # p users.map(&:username)
+
+  users.each do |u|
+    u.join_team(team)
+  end
+
+  10.times do |_|
+    name = faker.send channel_namer
+    channel = Channel.new(team: team, author: team.users.sample, name: name, description: "Description for channel #{name}")
+    if channel.valid?
+      channel.save
+    end
+    # Channel.create!(team: team, author: team.users.sample, name: name, description: "Description for channel #{name}")
+  end
+
+  team.channels.each_with_index do |channel, _|
+    30.times do |_|
+      body = faker.quote
+      Message.create!(author: team.users.sample, channel: channel, body: body)
     end
   end
 end
 
-secret_team = Team.create!(name: "The Super Secret Team")
+hhg = Team.create!(name: "The Hitchhikers Guide")
+th = Team.create!(name: "The Hobbit")
+hp = Team.create!(name: "Harry Potter")
+
+generate_content(Faker::HitchhikersGuideToTheGalaxy, hhg, :planet)
+generate_content(Faker::Hobbit, th, :location)
+generate_content(Faker::HarryPotter, hp, :house)
+
+demo_user = User.create!(username: "Tension_Demo", password: "tensiondemo")
+demo_user.join_default_teams
