@@ -46,6 +46,7 @@ class User < ApplicationRecord
 
   def join_team(team)
     TeamMembership.create!(user: self, team: team)
+    UserBroadcastJob.perform_now self, team
   end
 
   def join_default_teams

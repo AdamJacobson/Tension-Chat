@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import { subscribeToMessages } from '../connections/messages_connection';
-import { subscribeToChannels } from '../connections/channels_connection';
 
 import JoinChannelModalContainer from './join_channel_modal_container';
 import CreateChannelModalContainer from './channel/create_channel_modal_container';
@@ -48,11 +47,6 @@ class Channels extends React.Component {
       newProps.channels.entities.forEach((channel) => {
         subscribeToMessages(this.props.receiveSingleMessage, channel.id);
       });
-    }
-
-    if (newProps.team.id !== this.props.team.id) {
-      console.log("Team was " + this.props.team.id + ", is now " + newProps.team.id);
-      // subscribeToChannels(this.props.receiveSingleChannel, this.props.match.params.teamId);
     }
   }
 

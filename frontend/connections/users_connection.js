@@ -1,6 +1,6 @@
-const channelName = "ChannelsChannel";
+const channelName = "UsersChannel";
 
-export const unsubscribeFromChannels = () => {
+export const unsubscribeFromUsers = () => {
   window.App.cable.subscriptions.subscriptions.forEach((sub) => {
     if (JSON.parse(sub.identifier).channel === channelName) {
       window.App.cable.subscriptions.forget(sub);
@@ -8,10 +8,10 @@ export const unsubscribeFromChannels = () => {
   });
 };
 
-// Subscribe to all channel updates for the team
-export const subscribeToChannels = (action, teamId) => {
+export const subscribeToUsers = (action, teamId) => {
   const alreadySubscribed = window.App.cable.subscriptions.subscriptions.some((sub) => {
-    return JSON.parse(sub.identifier).team_id === teamId;
+    const parsed = JSON.parse(sub.identifier);
+    return parsed.channel === channelName && parsed.team_id === teamId;
   });
 
   if (!alreadySubscribed) {
@@ -22,7 +22,7 @@ export const subscribeToChannels = (action, teamId) => {
       },
       {
         connected: function() {
-          console.log(`Connected to teams channel ${teamId}`);
+          console.log(`Connected to users channel ${teamId}`);
         },
         disconnected: function() {},
         received: function(data) {

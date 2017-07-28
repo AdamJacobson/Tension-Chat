@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import { subscribeToDirectMessages } from '../connections/direct_messages_connection';
@@ -90,4 +90,4 @@ class DirectMessages extends React.Component {
   }
 }
 
-export default DirectMessages;
+export default withRouter(DirectMessages);

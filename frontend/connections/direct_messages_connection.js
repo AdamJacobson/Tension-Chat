@@ -17,7 +17,6 @@ export const subscribeToDirectMessages = (action, teamId, recipientId) => {
   });
 
   if (!alreadySubscribed) {
-    console.log("Not alreadySubscribed");
     window.App.cable.subscriptions.create(
       {
         channel: channelName,
