@@ -29,7 +29,7 @@ const Message = ({ message, users }) => {
     <li className={"message" + newClass}>
       <div className="side-by-side">
 
-        <img className="avatar" src="http://i.imgur.com/X3QLIPz.png"/>
+        <img className="avatar" src="https://i.imgur.com/X3QLIPz.png"/>
 
         <div className="message-content">
 

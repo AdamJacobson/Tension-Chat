@@ -1,6 +1,6 @@
 {
   "name": "Tension",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Slack clone with React, Redux and Web Sockets",
   "main": "webpack.config.js",
   "directories": {

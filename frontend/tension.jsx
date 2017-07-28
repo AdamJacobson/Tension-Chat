@@ -2,14 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 
-import * as ChannelActions from './actions/channel_actions';
-import * as ChannelUtil from './util/channel_api_util';
-import * as MessageActions from './actions/message_actions';
-// import * as TeamActions from './actions/team_actions';
-// import * as UserActions from './actions/user_actions';
-
-// import subscribeToMessages from './connections/messages_connection';
-
 import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,15 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-
-  window.ChannelActions = ChannelActions;
-  window.ChannelUtil = ChannelUtil;
-  window.MessageActions = MessageActions;
-  // window.TeamActions = TeamActions;
-  // window.UserActions = UserActions;
-
-  window.dispatch = store.dispatch;
-  window.getState = store.getState;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, root);
