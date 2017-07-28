@@ -11,7 +11,7 @@ export const receiveSingleTeam = team => {
 
 export const requestSingleTeam = (teamId) => dispatch => {
   const success = response => dispatch(receiveSingleTeam(response));
-  const failure = response => {debugger;};
+  // const failure = response => {debugger;};
 
-  TeamAPI.fetchSingleTeam(teamId).then(success, failure);
+  TeamAPI.fetchSingleTeam(teamId).then(success, null);
 };

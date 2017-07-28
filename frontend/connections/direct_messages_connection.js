@@ -25,7 +25,7 @@ export const subscribeToDirectMessages = (action, teamId, recipientId) => {
       },
       {
         connected: function() {
-          console.log(`Connected to direct messages channel, team_id: ${teamId}, recId: ${recipientId}`);
+          // console.log(`Connected to direct messages channel, team_id: ${teamId}, recId: ${recipientId}`);
         },
         disconnected: function() {},
         received: function(data) {

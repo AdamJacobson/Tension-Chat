@@ -36,16 +36,16 @@ export const clearUnreadFlag = channelId => {
 
 export const requestMessages = channelId => dispatch => {
   const success = response => dispatch(receiveMessages(response, channelId));
-  const failure = response => {debugger;};
+  // const failure = response => {debugger;};
 
-  MessageAPI.fetchMessages(channelId).then(success, failure);
+  MessageAPI.fetchMessages(channelId).then(success, null);
 };
 
 export const sendMessage = message => dispatch => {
   // const success = response => dispatch(receiveSingleMessage(response));
-  const failure = response => {debugger;};
+  // const failure = response => {debugger;};
 
-  MessageAPI.sendMessage(message).then(null, failure);
+  MessageAPI.sendMessage(message); //.then(null, null);
 };
 
 /* DirectMessage */
@@ -78,21 +78,21 @@ export const receiveConversations = conversations => {
 
 export const sendDirectMessage = message => dispatch => {
   const success = response => dispatch(receiveDirectMessage(response));
-  const failure = response => {debugger;};
+  // const failure = response => {debugger;};
 
-  MessageAPI.sendDirectMessage(message).then(success, failure);
+  MessageAPI.sendDirectMessage(message).then(success, null);
 };
 
 export const requestDirectMessages = (recipientId, teamId) => dispatch => {
   const success = response => dispatch(receiveDirectMessages(response, recipientId));
-  const failure = response => {debugger;};
+  // const failure = response => {debugger;};
 
-  MessageAPI.fetchDirectMessages(recipientId, teamId).then(success, failure);
+  MessageAPI.fetchDirectMessages(recipientId, teamId).then(success, null);
 };
 
 export const requestConversations = (recipientId, teamId) => dispatch => {
   const success = response => dispatch(receiveConversations(response));
-  const failure = response => {debugger;};
+  // const failure = response => {debugger;};
 
-  MessageAPI.fetchConversations(recipientId, teamId).then(success, failure);
+  MessageAPI.fetchConversations(recipientId, teamId).then(success, null);
 };

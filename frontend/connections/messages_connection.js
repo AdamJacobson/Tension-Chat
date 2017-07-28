@@ -23,7 +23,7 @@ export const subscribeToMessages = (action, channelId) => {
       },
       {
         connected: function() {
-          console.log(`Connected to message channel ${channelId}`);
+          // console.log(`Connected to message channel ${channelId}`);
         },
         disconnected: function() {},
         received: function(data) {

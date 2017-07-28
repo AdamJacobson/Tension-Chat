@@ -22,7 +22,7 @@ class CreateModal extends React.Component {
   handleChange(e) {
     e.preventDefault();
     if (e.which === 13) {
-      console.log("Return");
+      // console.log("Return");
     }
     this.setState({ [e.target.id]: e.target.value });
   }

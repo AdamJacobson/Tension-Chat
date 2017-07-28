@@ -22,7 +22,7 @@ export const subscribeToUsers = (action, teamId) => {
       },
       {
         connected: function() {
-          console.log(`Connected to users channel ${teamId}`);
+          // console.log(`Connected to users channel ${teamId}`);
         },
         disconnected: function() {},
         received: function(data) {

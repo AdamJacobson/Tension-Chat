@@ -19,14 +19,14 @@ export const receiveSingleUser = user => {
 
 export const requestUsers = (teamId) => dispatch => {
   const success = response => dispatch(receiveUsers(response));
-  const failure = response => {debugger;};
+  // const failure = response => {debugger;};
 
-  UserAPI.fetchAllUsersForTeam(teamId).then(success, failure);
+  UserAPI.fetchAllUsersForTeam(teamId).then(success, null);
 };
 
 export const requestSingleUser = (userId) => dispatch => {
   const success = response => dispatch(receiveSingleUser(response));
-  const failure = response => {debugger;};
+  // const failure = response => {debugger;};
 
-  UserAPI.fetchUser(userId).then(success, failure);
+  UserAPI.fetchUser(userId).then(success, null);
 };
