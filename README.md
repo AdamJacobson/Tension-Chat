@@ -9,10 +9,9 @@
  - Teams
 
 ### Message Sending and Receiving
-The essence of any chat application is the sending and receiving of messages without needing to refresh the page. With Tension, this is accomplished with Rails ActionCable. An ActionCable stream is created for each channel the user is a member of. Any messages created in this channel will be posted to that stream and any users listening will receive the message.
+The essence of any chat application is the sending and receiving of messages without needing to refresh the page. With Tension, this is accomplished through the use of Rails ActionCable. An ActionCable stream is created for each channel the user is a member of. Any messages created in this channel will be posted to that stream and any users listening will receive the message.
 
-![chat demo](https://res.cloudinary.com/dwczmcdof/image/upload/v1501268914/tension/chat_demo_2.gif)
-![chat demo](https://github.com/AdamJacobson/Tension-Chat/blob/master/docs/gifs/chat_demo.gif)
+![chat demo](https://github.com/AdamJacobson/Tension-Chat/blob/docs-images/docs/gifs/chat_demo.gif)
 
     # messages_channel.rb
     class MessagesChannel < ApplicationCable::Channel
@@ -20,3 +19,10 @@ The essence of any chat application is the sending and receiving of messages wit
       stream_from "messages_#{params[:channel_id]}"
      end
     end
+
+### Direct messaging between users
+Any users in the same team can send messages to each other privately. Styling will alert the user to a new message should one be sent.
+
+![direct message demo](https://github.com/AdamJacobson/Tension-Chat/blob/docs-images/docs/gifs/direct_message_demo.gif)
+
+### Teams
