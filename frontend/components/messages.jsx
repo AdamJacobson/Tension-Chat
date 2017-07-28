@@ -91,7 +91,7 @@ class Messages extends React.Component {
 
   render() {
     this.clearUnread(this.channelId);
-    
+
     // No channel selected
     if (!this.channelId) {
       return (
