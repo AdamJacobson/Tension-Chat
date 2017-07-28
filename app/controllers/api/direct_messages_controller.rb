@@ -35,8 +35,8 @@ class Api::DirectMessagesController < ApplicationController
 
   def active_conversations
     me = current_user
-    received = DirectMessage.where("recipient_id = ?",  me.id).pluck(:author_id).uniq;
-    sent = DirectMessage.where("author_id = ?",  me.id).pluck(:recipient_id).uniq
+    received = DirectMessage.where("team_id = ? AND recipient_id = ?", params[:team_id], me.id).pluck(:author_id).uniq;
+    sent = DirectMessage.where("team_id = ? AND author_id = ?", params[:team_id], me.id).pluck(:recipient_id).uniq
     all = received.concat(sent).uniq
 
     conversations = User.find(all).pluck(:username).map do |username|
