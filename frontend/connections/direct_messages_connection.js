@@ -30,8 +30,6 @@ export const subscribeToDirectMessages = (action, teamId, recipientId) => {
         },
         disconnected: function() {},
         received: function(data) {
-          console.warn("== Receiving Direct Message Data ==");
-          console.warn(data);
           action(JSON.parse(data));
         }
       }

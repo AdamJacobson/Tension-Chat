@@ -38,7 +38,7 @@ export const conversations = messages => {
   let arr = [];
   Object.keys(messages).forEach((key) => {
     if (key.toString()[0] === '@') {
-      arr.push(key);
+      arr.push({ name: key, unread: messages[key].unread });
     }
   });
   return arr;

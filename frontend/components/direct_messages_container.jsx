@@ -7,10 +7,10 @@ import { arrayify, conversations } from '../selectors/selectors';
 import DirectMessages from './direct_messages';
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser,
   currentChannel: state.channels.currentChannel,
-  users: arrayify(state.users),
   conversations: conversations(state.messages),
+  currentUser: state.session.currentUser,
+  users: arrayify(state.users),
   team: state.team
 });
 

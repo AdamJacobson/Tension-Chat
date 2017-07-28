@@ -31,6 +31,8 @@ class DirectMessages extends React.Component {
   }
 
   render() {
+    console.warn(this.props.conversations);
+
     return(
       <div className="channel-group">
 
@@ -65,16 +67,20 @@ class DirectMessages extends React.Component {
         </h4>
 
         <ul className="channel-list">
-          {this.props.conversations.map((user, i) => {
+          {this.props.conversations.map((conv, i) => {
+
             let classes = "channel-item";
-            if (0 === user.id) {
+            if (0 === conv.id) {
               classes += " channel-selected";
             }
+
             return(
               <li className={classes} key={i}>
                 <Link className="channel-link"
-                      to={`/teams/${this.props.team.id}/messages/${user}`}>
-                  {user}
+                      to={`/teams/${this.props.team.id}/messages/${conv.name}`}>
+                  <span>{conv.name}</span>
+                  &nbsp;
+                  {conv.unread !== 0 ? (<span>{conv.unread}</span>) : (null)}
                 </Link>
               </li>
             );

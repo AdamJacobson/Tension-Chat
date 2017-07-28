@@ -16,6 +16,8 @@ class Messages extends React.Component {
 
     // bind local functions
     this.getMessages = this.getMessages.bind(this);
+    this.clearUnread = this.clearUnread.bind(this);
+    this.messagesForChannel = this.messagesForChannel.bind(this);
   }
 
   componentDidUpdate(prevProps, nextProps) {
@@ -37,11 +39,11 @@ class Messages extends React.Component {
     if (!this.channelId) {
 
     } else if (this.isDirectMessages(this.channelId)) {
-      if (!this.props.messages[this.channelId]) {
+      if (!this.messagesForChannel(this.channelId)) {
         this.requestDirectMessages(this.channelId, this.props.match.params.teamId);
       }
     } else {
-      if (!this.props.messages[this.channelId]) {
+      if (!this.messagesForChannel(this.channelId)) {
         this.requestMessages(this.channelId);
       }
     }
@@ -73,7 +75,23 @@ class Messages extends React.Component {
     }
   }
 
+  clearUnread(channelId) {
+    let messages = this.props.messages[channelId];
+    if (messages && messages.unread !== 0) {
+      this.props.clearUnreadFlag(channelId);
+    }
+  }
+
+  messagesForChannel(channelId) {
+    if (!this.props.messages[channelId]) {
+      return null;
+    }
+    return this.props.messages[channelId].entities;
+  }
+
   render() {
+    this.clearUnread(this.channelId);
+    
     // No channel selected
     if (!this.channelId) {
       return (
@@ -86,8 +104,7 @@ class Messages extends React.Component {
     }
 
     // Messages not loaded yet
-    if (!this.props.messages[this.channelId]) {
-      // debugger;
+    if (!this.messagesForChannel(this.channelId)) {
       return(
         <div className="messages-container">
           <div className="loader">
@@ -99,11 +116,11 @@ class Messages extends React.Component {
     }
 
     let messages;
-    if (this.props.messages[this.channelId].length > 0) {
+    if (this.messagesForChannel(this.channelId).length > 0) {
       messages = (
         <div id="messages-list" className="messages-list">
           <ul>
-            {this.props.messages[this.channelId].map((m, i) => (
+            {this.messagesForChannel(this.channelId).map((m, i) => (
               <Message key={i} users={this.props.users} message={m}/>
             ))}
           </ul>

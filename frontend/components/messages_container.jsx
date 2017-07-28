@@ -1,25 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { sendMessage, requestMessages, markMessagesAsRead, requestDirectMessages }
+import { sendMessage, requestMessages, markMessagesAsRead, requestDirectMessages, clearUnreadFlag }
   from '../actions/message_actions';
 import { updateCurrentChannel } from '../actions/channel_actions';
 import { requestUsers } from '../actions/user_actions';
 import Messages from './messages';
 
 const mapStateToProps = state => ({
-  messages: state.messages,
+  currentChannel: state.channels.currentChannel,
   directMessages: state.directMessages,
-  users: state.users,
-  currentChannel: state.channels.currentChannel
+  messages: state.messages,
+  users: state.users
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestMessages: channelId => dispatch(requestMessages(channelId)),
   requestDirectMessages: (recipientId, teamId) => dispatch(requestDirectMessages(recipientId, teamId)),
-  requestUsers: teamId => dispatch(requestUsers(teamId)),
+  markMessagesAsRead: channelId => dispatch(markMessagesAsRead(channelId)),
+  clearUnreadFlag: (channelId) => dispatch(clearUnreadFlag(channelId)),
+  requestMessages: channelId => dispatch(requestMessages(channelId)),
   updateCurrentChannel: (id) => dispatch(updateCurrentChannel(id)),
-  markMessagesAsRead: channelId => dispatch(markMessagesAsRead(channelId))
+  requestUsers: teamId => dispatch(requestUsers(teamId)),
+
 });
 
 const MessagesContainer = connect(
