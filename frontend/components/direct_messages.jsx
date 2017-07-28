@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import { subscribeToDirectMessages } from '../connections/direct_messages_connection';
@@ -31,8 +31,6 @@ class DirectMessages extends React.Component {
   }
 
   render() {
-    console.warn(this.props.conversations);
-
     return(
       <div className="channel-group">
 
@@ -70,7 +68,7 @@ class DirectMessages extends React.Component {
           {this.props.conversations.map((conv, i) => {
 
             let classes = "channel-item";
-            if (0 === conv.id) {
+            if (this.props.currentChannel === conv.name) {
               classes += " channel-selected";
             }
 
@@ -78,9 +76,9 @@ class DirectMessages extends React.Component {
               <li className={classes} key={i}>
                 <Link className="channel-link"
                       to={`/teams/${this.props.team.id}/messages/${conv.name}`}>
-                  <span>{conv.name}</span>
+                  <div>{conv.name}</div>
                   &nbsp;
-                  {conv.unread !== 0 ? (<span>{conv.unread}</span>) : (null)}
+                  {conv.unread !== 0 ? (<div className="unread">{conv.unread}</div>) : (null)}
                 </Link>
               </li>
             );
@@ -92,4 +90,4 @@ class DirectMessages extends React.Component {
   }
 }
 
-export default withRouter(DirectMessages);
+export default DirectMessages;

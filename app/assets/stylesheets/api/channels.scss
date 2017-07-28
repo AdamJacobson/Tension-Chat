@@ -51,7 +51,14 @@ input {
 }
 
 .channel-link {
-  // color: $textFocus;
+  display: flex;
+  justify-content: space-between;
+}
+
+.unread {
+  border-radius: 6px;
+  background: salmon;
+  padding: 0 4px;
 }
 
 .channel-type-header {

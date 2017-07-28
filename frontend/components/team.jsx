@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux';
-import { Route, Link, NavLink, withRouter, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ChannelsContainer from './channels_container';
 import DirectMessagesContainer from './direct_messages_container';

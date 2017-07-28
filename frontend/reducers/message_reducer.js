@@ -25,7 +25,7 @@ const messageReducer = (state = defaultState, action) => {
 
     case Actions.RECEIVE_DIRECT_MESSAGE:
       let previous;
-      if (state[action.message.username]) {
+      if (state[action.message.username] && state[action.message.username].entities) {
         previous = state[action.message.username];
       } else {
         previous = { entities: [], unread: 0 };

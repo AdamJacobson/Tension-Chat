@@ -18,7 +18,7 @@ const App = () => {
 
       // Need to handle /teams/:teamId without /messages. Redirect?
 
-      <ProtectedRoute path="/teams/:teamId/messages" component={ChatContainer}/>
+      <ProtectedRoute path="/teams/:teamId/messages/:channelId?" component={ChatContainer}/>
 
       <Route path="/" render={() => <div>404!</div>} />
     </Switch>
