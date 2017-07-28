@@ -48,7 +48,7 @@ class DirectMessages extends React.Component {
                   return (
                     <div key={i} className="clickable channel-option" onClick={(e) => this.handleClick(e, user)}>
                       <div className="side-by-side">
-                        <img className="avatar" src="http://res.cloudinary.com/dwczmcdof/image/upload/v1500674716/avatar-generic-m.png"/>
+                        <img className="avatar" src="http://i.imgur.com/X3QLIPz.png"/>
                         <div className="channel-option-row">{user.username}</div>
                       </div>
                     </div>
