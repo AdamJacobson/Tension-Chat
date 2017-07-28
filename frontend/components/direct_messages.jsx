@@ -67,18 +67,21 @@ class DirectMessages extends React.Component {
         <ul className="channel-list">
           {this.props.conversations.map((conv, i) => {
 
-            let classes = "channel-item";
+            let liClasses = "channel-item";
             if (this.props.currentChannel === conv.name) {
-              classes += " channel-selected";
+              liClasses += " channel-selected";
             }
 
+            let linkClasses = "channel-link";
+            linkClasses += conv.unread ? " unread" : " read";
+
             return(
-              <li className={classes} key={i}>
-                <Link className="channel-link"
+              <li className={liClasses} key={i}>
+                <Link className={linkClasses}
                       to={`/teams/${this.props.team.id}/messages/${conv.name}`}>
                   <div>{conv.name}</div>
                   &nbsp;
-                  {conv.unread !== 0 ? (<div className="unread">{conv.unread}</div>) : (null)}
+                  {conv.unread !== 0 ? (<div className="unread-count">{conv.unread}</div>) : (null)}
                 </Link>
               </li>
             );

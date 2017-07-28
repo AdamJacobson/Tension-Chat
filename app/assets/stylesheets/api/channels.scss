@@ -55,11 +55,19 @@ input {
   justify-content: space-between;
 }
 
-.unread {
+.unread-count {
   border-radius: 6px;
   background: salmon;
   padding: 0 4px;
   color: $lightgray;
+}
+
+.read {
+  color: $mediumgray;
+}
+
+.unread {
+  font-weight: bold;
 }
 
 .channel-type-header {
