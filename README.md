@@ -22,39 +22,41 @@ The essence of any chat application is the sending and receiving of messages wit
 
 The code for setting up action cable was fairly simple but required some tweaking. Rails will generate some of this code on request but the listeners which are generated for the frontend will be initialized immediately on the application loading. I had to rewrite them into a modular format to allow for more control, as the channels to be listened to would change depending on the user action. I also built in protections to prevent duplicate channels from being created.
 
-    import * as MessageActions from '../actions/message_actions';
+``` javascript
+import * as MessageActions from '../actions/message_actions';
 
-    const channelName = "MessagesChannel";
+const channelName = "MessagesChannel";
 
-    export const unsubscribeFromMessages = () => {
-      window.App.cable.subscriptions.subscriptions.forEach((sub) => {
-        if (JSON.parse(sub.identifier).channel === channelName) {
-          window.App.cable.subscriptions.forget(sub);
+export const unsubscribeFromMessages = () => {
+  window.App.cable.subscriptions.subscriptions.forEach((sub) => {
+    if (JSON.parse(sub.identifier).channel === channelName) {
+      window.App.cable.subscriptions.forget(sub);
+    }
+  });
+};
+
+export const subscribeToMessages = (action, channelId) => {
+  const alreadySubscribed = window.App.cable.subscriptions.subscriptions.some((sub) => {
+    return JSON.parse(sub.identifier).channel_id === channelId;
+  });
+
+  if (!alreadySubscribed) {
+    window.App.cable.subscriptions.create(
+      {
+        channel: channelName,
+        channel_id: channelId
+      },
+      {
+        connected: function() {},
+        disconnected: function() {},
+        received: function(data) {
+          action(JSON.parse(data));
         }
-      });
-    };
-
-    export const subscribeToMessages = (action, channelId) => {
-      const alreadySubscribed = window.App.cable.subscriptions.subscriptions.some((sub) => {
-        return JSON.parse(sub.identifier).channel_id === channelId;
-      });
-
-      if (!alreadySubscribed) {
-        window.App.cable.subscriptions.create(
-          {
-            channel: channelName,
-            channel_id: channelId
-          },
-          {
-            connected: function() {},
-            disconnected: function() {},
-            received: function(data) {
-              action(JSON.parse(data));
-            }
-          }
-        );
       }
-    };
+    );
+  }
+};
+ ```
 
 ### Direct messaging between users
 Any users in the same team can send messages to each other privately. Styling will alert the user to a new message should one be sent.
@@ -62,39 +64,40 @@ Any users in the same team can send messages to each other privately. Styling wi
 ![direct message demo](https://github.com/AdamJacobson/Tension-Chat/blob/docs-images/docs/gifs/direct_message_demo.gif)
 
 The unread message count is achieved by incrementing a counter when receiving message related to a specific user. The counter is cleared once that conversation is selected. This functionality can also be extended to regular channel messages.
-
-    # message_reducer.js
-    switch (action.type) {
-      
-      . . .
-    
-      case Actions.RECEIVE_DIRECT_MESSAGE:
-      let previous;
-      if (state[action.message.username] && state[action.message.username].entities) {
-        previous = state[action.message.username];
-      } else {
-        previous = { entities: [], unread: 0 };
-      }
-
-      newMessages = {
-        [action.message.username]: {
-          entities: previous.entities.concat(markUnread(action.message)),
-          unread: previous.unread + 1
-        }
-      };
-      return Object.assign({}, state, newMessages);
-      
-      case Actions.CLEAR_UNREAD_FLAG:
-      newMessages = {
-        [action.channelId]: {
-          entities: state[action.channelId].entities,
-          unread: 0
-        }
-      };
-      return Object.assign({}, state, newMessages);
-      
-      . . .
+``` javascript
+# message_reducer.js
+switch (action.type) {
+  
+  ...
+  
+  case Actions.RECEIVE_DIRECT_MESSAGE:
+  let previous;
+  if (state[action.message.username] && state[action.message.username].entities) {
+    previous = state[action.message.username];
+  } else {
+    previous = { entities: [], unread: 0 };
+  }
+  
+  newMessages = {
+    [action.message.username]: {
+      entities: previous.entities.concat(markUnread(action.message)),
+      unread: previous.unread + 1
     }
+  };
+  return Object.assign({}, state, newMessages);
+  
+  case Actions.CLEAR_UNREAD_FLAG:
+  newMessages = {
+    [action.channelId]: {
+      entities: state[action.channelId].entities,
+      unread: 0
+    }
+  };
+  return Object.assign({}, state, newMessages);
+  
+  ...
+}
+```
 
 ### Teams
 Teams are a container for channels, direct messages and users. A user can be on mutliple teams and switch between them freely. By default, newly created users are placed into the 3 default teams for demonstration purposes. On login, the user will be prompted to select which of their teams to enter.
@@ -102,19 +105,19 @@ Teams are a container for channels, direct messages and users. A user can be on 
 ![teams demo](https://github.com/AdamJacobson/Tension-Chat/blob/docs-images/docs/gifs/teams_demo.gif)
 
 ## Future Plans
-I plan to continue to develop Tension time permitting. Here are some features which I wouldl like to add.
+I plan to continue to develop Tension time permitting. Here are some features which I would like to add.
 
 ### Full team controls
 Users will be able to create their own teams and invite others to join.
 
 ### Multi-person direct messaging
-A user can initialize a conversation will multiple users concurrently and add new users once started.
+A user can initialize a conversation with multiple users concurrently and add new users once started.
 
 ### Message editing
 A user will be able to modify messages that have already been sent
 
 ### Markdown Styling
-Message will support limited markdown styling such as bold or italic font
+Messages will support limited markdown styling such as bold or italic font
 
 ### Customizable user avatars
 Users can upload their own avatars or pick from a number of default ones
