@@ -21,7 +21,7 @@ class Header extends React.Component {
         <div className="header-row-2">
           <div className="space-between">
             <span>{this.props.channels[this.props.currentChannel].description}</span>
-            <div className="leave-button" onClick={() => this.props.leaveChannel(this.props.currentChannel)}>
+            <div className="leave-button clickable" onClick={() => this.props.leaveChannel(this.props.currentChannel)}>
               Leave #{this.props.channels[this.props.currentChannel].name}
             </div>
           </div>
