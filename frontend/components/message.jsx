@@ -24,17 +24,19 @@ const formatTime = (date) => {
 
 const Message = ({ message, users }) => {
   const newClass = (message.read ? "" : " message-new");
+  const username = users[message.author_id].username;
+  const iconSet = username.charCodeAt(0) % 4 + 1;
 
   return (
     <li className={"message" + newClass}>
       <div className="side-by-side">
 
-        <img className="avatar" src="https://i.imgur.com/X3QLIPz.png"/>
+        <img className="avatar" src={`https://robohash.org/${username}.png?set=set${iconSet}`}/>
 
         <div className="message-content">
 
           <div className="message-meta">
-            <strong>{users[message.author_id].username}</strong> <time>{formatTime(message.created_at)}</time>
+            <strong>{username}</strong> <time>{formatTime(message.created_at)}</time>
           </div>
 
           <div className="message-body">
