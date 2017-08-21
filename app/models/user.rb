@@ -58,6 +58,12 @@ class User < ApplicationRecord
     teams.each do |team|
       self.join_team(team)
     end
+
+    self.teams.each do |team|
+      self.join_channel(team.channels[0])
+      self.join_channel(team.channels[1])
+      self.join_channel(team.channels[2])
+    end
   end
 
   def generate_avatar
