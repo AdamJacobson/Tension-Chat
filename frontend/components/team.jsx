@@ -53,7 +53,7 @@ class Team extends React.Component {
             <div className="dropdown-content">
               <div className="dropdown-section">
                 <div className="side-by-side">
-                  <img className="avatar" src="https://i.imgur.com/X3QLIPz.png"/>
+                  <img className="avatar" src={this.props.currentUser.avatar_url}/>
                   <span className="username">{this.props.currentUser.username}</span>
                 </div>
               </div>

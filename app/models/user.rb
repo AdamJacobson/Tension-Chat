@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token
+  before_validation :generate_avatar
   # after_create :join_default_teams
 
   has_many :team_memberships
@@ -57,6 +58,17 @@ class User < ApplicationRecord
     teams.each do |team|
       self.join_team(team)
     end
+  end
+
+  def generate_avatar
+    themes = %w(frogideas sugarsweets heatwave daisygarden daisygarden seascape summerwarmth bythepool duskfalling berrypie)
+    theme = themes[self.username.hash % themes.length]
+
+    types = %w(squares isogrids labs/isogrids/hexa labs/isogrids/hexa16)
+    type = types[self.username.length % types.length]
+
+    self.avatar_url = "http://www.tinygraphs.com/#{type}/#{self.username}?theme=#{theme}&numcolors=4&size=100&fmt=svg"
+    nil
   end
 
   def password=(password)
